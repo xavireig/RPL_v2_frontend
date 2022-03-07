@@ -1,0 +1,30 @@
+<div class="col-xs-6 top-bot-border left-border right-border">
+    <div class="confirm-order">
+
+        <style type="text/css">
+            #bid_club_{{club.id}} .st0{fill:{{club.color1}} !important;}
+            #bid_club_{{club.id}} .st1{fill:{{club.color2}} !important;}
+            #bid_club_{{club.id}} .st2{fill:{{club.color3}} !important;}
+        </style>
+        <div id="bid_club_{{club.id}}" ng-include="club.crest_pattern.svg_url" style="width: 40px; display: inline-block;"></div>
+
+        <span class="fantasy-club">{{club.name}} gets:</span><br/>
+
+        <div ng-repeat="virtFootballer in footballerList" class="confim-order-item"> <!-- ng-repeat -->
+            <div class="squads-pos violet-text ng-binding">
+                {{cgc.model.lineupModel.footballerPositionsSymbols[virtFootballer.footballer.position]}}
+            </div>
+            <div class="squads-name ng-binding player-name">
+                {{virtFootballer.footballer.full_name | FootballerFullName}}<br>
+                <small class="violet-text ng-binding epl-team">{{virtFootballer.footballer.real_team.short_club_name}}</small>
+            </div>
+        </div>
+
+        <div ng-if="money > 0" class="confim-order-item">
+            <div class="squads-name ng-binding player-name" style="margin-left: 35px;">
+                &pound; {{money}}M <br>
+                <small class="violet-text ng-binding epl-team">Cash</small>
+            </div>
+        </div>
+    </div>
+</div>

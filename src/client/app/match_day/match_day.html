@@ -1,0 +1,204 @@
+<!--<ng-include src="'app/layout/account_topbar.html'"></ng-include>-->
+<account-top-bar></account-top-bar>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3 col-md-2 small-sidebar" style="margin-left: -10px;">
+            <aside>
+                <menu-side-bar></menu-side-bar>
+            </aside>
+        </div>
+        <div class="col-xs-12 col-md-10 match-day">
+            <commercial-header></commercial-header>
+            <div class="row match-round-status">
+                <div class="col-xs-12">
+                    <data-owl-carousel ng-if="vm.model.roundListIsLoad" class="owl-carousel"
+                                       data-options="{center: true, loop: true, items: 1, onChanged: vm.model.getNewRoundInfo, startPosition: vm.menu.getCarouselPosition()}">
+                        <div
+                            owl-carousel-item=""
+                            class="col-xs-12 text-center h2"
+                            ng-repeat="round in vm.model.roundList">
+                            <i class="fa fa-angle-left" ng-click="goPrevOwlCarousel()"></i> round {{round.number - vm.model.firstWeek + 1}}: {{vm.view.roundStatusToText[round.status]}} <i class="fa fa-angle-right" ng-click="goNextOwlCarousel()"></i>
+                        </div>
+                    </data-owl-carousel>
+                </div>
+            </div>
+
+            <div class="row match-round-result-container" ng-repeat="game in vm.model.selectedRound.data.vfs" ng-click="vm.menu.showMatchDetailed(game)">
+                <div class="col-xs-1 col-md-1 match-day-arrow-content">
+                    <div class="match-day-arrow" ng-class="game.expanded ? 'open' : ''"></div>
+                </div>
+                <div class="col-xs-4 col-md-3 match-round-content">
+                    <div class="logo-and-title row">
+                        <div class="col-xs-3 col-md-4 match-club-logo">
+                            <style type="text/css">
+                                #home_club_{{game.home_club_id}} .st0{fill:{{game.home_club.color1}} !important;}
+                                #home_club_{{game.home_club_id}} .st1{fill:{{game.home_club.color2}} !important;}
+                                #home_club_{{game.home_club_id}} .st2{fill:{{game.home_club.color3}} !important;}
+                            </style>
+                            <div id="home_club_{{game.home_club_id}}" ng-include="game.home_club.crest_pattern.svg_url" ></div>
+                        </div>
+                        <div class="col-xs-9 col-md-8 match-club-name club-first">
+                            <div class="fantasy-club m-t10">{{game.home_club.name}}</div>
+                        </div>
+                    </div>
+                    <div class="round-content">
+                        <span class="match_day-team_info-label">{{vm.menu.getNumberPlace(game.home_club.place)}} place, {{game.home_club.pts}} pts <br/>
+                        Mngr: {{game.home_club.user.full_name}} <br/>
+                        Matches left in round: {{game.home_line_up.matches_left_in_round_by_line_up}}</span>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-md-4 match-round-result">
+                    <div class="round-count">{{game.home_score}}-{{game.away_score}}</div>
+                </div>
+                <div class="col-xs-4 col-md-3 match-round-content">
+                    <div class="logo-and-title row">
+                        <div class="col-xs-9 col-md-8 match-club-name club-second">
+                            <div class="fantasy-club m-t10">{{game.away_club.name}}</div>
+                        </div>
+                        <div class="col-xs-3 col-md-4 match-club-logo">
+                            <style type="text/css">
+                                #away_club_{{game.away_club_id}} .st0{fill:{{game.away_club.color1}} !important;}
+                                #away_club_{{game.away_club_id}} .st1{fill:{{game.away_club.color2}} !important;}
+                                #away_club_{{game.away_club_id}} .st2{fill:{{game.away_club.color3}} !important;}
+                            </style>
+                            <div id="away_club_{{game.away_club_id}}" ng-include="game.away_club.crest_pattern.svg_url" ></div>
+                        </div>
+                    </div>
+                    <div class="round-content">
+                        <span class="match_day-team_info-label">{{vm.menu.getNumberPlace(game.away_club.place)}} place, {{game.away_club.pts}} pts <br/>
+                        Mngr: {{game.away_club.user.full_name}} <br/>
+                        Matches left in round: {{game.away_line_up.matches_left_in_round_by_line_up}}</span>
+                    </div>
+                </div>
+
+                <virt-fixture-stats class="row match-summary-tbl-container" ng-if="game.expanded"></virt-fixture-stats>
+
+
+                <div class="row match-result-tables-container" ng-if="game.expanded">
+                    <div class="col-xs-12 col-md-offset-1 col-md-11">
+                        <div class="view-control-container text-center visible-xs visible-sm">
+                            <ul id="clubView" class="view-control clearfix" ng-click="vm.menu.clubCtrl($event)">
+                                <li class="active" ng-click="vm.menu.clubOne('clubOneSummary')">{{vm.model.selectedMatch.pair.home_club.abbr}}</li>
+                                <li ng-click="vm.menu.clubOne('clubTwoSummary')">{{vm.model.selectedMatch.pair.away_club.abbr}}</li>
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6 match-mini-tables-container clubOneSummary" style="display: block;">
+                                <div class="table-responsive">
+                                    <table class="table match-day-mini-tables">
+                                        <thead>
+                                        <tr>
+                                            <th>Starting XI</th>
+                                            <th width="40"></th>
+                                            <th width="140"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr match-day-footballer-list ng-repeat="footballer in vm.model.selectedMatch.data.home_line_up_full_data.full_virt_footballers | orderBy:vm.menu.sortFootballerPosition" ng-if="footballer.on_starting_xi" class="{{footballer.footballer.position}} {{vm.model.position[footballer.footballer.position].sort}}"></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 match-mini-tables-container clubTwoSummary">
+                                <div class="table-responsive">
+                                    <table class="table match-day-mini-tables">
+                                        <thead>
+                                        <tr>
+                                            <th>Starting XI</th>
+                                            <th width="40"></th>
+                                            <th width="140"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr match-day-footballer-list ng-repeat="footballer in vm.model.selectedMatch.data.away_line_up_full_data.full_virt_footballers | orderBy:vm.menu.sortFootballerPosition" ng-if="footballer.on_starting_xi"></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="reorder-row-xs-sm">
+                            <match-day-legend></match-day-legend>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6 match-mini-tables-container clubOneSummary" style="display: block;">
+                                    <div class="table-responsive">
+                                        <table class="table match-day-mini-tables">
+                                            <thead>
+                                            <tr>
+                                                <th>Bench</th>
+                                                <th width="40"></th>
+                                                <th width="140"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr match-day-footballer-list ng-repeat="footballer in vm.model.selectedMatch.data.home_line_up_full_data.full_virt_footballers | orderBy:vm.menu.sortFootballerPosition" ng-if="footballer.on_bench"></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6 match-mini-tables-container clubTwoSummary">
+                                    <div class="table-responsive">
+                                        <table class="table match-day-mini-tables">
+                                            <thead>
+                                            <tr>
+                                                <th>Bench</th>
+                                                <th width="40"></th>
+                                                <th width="140"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr> {{ vm.model.selectedMatch.data.home_lineup_full_data.full_virt_footballers.length }} </tr>
+                                            <tr match-day-footballer-list ng-repeat="footballer in vm.model.selectedMatch.data.away_line_up_full_data.full_virt_footballers | orderBy:vm.menu.sortFootballerPosition" ng-if="footballer.on_bench"></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            </br>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6 match-mini-tables-container clubOneSummary" style="display: block;">
+                                    <div class="table-responsive">
+                                        <table class="table match-day-mini-tables">
+                                            <thead>
+                                            <tr>
+                                                <th>Reserve</th>
+                                                <th width="40"></th>
+                                                <th width="140"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr match-day-footballer-list ng-repeat="footballer in vm.model.selectedMatch.data.home_line_up_full_data.full_virt_footballers | orderBy:vm.menu.sortFootballerPosition" ng-if="footballer.on_reserve"></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6 match-mini-tables-container clubTwoSummary">
+                                    <div class="table-responsive">
+                                        <table class="table match-day-mini-tables">
+                                            <thead>
+                                            <tr>
+                                                <th>Reserve</th>
+                                                <th width="40"></th>
+                                                <th width="140"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr> {{ vm.model.selectedMatch.data.home_lineup_full_data.full_virt_footballers.length }} </tr>
+                                            <tr match-day-footballer-list ng-repeat="footballer in vm.model.selectedMatch.data.away_line_up_full_data.full_virt_footballers | orderBy:vm.menu.sortFootballerPosition" ng-if="footballer.on_reserve"></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <commercial-footer></commercial-footer>
+        </div>
+    </div>
+</div>

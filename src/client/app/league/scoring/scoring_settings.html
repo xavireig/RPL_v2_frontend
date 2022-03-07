@@ -1,0 +1,246 @@
+<div class="col-xs-12 settings-page">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-center h2">scoring type</div>
+            <h4 class="text-center page-info-body">Choose how your league matches will be scored. This will not affect scoring for RPL Cup</h4>
+        </div>
+    </div>
+    <div class="row">
+        <table class="scoring-type clearfix">
+            <tbody>
+            <tr>
+                <td class="text-right settings-label">Categories</td>
+                <td>
+                    <form class="scoring-switch">
+                        <switch id="enabled" name="enabled"
+                                disabled="ssc.model.leagueSettingsModel.recalcInProcess"
+                                ng-model="ssc.model.leagueSettingsModel.scoringType.points"
+                                ng-change="ssc.menu.changeScoringType()" class="green">
+                        </switch>
+                    </form>
+                </td>
+                <td class="text-left settings-label">Points</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <p class="text-center page-info-body">
+            Check out our post <a href="https://www.rotopremierleague.com/fantasy-scoring-points-v-category">Scoring: Points v. Categories</a> for more info about the scoring style and other gameplay tips.
+        </p>
+    </div>
+    <div ng-if="!ssc.model.leagueSettingsModel.scoringType.points">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="text-center h2">customize categories</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-offset-2 col-xs-8 content">
+                <h4 class="text-center page-info-body">Choose which categories your league will use to score fantasy matches.
+                    <br>
+                    <br>
+                     A category's "weight"
+                    changes its value and thus its importance.</h4>
+                <br>    
+                <p class="page-info-body"><b>Note:</b> the Goals category is weighted 2 by default since it's the most important
+                    category.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-offset-2 col-xs-8 settings-wrap">
+                <div class="col-sm-6">
+                    <table class="table settings-table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th class="text-left settings-label">Weight</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="oneParameter in ssc.menu.customizeCategoriesFirstRow">
+                            <td class="text-right settings-label" ng-bind-html="oneParameter.title"></td>
+                            <td class="text-center">
+                                <form class="setting-switches">
+                                    <switch disabled="ssc.model.leagueSettingsModel.recalcInProcess"
+                                            id="enabled"
+                                            name="enabled"
+                                            ng-model="ssc.model.leagueSettingsModel.scoringData['league_sco_cat']['is_c_' + oneParameter.paramName]"
+                                            ng-change="ssc.menu.categoriesDataWasChanged()" class="light-green"></switch>
+                                </form>
+                            </td>
+                            <td class="text-left">
+                                <input ng-disabled="ssc.view.disableInput(oneParameter)"
+                                       ng-model="ssc.model.leagueSettingsModel.scoringData['league_sco_cat']['c_' + oneParameter.paramName]"
+                                       ng-change="ssc.menu.scoringDataWasChanged()" style="width: 60px; text-align: center" class="" type="number"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-6">
+                    <table class="table settings-table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th class="text-left settings-label">Weight</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="oneParameter in ssc.menu.customizeCategoriesSecondRow">
+                            <td class="text-right settings-label">
+                                {{oneParameter.title}}
+                            </td>
+                            <td class="text-center">
+                                <form class="setting-switches">
+                                    <switch disabled="ssc.model.leagueSettingsModel.recalcInProcess"
+                                            id="enabled"
+                                            name="enabled"
+                                            ng-model="ssc.model.leagueSettingsModel.scoringData['league_sco_cat']['is_c_' + oneParameter.paramName]"
+                                            ng-change="ssc.menu.categoriesDataWasChanged()" class="light-green"></switch>
+                                </form>
+                            </td>
+                            <td class="text-left">
+                                <input ng-disabled="ssc.view.disableInput(oneParameter)"
+                                       ng-model="ssc.model.leagueSettingsModel.scoringData['league_sco_cat']['c_' + oneParameter.paramName]"
+                                       ng-change="ssc.menu.scoringDataWasChanged()" style="width: 60px; text-align: center;" class="" type="number"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="clearfix col-xs-12 text-center">
+                    <small class="small-note">Please see <a href="https://www.rotopremierleague.com/game-guide/" target="_blank" class="link"> Game Guide for all statistical definitions</a></small>
+                </div>
+                <div class="clearfix col-xs-12 text-center">
+                    <button class="btn btn-blue" ng-click="ssc.model.restoreDefaultsSettings()">
+                        Restore defaults
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="ssc.model.leagueSettingsModel.scoringType.points">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="text-center h2">customize points</div>
+                <p class="text-center page-info-body"> Choose point values for each stat and each position </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-offset-2 col-xs-8 customize-points">
+                <div class="col-xs-12">
+                    <table class="table custom_points" align="center">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th class="text-center settings-label">Fwd</th>
+                            <th class="text-center settings-label">Mid</th>
+                            <th class="text-center settings-label">Def</th>
+                            <th class="text-center settings-label">Gk</th>
+                            <!--<th></th>-->
+                        </tr>
+                        </thead>
+                        <tbody style="text-align: center;">
+                        <tr ng-repeat="onePointField in ssc.menu.customizePointsFields">
+                            <td class="text-right settings-label">
+                                {{onePointField.title}}
+                            </td>
+                            <td>
+                                <input style="width: 60px;" class="text-center point-input"
+                                       ng-change="ssc.menu.scoringDataWasChanged()"
+                                       ng-model="ssc.model.leagueSettingsModel.scoringData['league_sco_points'].forward[onePointField.paramName]"/>
+                            </td>
+                            <td>
+                                <input style="width: 60px;" class="text-center point-input"
+                                       ng-change="ssc.menu.scoringDataWasChanged()"
+                                       ng-model="ssc.model.leagueSettingsModel.scoringData['league_sco_points'].midfielder[onePointField.paramName]"/>
+                            </td>
+                            <td>
+                                <input style="width: 60px;" class="text-center point-input"
+                                       ng-change="ssc.menu.scoringDataWasChanged()"
+                                       ng-model="ssc.model.leagueSettingsModel.scoringData['league_sco_points'].defender[onePointField.paramName]"/>
+                            </td>
+                            <td>
+                                <input style="width: 60px;" class="text-center point-input"
+                                       ng-change="ssc.menu.scoringDataWasChanged()"
+                                       ng-model="ssc.model.leagueSettingsModel.scoringData['league_sco_points'].goalkeeper[onePointField.paramName]"/>
+                            </td>
+                            <!--<td></td>-->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="clearfix col-xs-12 text-center">
+                    <small class="small-note"><a href="https://rotopremierleague.com/game-guide#t1" target="_blank" ng-click="ssc.view.goToHelpPage('#scoring')" class="link">See statistical definitions</a></small>
+                </div>
+                <div class="clearfix col-xs-12 text-center">
+                    <button class="btn btn-blue" ng-click="ssc.model.restoreDefaultsSettings()">
+                        Restore defaults
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class = "row">
+        <h2 class = "text-center"> ADVANCED OPTIONS</h2>
+    </div>
+    <div class = "row">
+        <div class = "col-xs-offset-2 col-xs-8 advance-options">
+            <div class = "row advance-option-row">
+                <div class= "col-xs-1 advance-option-switch ">
+                    <form class="setting-switches">
+                        <switch disabled="ssc.model.leagueSettingsModel.scoringType.points"
+                                id="enabled"
+                                name="enabled"
+                                ng-model="ssc.model.leagueSettingsModel.advancedOptions['weight_goals_category']"
+                                ng-change="ssc.menu.advancedOptionChange()"
+                                class="light-green"></switch>
+                    </form>
+                </div>
+                <div class= "col-xs-11 advance-option-text">
+                    <h3 class="page-info-body"> Weight goals category by margin of victory </h3>
+                    <p class="page-info-body">
+                        if this option is turned on, then the weight of the goals category is determined by the difference in goals scored.
+                        I.e. for each goal that a team scores more than their opponent, they get credit for a category win. </br> </br>
+                        for example: if Team A scores 4 goals and Team B scores 1 goal, then Team A gets credit for three categories wins: 
+                        4 - 1 = 3 </br></br>
+                        Note: this option applies only to category scoring and overrides the weight entered in the box above </br>
+                    </p>
+
+                </div>
+            </div>
+            <div class = "row advance-option-row">
+                <div class= "col-xs-1 advance-option-switch ">
+                    <form class="setting-switches">
+                        <switch disabled="false"
+                                id="enabled"
+                                name="enabled"
+                                ng-model="ssc.model.leagueSettingsModel.advancedOptions['fantasy_assist']"
+                                ng-change="ssc.menu.advancedOptionChange()"
+                                class="light-green"></switch>
+                    </form>
+                </div>
+                <div class= "col-xs-11 advance-option-text">
+                    <h3 class="page-info-body"> Use "fantasy assists" </h3>
+                    <p class="page-info-body"> If this option is checked, the following are awared as an assists:</p>
+                    <p class="page-info-body"> A saved or blocked shot on goal, or a shot that hits the post, whose rebound is scored.</p>
+                    <p class="page-info-body"> A penalty or free kick that is won and converted </p>
+                    <p class="page-info-body"> A shot or pass that forces an own goal from an opposing player</p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-xs-6 text-right">
+            <button class="btn btn-gray" ng-click="vm.menu.goLeague()">cancel</button>
+        </div>
+        <div class="col-xs-6 text-left">
+            <button class="btn btn-green" ng-click="ssc.model.saveLeagueSettings()">save</button>
+        </div>
+    </div>
+</div>

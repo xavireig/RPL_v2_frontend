@@ -1,0 +1,192 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 settings-page">
+            <div class="row">
+                <div class="col-xs-offset-2 col-xs-8 settings-wrap">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="text-center h2">transfer rules </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="scoring-type clearfix align-table-setting-num">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-right settings-label">Annual transfer budget*</td>
+                                        <td class="text-left">
+                                            <div class="input-symbol">
+                                                <span class="cash">&pound;</span>
+                                                <span class="postcash">M</span>
+                                                <input ng-model="tc.model.transfers.transferSettings.trans_addit_set.annual_transfer_budget" ng-disabled="true"
+                                                ng-change="tc.menu.transferAdditDataWasChanged()" style="width: 70px" class="text-left" type="number" step="1"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right settings-label">Minimum free agent fee*</td>
+                                        <td class="text-left">
+                                            <div class="input-symbol">
+                                                <span class="cash">&pound;</span>
+                                                <span class="postcash">M</span>
+                                                <input ng-model="tc.model.transfers.transferSettings.min_fee_per_add" ng-disabled="true"
+                                                   ng-change="tc.menu.transferBasicSettingsWasChanged()" style="width: 70px;" class="text-left" type="number" step="1"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!--<tr>
+                                        <td class="text-right settings-lable">Waiver bids go are processed each week on**:</td>
+                                        <td class="text-left">
+                                            <div class="dropdown blue-drpdn pull-left" dropdown >
+                                                <button class="dropdown-toggle" style="width: 130px;" dropdown-toggle type="button" aria-haspopup="true" aria-expanded="true" id="num_div1">
+                                                    <div style="display: inline-block; font-size: 13px;">{{ tc.model.waiverAuctionDay }} </div>
+                                                    <span class="glyphicon glyphicon-menu-down"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="num_div1" style="min-width: 130px;">
+                                                    <li ng-repeat="weekday in tc.model.weekDays">
+                                                        <a href="#" ng-click="tc.model.waiverAuctionDay = weekday; tc.menu.transferDeadlinesWasChanged = true;">{{weekday}}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                        <td>at</td>
+                                        <td class="text-left">
+                                            <div class="dropdown blue-drpdn pull-left">
+                                                <button class="" dropdown-toggle onclick="document.getElementById('input-datepicker').focus();" type="button" aria-haspopup="true" aria-expanded="true" >
+                                                    <div style="display: inline-block">
+                                                        <input id="input-datepicker" ng-if="tc.model.waiverAuctionTime" date-time-picker-clear date-model="tc.model.waiverAuctionTime" format="'HH:mm'" flag="tc.menu.transferDeadlinesWasChanged" style="border: 0; padding: 0; width: 40px; font-size: 13px;">
+                                                    </div>
+                                                    <span class="glyphicon glyphicon-menu-down"></span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-bottom: 10px; padding-top: 15px;">
+                <div class="col-xs-12 top-border">
+                    <h2 class = "text-center h2"> Transfer bonus</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class = "text-center help-text page-info-body">Teams are awarded transfer funds based on their league perfomance. Set your bonus allocation below.</p>
+                    <table class="scoring-type clearfix">
+                        <tbody>
+                            <tr>
+                                <td class="text-right settings-label">Transfer bonus</td>
+
+                                <td class="text-left">
+                                    <div class="input-symbol">
+                                        <span class="cash">&pound;</span>
+                                        <span class="postcash">M</span>
+                                        <input ng-model="tc.model.transfers.transferSettings.bonus_per_win"
+                                        ng-change="tc.menu.transferBasicSettingsWasChanged()" style="width: 70px" class="text-left" type="number" step="1"/>
+                                    </div>
+                                </td>
+                                <td class= "transfer-bonus"><span>per win</span></td>
+                            </tr>
+                            <tr>
+                                <td class="text-right settings-label"></td>
+                                <td class="text-left">
+                                    <div class="input-symbol">
+                                        <span class="cash">&pound;</span>
+                                        <span class="postcash">M</span>
+                                        <input ng-model="tc.model.transfers.transferSettings.bonus_per_draw"
+                                            ng-change="tc.menu.transferBasicSettingsWasChanged()" style="width: 70px;" class="text-left" type="number" step="1"/>
+
+                                    </div>
+
+                                </td>
+                                <td class= "transfer-bonus"><span>per draw</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TRANSFER DEADLINE-->
+            <div class="row" style="padding-bottom: 10px; padding-top: 15px;">
+                <div class="col-xs-12 top-border">
+                    <h2 class = "txt-center"> Transfer deadline</h2>
+                </div>
+            </div>
+
+            <div class="row" style="padding-bottom: 30px;">
+                <div class="col-xs-12 text-center">
+                    <table class="basics-settings clearfix">
+                        <tbody>
+                            <tr>
+                                <td class="text-center page-info-body">No deals between clubs may be made after the start of:</td>
+                                <td class="text-left">
+                                    <div ng-if="tc.model.transferDeadlineWeekNumber" class="dropdown blue-drpdn pull-left"  dropdown>
+                                        <button style="min-width: 160px" class="dropdown-toggle" dropdown-toggle type="button" aria-haspopup="true" aria-expanded="true"  id="num_div3">
+                                            <div style="display: inline-block; font-size: 13px;">Gameweek {{ tc.model.transferDeadlineWeekNumber }}</div>
+                                            <span class="glyphicon glyphicon-menu-down"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="num_div3" style="min-width: 160px; max-height: 180px; overflow-y: scroll;">
+                                            <li ng-repeat="one in tc.model.weeks track by $index">
+                                                <a href="#" ng-click="tc.model.transferDeadlineWeekNumber = $index + 1; tc.menu.transferDeadlinesWasChanged = true;">Gameweek {{$index + 1}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Chairman veto-->
+             <div class="row" style="padding-bottom: 10px; padding-top: 15px;">
+                <div class="col-xs-12 top-border">
+                    <h2 class = "text-center"> Chairman veto</h2>
+                     <p class = "text-center page-info-body"> If turned on, the League Chairman must approve all club-to-club deals before they're final.</p>
+                </div>
+            </div>
+
+            <div class="row" style="border-bottom: 2px solid #243046; padding-bottom: 30px;">
+                <div class="col-xs-12 text-center">
+                    <table class="scoring-type">
+                        <tbody>
+                        <tr>
+                            <td class="text-right settings-label">Off</td>
+                            <td class="text-center">
+                                <form class="setting-switches">
+                                    <switch id="enabled" name="enabled" ng-model="tc.model.transfers.transferSettings.trans_addit_set.chairman_vetto"
+                                            ng-change="tc.menu.transferAdditDataWasChanged()" class="light-green"></switch>
+                                </form>
+                            </td>
+                            <td class="text-left settings-label">On</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p class="text-center page-info-body"> Note: we strongly suggest leaving the default settings to prevent any</br> possible collusion between managers</p>
+                </div>
+            </div>
+            <div class="row transfer-settings-defaults">
+                <div class="clearfix col-xs-12 text-center">
+                    <br>
+                    <br>
+                    <button class="btn btn-blue " ng-click="tc.menu.restoreDefaultsSettings()">
+                        Restore defaults
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 text-right">
+                    <button class="btn btn-gray">cancel</button>
+                </div>
+                <div class="col-xs-6 text-left">
+                    <button class="btn btn-green" ng-click="tc.menu.saveTransfersSettings()">save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

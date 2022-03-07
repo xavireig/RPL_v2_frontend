@@ -1,0 +1,62 @@
+<div class="row scoring-info-type">
+    <div class="col-xs-5 text-right  proxima-nova scoring-type-header">Scoring type:</div>
+    <div class="col-xs-7 text-left proxima-nova" style="color: #78849B">{{league.league_sco_type.scoring_type == 'category' ? 'Categories' : 'Points'}}</div>
+</div>
+<div class="row">
+    <div class="scoring-info-categories" ng-if="league.league_sco_type.scoring_type == 'category'">
+        <div class="col-xs-5 text-right proxima-nova categories-header">Categories:</div>
+        <div class="col-xs-7 text-left proxima-nova categories-value" style="color: #78849B">
+                                <span ng-repeat="category in leagueScoringTypeView">
+                                   {{codeToTitle[category.title]}} {{category.value > 1 ? '(' + category.value + 'x)' : ''}}<br>
+                                </span>
+        </div>
+    </div>
+    <div class="scoring-info-points" ng-if="league.league_sco_type.scoring_type != 'category'">
+        <div class="col-xs-12 text-center">
+            <span style="font-weight: bold; color: #78849B;">ALL PLAYERS</span>
+            <div ng-repeat="(key, value) in leagueScoringTypeView.footballer">
+                <div ng-if="value != 0">
+                    <div class="col-xs-7 text-right proxima-nova">{{codeToTitle[key]}}:</div>
+                    <div class="col-xs-5 text-left proxima-nova" style="color: #78849B">{{value}}</div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="col-xs-12 text-center">
+            <span style="font-weight: bold; color: #78849B;">FWD</span>
+            <div ng-repeat="(key, value) in leagueScoringTypeView.forward">
+                <div ng-if="value != 0">
+                    <div class="col-xs-5 text-right proxima-nova">{{codeToTitle[key]}}:</div>
+                    <div class="col-xs-7 text-left proxima-nova" style="color: #78849B">{{value}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 text-center">
+            <span style="font-weight: bold; color: #78849B;">MID</span>
+            <div ng-repeat="(key, value) in leagueScoringTypeView.midfielder">
+                <div ng-if="value != 0">
+                    <div class="col-xs-5 text-right proxima-nova">{{codeToTitle[key]}}:</div>
+                    <div class="col-xs-7 text-left proxima-nova" style="color: #78849B">{{value}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 text-center">
+            <span style="font-weight: bold; color: #78849B;">DEF</span>
+            <div ng-repeat="(key, value) in leagueScoringTypeView.defender">
+                <div ng-if="value != 0">
+                    <div class="col-xs-5 text-right proxima-nova">{{codeToTitle[key]}}:</div>
+                    <div class="col-xs-7 text-left proxima-nova" style="color: #78849B">{{value}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 text-center">
+            <span style="font-weight: bold; color: #78849B;">GK</span>
+            <div ng-repeat="(key, value) in leagueScoringTypeView.goalkeeper">
+                <div ng-if="value != 0">
+                    <div class="col-xs-5 text-right proxima-nova">{{codeToTitle[key]}}:</div>
+                    <div class="col-xs-7 text-left proxima-nova" style="color: #78849B">{{value}}</div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+
+</div>

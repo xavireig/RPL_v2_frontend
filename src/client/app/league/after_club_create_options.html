@@ -1,0 +1,31 @@
+<div ng-controller = "LeagueJoinDialogController as vm">
+    <div class="row" style="color: white;" >
+        <div class="col-xs-12">
+            <span ng-click="closeThisDialog()"
+                ng-include="'images/dialog_window/x_close.svg'"
+                class="close-dialog-icon"></span>
+            <div class="row text-center text-capitalize confirmation-title">
+                CLUB CREATED
+            </div>
+
+            <div class="row text-center body" style="padding: 10px;">
+                <span> Nice work. Your club is lookin' gooooooood. </br> </br>
+                    Now you need a league. You can either create your own, join a friend's private league, or test your mettle
+                    in a public league.
+                </span>
+            </div>
+
+            <div class="row text-center">
+                <span ng-click="vm.menu.goPublicLeagues()">
+                    <a href="#" class="btn small-btn btn-gray">JOIN PUBLIC</a>
+                </span>
+                <span ng-click="vm.menu.goPrivate()">
+                    <a href="#" class="btn small-btn btn-gray">JOIN PRIVATE</a>
+                </span>
+                <span ng-click="vm.menu.createLeague()" >
+                    <a href="#" class="btn small-btn btn-green">CREATE A LEAGUE</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

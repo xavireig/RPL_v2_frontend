@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #aaa;
+      }
+    </style>
+  </defs>
+  <title>X close</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g id="Gray_X" data-name="Gray X">
+        <path class="cls-1" d="M34.15,5.85a20,20,0,1,0,0,28.3A20,20,0,0,0,34.15,5.85ZM32.37,32.37a17.49,17.49,0,1,1,0-24.74A17.51,17.51,0,0,1,32.37,32.37Z"/>
+        <polygon class="cls-1" points="27.59 10.64 20.02 18.2 12.46 10.64 10.68 12.41 18.24 19.98 10.68 27.54 12.46 29.32 20.02 21.76 27.59 29.32 29.36 27.54 21.8 19.98 29.36 12.41 27.59 10.64"/>
+      </g>
+    </g>
+  </g>
+</svg>

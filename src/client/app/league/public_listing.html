@@ -1,0 +1,90 @@
+<div class="col-xs-12 settings-page">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class=" text-center">
+                    <div class="text-center h1">Public listing</div></br>
+                    <h3> Briefly describe your league - experience level, location, wager, etc - so that other managers know if they want to join your league or not</h3></br></br>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-4 col-md-4">
+                <form class=" text-center">
+                    <div class="form-group">
+                        <textarea class="border form-control inv-own-inp" rows="8" placeholder="Brief description of league -140 character limit" ng-model="vm.model.description"></textarea>
+                    </div>
+                    <div class="form-group">
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <hr/>
+            </div>
+        </div>
+        <!--<div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <div class="white-headline text-center">
+                    share link
+                </div>
+                <div class="inv-own-inp text-center">
+                    Anyone who clicks the link will be able to join your league.
+                </div>
+                <div class="col-md-12 text-center">
+                    <span class="inv-own-inp">League link: </span><input class="form-control shared_links_link" type="text" id="invitationLink" ng-model="vm.model.link" ng-disabled="true">
+                    <button type="submit" class="btn btn-default btn-blue" clipboard supported="supported" text="vm.model.link" on-copied="vm.menu.copyLinkToClipboard()" on-error="fail(err)">
+                        COPY LINK
+                    <span class="glyphicon glyphicon-link"></span></button>
+                </div>
+                <div class="col-md-4 text-center">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{vm.view.sharedLink}}" target="_blank" class="fb-share-button shared_links social" style="padding-right: 60px; padding-left: 60px;">
+                        <i class="fa fa-facebook pull-left" style="font-size: 28px; line-height: 22px; display: block; margin: 2px 10px 0 0;"></i>
+                        <span style="display: inline-block;">Share on Facebook</span>
+                    </a>
+                </div>
+                <div class="col-md-4 text-left">
+                    <a href="https://twitter.com/home?status={{vm.view.sharedLink}}" target="_blank" class="shared_links social" style="padding-right: 60px; padding-left: 60px;">
+                        <i class="fa fa-twitter pull-left" style="font-size: 28px; line-height: 22px; display: block; margin: 2px 10px 0 0;"></i>
+                        <span style="display: inline-block;">Tweet on Twitter</span>
+                    </a>
+                </div>
+                <div class="col-md-12 text-center">
+                    <p><small>Note: Anyone who clicks the link will be able to join your league.</small></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <hr/>
+            </div>
+        </div>-->
+
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <div class="white-headline text-center">
+                    send code
+                </div>
+                <div class="inv-own-inp text-center">
+                    Or owners can enter this code to join your league:
+                </div>
+                <div class="col-md-12 text-center">
+                    <span class="inv-own-inp">League Code: </span><input class="form-control shared_links_link league-code inv-own-inp" type="text" id="invitationLink" value="{{vm.model.code}}" >
+                </div>
+            </div>
+        </div>
+ 
+    <div class="row">
+        <div class="col-xs-12">
+            <hr/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <button class="btn btn-green" ng-click="vm.menu.saveDescription()">save</button>
+        </div>
+    </div>
+</div>

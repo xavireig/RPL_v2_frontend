@@ -1,0 +1,11 @@
+.upgrade-now {
+    padding: 40px 0 0 0;
+}
+
+.upgrade-now a {
+    color: #8FE068;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-transform: uppercase;
+}

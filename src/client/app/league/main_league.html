@@ -1,0 +1,311 @@
+<account-top-bar></account-top-bar>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3 col-md-2 small-sidebar" style="margin-left: -10px;">
+            <aside>
+                <menu-side-bar></menu-side-bar>
+            </aside>
+        </div>
+        <!--<button class="btn btn-small-orange" ng-click="vm.menu.goLeagueSettings()">League Settings</button>-->
+        <div class="col-xs-12 col-md-10 league">
+            <commercial-header></commercial-header>
+            <!-- team fixtures-->
+            <div class="row" ng-if="vm.model.tableType === 'fixtures'">
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="
+                        league-links">
+                            <span ng-click="vm.menu.displayTable()">Table</span>
+                            <span class="active">fixtures</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="ng-links pull-right">Round</div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="ng-links active pull-left">Club</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="dropdown pull-right" dropdown>
+                                <button class="dropdown-toggle w100" dropdown-toggle type="button" aria-haspopup="true" aria-expanded="true" style="width: 170px;margin-right:0;overflow: hidden;text-overflow: ellipsis;" id="club">
+                                    {{vm.model.selectedClub.name || vm.model.common.selectedClub.name}}
+                                    <span class="glyphicon glyphicon-menu-down"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="club">
+                                    <li ng-repeat="club in vm.model.club.data" ng-click="vm.menu.showSelectedClubFixtures(club)"><a href="#">{{club.name}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table row-border-table table-fixures-round">
+                                <tbody>
+                                <tr ng-repeat="oneFixture in vm.model.fixtures.clubFixtures | orderBy:'rpl_round_number'" ng-click="vm.menu.getMoveMatchDay(oneFixture.id, oneFixture.round.week)">
+                                    <style type="text/css">
+                                        #clubmain_{{oneFixture.home_club.id}} .st0{fill:{{oneFixture.home_club.color1}} !important;}
+                                        #clubmain_{{oneFixture.home_club.id}} .st1{fill:{{oneFixture.home_club.color2}} !important;}
+                                        #clubmain_{{oneFixture.home_club.id}} .st2{fill:{{oneFixture.home_club.color3}} !important;}
+                                        #clubmain_{{oneFixture.away_club.id}} .st0{fill:{{oneFixture.away_club.color1}} !important;}
+                                        #clubmain_{{oneFixture.away_club.id}} .st1{fill:{{oneFixture.away_club.color2}} !important;}
+                                        #clubmain_{{oneFixture.away_club.id}} .st2{fill:{{oneFixture.away_club.color3}} !important;}
+                                    </style>
+                                    <td width="15%" class="text-left">
+                                        <span class="label">{{oneFixture.round.is_done ? 'FT' : 'Pending'}}</span>
+                                    </td>
+                                    <td width="30%" class="text-right">
+                                        <span class="col-xs-9 fantasy-club m-t10">
+                                            {{oneFixture.home_club.name}}
+                                        </span>
+                                        <div class="col-xs-3">
+                                            <div id="clubmain_{{oneFixture.home_club.id}}" ng-include="oneFixture.home_club.crest_pattern.svg_url" style="width: 30px;"></div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="h3">{{oneFixture.home_score}} - {{oneFixture.away_score}}</span>
+                                    </td>
+                                    <td width="30%">
+                                        <div class="col-xs-3">
+                                            <div id="clubmain_{{oneFixture.away_club.id}}" ng-include="oneFixture.away_club.crest_pattern.svg_url" style="width: 30px;"></div>
+                                        </div>
+                                        <span class="col-xs-9 fantasy-club m-t10">
+                                            {{oneFixture.away_club.name}}
+                                        </span>
+                                    </td>
+                                    <td width="15%" class="text-right">
+                                        <span class="label">RPL Round {{oneFixture.round.number - vm.model.firstWeek + 1}}</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- defaule screen-->
+            <div class="row league-content">
+                <div class="col-xs-12 col-md-8 point-table-container">
+                    <div class="row" ng-if="vm.model.tableType === 'default'">
+                        <div class="league-links">
+                            <span class="active">Table</span>
+                            <span ng-click="vm.menu.displayFixture()">fixtures</span>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="vm.model.tableType === 'default'">
+                        <div class="table-responsive">
+                            <table class="table table-trsp">
+                                <thead>
+                                <tr>
+                                    <th class="text-left">Pos</th>
+                                    <th class="text-left">Club</th>
+                                    <th class="text-center">P</th>
+                                    <th class="text-center">W</th>
+                                    <th class="text-center">D</th>
+                                    <th class="text-center">L</th>
+                                    <th class="text-center">Pts</th>
+                                    <th class="text-center" ng-if="vm.model.league.scoringType === 'point'">TP</th>
+                                    <th class="text-center" ng-if="vm.model.league.scoringType === 'category'">GD</th>
+                                    <th class="text-center">Form</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="oneClub in vm.model.club.data | stringGdToInteger | orderBy:vm.model.customStatsOrderBy">
+                                    <td class="text-left">{{$index + 1}}</td>
+                                    <td ng-click="vm.menu.goToClubProfile(oneClub)" class="text-left"><span class="clip fantasy-club">{{oneClub.name}}</span></td>
+                                    <td class="text-center">{{oneClub.matches_played}}</td>
+                                    <td class="text-center">{{oneClub.data_tt_w}}</td>
+                                    <td class="text-center">{{oneClub.data_tt_d}}</td>
+                                    <td class="text-center">{{oneClub.data_tt_l}}</td>
+                                    <td class="text-center"><strong>{{oneClub.data_tt_pts}}</strong></td>
+                                    <td class="text-center" ng-if="vm.model.league.scoringType === 'point'">{{oneClub.data_tt_score}}</td>
+                                    <td class="text-center" ng-if="vm.model.league.scoringType === 'category'">{{oneClub.data_tt_gd}}</td>
+                                    <td class="text-center uppercase"><strong>{{oneClub.form_str}}</strong></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--- Chat box -->
+                    <div class="row" >
+                        <div class="col-xs-12 chat-box">
+                          <div class="row header">
+                            <center><h2>League Chat</h2></center>
+                          </div>
+                          <div class="row box">
+                              <table cellspacing="0" cellpadding="0" class="table chat-table">
+                                  <tbody style="height: 300px; display: block; overflow-y: scroll;" id="chatScroll"
+                                    scroll-glue>
+                                    <tr class= "msg-row" ng-repeat="oneChatMessage in vm.model.chat.data track by $index">
+                                        <td><club-crest club="oneChatMessage.club" data-width="24"
+                                                style="vertical-align: middle; display: inline-block; margin: 1px auto;"
+                                                class="text-center fantasy-club"></club-crest></td>
+                                        <td><p style="color:#2ECC71"><span class="clip pull-left"><strong>{{oneChatMessage.club.name}}:</strong></span></p></td>
+                                        <td><p style="color:#AAAAAA">{{oneChatMessage.content}} </p></td>
+                                    </tr>
+                                  </tbody>
+                              </table>
+
+                              <div class="box-input-area">
+                                    <input class= "chat-input" type="text" ng-model="vm.model.chat.message" ng-keyup="vm.menu.chat.keyUp($event);">
+                                    <button class="msg-send-btn" ng-click="vm.menu.chat.sendMessage()">SEND</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="row transfer-title-block">
+                        <div class="col-xs-12 text-center transfer-activity-title h2">transfer activity</div>
+                    </div>
+                    <div class="row transfer-activity-container">
+                        <div class="col-xs-12 transfer-activity" style="overflow: hidden;">
+                            <table class="table light-head-tbl" sortable-scroll-table>
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th ng-click="vm.menu.setTransferActivityOrder(['footballer.full_name'])" class="text-left">Player</th>
+                                    <th ng-click="vm.menu.setTransferActivityOrder(['club_from.name', 'status'])" class="text-left">From</th>
+                                    <th ng-click="vm.menu.setTransferActivityOrder(['club_to.name', 'status'])" class="text-left">to</th>
+                                    <th ng-click="vm.menu.setTransferActivityOrder(['money_offered', 'status'])" class="text-center">fee</th>
+                                    <th ng-click="vm.menu.setTransferActivityOrder(['get_date'])" class="text-left">Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="transfer in vm.model.transfers.data | orderBy:vm.menu.transferActivityOrderBy" ng-if="transfer.footballer || transfer.club_to || transfer.club_from">
+                                    <td>
+                                        <img ng-if="transfer.status == 'free'" src="../images/arrow_right_green.svg" width="20"/>
+                                        <img ng-if="transfer.status == 'money'" src="../images/arrow_right_green.svg" width="20"/>
+                                        <img ng-if="transfer.status == 'waiver' && !transfer.is_auction" src="../images/arrow_left_red.svg" width="20"/>
+                                        <img ng-if="transfer.status == 'waiver' && transfer.is_auction" src="../images/arrow_right_green.svg" width="20"/>
+                                        <img ng-if="transfer.status == 'trade'" src="../images/arrows.svg" width="20"/>
+                                    </td>
+                                    <td>
+                                        <div class="pull-left" ng-if="transfer.footballer">
+                                            <strong class="player-name" style="display: inline-block;float: left;max-width: 100px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{transfer.footballer.full_name | FootballerFullName:20}}</strong><br/>
+                                            <span class="epl-team light-blue-text">{{vm.menu.position[transfer.footballer.position].short | uppercase}} - {{transfer.footballer.real_team.short_club_name}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="fantasy-club" ng-if="transfer.club_from" class="clip" style="width: 100px;">{{transfer.club_from.name}}</span>
+                                        <span class="fantasy-club" ng-if="!transfer.club_from && !transfer.is_auction">Free Agents</span>
+                                        <span class="fantasy-club" ng-if="!transfer.club_from && transfer.is_auction">Waivers</span>
+                                    </td>
+                                    <td>
+                                        <span class="fantasy-club" ng-if="transfer.club_to" class="clip" style="width: 100px;">{{transfer.club_to.name}}</span>
+                                        <span class="fantasy-club" ng-if="!transfer.club_to && transfer.is_auction">Free Agents</span>
+                                        <span class="fantasy-club" ng-if="!transfer.club_to && !transfer.is_auction">Waivers</span>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <span ng-if="transfer.status == 'trade'">Trade</span>
+                                        <span ng-if="transfer.money_offered > 0">£{{transfer.money_offered}}</span>
+                                    </td>
+                                    <td>
+                                        {{transfer.get_date | date:'medium'}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4 fixture-container">
+                    <div class="row" ng-if="vm.model.tableType === 'default'">
+                        <div class="col-xs-12 text-center h2">fixtures</div>
+                    </div>
+                    <table class="table fixtures-table" ng-if="vm.model.tableType === 'default'">
+                        <thead>
+                        <tr>
+                            <th class="col-xs-3" ng-click="vm.menu.prevWeekFixtures()"><img src="../images/arrow_left.svg" width="30"/></th>
+                            <th class="col-xs-6 text-center fixt-title">League round {{vm.menu.fixturesIsLoad ? (vm.model.roundWeekNum - vm.model.firstWeek + 1) : ''}}</th>
+                            <th class="col-xs-3" ng-click="vm.menu.nextWeekFixtures()"><img src="../images/arrow_right.svg" width="30"/></th>
+                        </tr>
+                        </thead>
+                        <tr ng-repeat="oneFixture in vm.model.fixtures.data.vfs" ng-click="vm.menu.getMoveMatchDay(oneFixture.id, oneFixture.round.week)">
+                            <td colspan="3">
+                                <div class="row">
+                                    <div class="col-xs-2 text-right">
+                                        <style type="text/css">
+                                            #home_club_{{oneFixture.home_club_id}} .st0{fill:{{oneFixture.home_club.color1}} !important;}
+                                            #home_club_{{oneFixture.home_club_id}} .st1{fill:{{oneFixture.home_club.color2}} !important;}
+                                            #home_club_{{oneFixture.home_club_id}} .st2{fill:{{oneFixture.home_club.color3}} !important;}
+                                        </style>
+                                        <div id="home_club_{{oneFixture.home_club_id}}" ng-include="oneFixture.home_club.crest_pattern.svg_url" style="width: 25px;"></div>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <span class="clip fantasy-club">{{oneFixture.home_club.name}}</span>
+                                    </div>
+                                    <div class="col-xs-2 text-center">
+                                        {{oneFixture.home_score}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-2 text-right">
+                                        <style type="text/css">
+                                            #away_club_{{oneFixture.away_club_id}} .st0{fill:{{oneFixture.away_club.color1}} !important;}
+                                            #away_club_{{oneFixture.away_club_id}} .st1{fill:{{oneFixture.away_club.color2}} !important;}
+                                            #away_club_{{oneFixture.away_club_id}} .st2{fill:{{oneFixture.away_club.color3}} !important;}
+                                        </style>
+                                        <div id="away_club_{{oneFixture.away_club_id}}" ng-include="oneFixture.away_club.crest_pattern.svg_url" style="width: 25px;"></div>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <span class="clip fantasy-club">{{oneFixture.away_club.name}}</span>
+                                    </div>
+                                    <div class="col-xs-2 text-center">
+                                        {{oneFixture.away_score}}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="row">
+                        <div class="col-xs-12 text-center h2">epl fixtures</div>
+                    </div>
+                    <div class="table-border">
+                        <div class="scroll-epl-fixtures">
+                            <table class="table epl-fixtures-table">
+                                <tr ng-repeat="(date, value) in vm.model.eplFixtures.hash | orderBy: 'date'">
+                                    <td colspan="3">
+                                        <div class="row">
+                                            <div id = "{{date | date : 'EEE_MMM_dd_yyyy'}}" class = "col-xs-7">
+                                                <span>{{date | date : 'EEE, MMM dd, yyyy'}}</span>
+                                            </div>
+                                            <div class = "col-xs-5">
+                                                <span>RPL Round</span>
+                                            </div>
+                                        </div>
+                                        <div class="oneFixture" ng-repeat="oneFixture in value">
+                                            <div class="row">
+                                                <div class="col-xs-5">
+                                                    <span class="epl-home-away-team">{{oneFixture.homeRealTeamName }}</span>
+                                                </div>
+                                                <div class="col-xs-2">
+                                                    <span ng-if= "oneFixture.isDone || oneFixture.nowPlay" class="epl-home-away-team">{{oneFixture.homeScore }}</span>
+                                                </div>
+                                                <div class="col-xs-5 text-center">
+                                                    {{oneFixture.round}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-5">
+                                                    <span class="epl-home-away-team">{{oneFixture.awayRealTeamName}}</span>
+                                                </div>
+                                                <div class="col-xs-2">
+                                                    <span ng-if= "oneFixture.isDone || oneFixture.nowPlay" class="epl-home-away-team">{{oneFixture.awayScore}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <commercial-block></commercial-block>
+            </div>
+
+            <commercial-footer></commercial-footer>
+
+        </div>
+    </div>
+</div>

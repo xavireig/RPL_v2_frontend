@@ -1,0 +1,47 @@
+<div ng-controller = "SignInController as vm">
+  <div class="row">
+      <div class="col-xs-12 text-center">
+        <div class="logo-in-modal">
+          <img src="images/logo.svg" alt="" width="150" height="79">
+        </div>
+          <b><p class = "normal-txt" >Sign In</p></b>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-xs-12  ">
+          <div class="form-group">
+              <input ng-model="vm.form.data.user.email" type="text" placeholder="Email" ng-keyup="vm.menu.keyUp($event);" class="auth-input">
+          </div>
+          <div class="form-group">
+              <input ng-model="vm.form.data.user.password" type="password" placeholder="Password" ng-keyup="vm.menu.keyUp($event);" class="auth-input">
+          </div>
+      </div>
+  </div>
+  <div class="row m-b15">
+      <div class="col-xs-12 text-center">
+          <button class="btn btn-green" ng-click="vm.form.submit();">Sign in</button>
+      </div>
+  </div>
+  <div class="row m-t10">
+      <div class="col-xs-12 text-center">
+          <p class = "normal-txt" >Forgot your password?</p>
+          <a class="link" href="#" ng-click="vm.menu.goForgotPassword()">Send reset link</a>
+      </div>
+  </div>
+  <div class="row bottm-space">
+      <div class="col-xs-12 text-center">
+          <p class = "normal-txt" > No RPL account? </p>
+          <a class="link" href="#" ng-click="vm.menu.getStarted();">Create one</a>
+      </div>
+  </div>
+</div>
+
+<!--<div layout="row" layout-align="space-between center" style="margin-top: 15px; margin-bottom: 0;">-->
+    <!--<div class="wah-line" flex="45"></div>-->
+    <!--<p style="padding-top: 10px; color: #BABABA;">OR</p>-->
+    <!--<div class="wah-line" flex="45"></div>-->
+<!--</div>-->
+
+<!--<div layout="column" layout-align="center center">-->
+    <!--<md-button class="wah-btn-round" ng-click="vm.form.facebookClick();" style="width: 200px; margin-top: 20px;">Facebook log in</md-button>-->
+<!--</div>-->

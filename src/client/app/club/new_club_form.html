@@ -1,0 +1,164 @@
+
+
+<div class="row" ng-if="vm.formStates.isState(vm.formStates.states.enterName)">
+    <div class="col-md-12 white-bg-header text-center">
+        <i class="fa fa-futbol-o" style="font-size: 36px; color: #555555;"></i>
+        <h1>Get Started</h1>
+    </div>
+</div>
+<div class="row" ng-if="vm.formStates.isState(vm.formStates.states.enterName)">
+    <div class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6">
+        <form class="name-your-club">
+            <div class="form-group text-center">
+                <input type="text" class="form-control" placeholder="Name your Club" ng-model="vm.model.clubs.one.name">
+            </div>
+           <div class="form-group text-center" ng-click="vm.menu.goChangeFormState('chooseShape')">
+                <a class="btn btn-green">Next</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="uploadImgBefor">
+    <div ng-repeat="crest in vm.model.crestShapes.data">
+        <div ng-include="crest.svg_url"></div>
+        <div ng-include="pattern.svg_url" ng-repeat="pattern in crest.crest_patterns"></div>
+    </div>
+</div>
+
+<div class="row" ng-if="vm.formStates.isState(vm.formStates.states.chooseShape)">
+    <div class="col-md-12 white-bg-header text-center">
+        <i class="fa fa-futbol-o" style="font-size: 36px; color: #555555;"></i>
+        <h2 style="color: #000;">{{vm.model.clubs.one.name || 'No name club'}}</h2>
+        <p class="lead">Pick Crest Shape</p>
+    </div>
+</div>
+<div ng-if="vm.formStates.isState(vm.formStates.states.chooseShape)">
+    <div class="row white-bg text-center crest-carousel m-b15">
+        <!--<span class="glyphicon glyphicon-menu-left" ng-click="vm.model.crestShapes.collection.go.previous(false)"></span>-->
+        <!--<span class="glyphicon glyphicon-menu-right" ng-click="vm.model.crestShapes.collection.go.next(false)"></span>-->
+
+        <!--<div class="col-sm-12">-->
+        <!--<div class="row">-->
+        <!--<div class="col-sm-4 text-center" ng-repeat="oneCrestShape in vm.model.crestShapes.collection.data track by $index">-->
+        <!--<div ng-include="oneCrestShape.svg_url" class="img-responsive" style="width: 150px; margin: auto auto;"></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="create-club-button prev" ng-click="goPrevOwlCarousel()"></div>
+        <div class="create-club-button next" ng-click="goNextOwlCarousel()"></div>-->
+        <data-owl-carousel class="owl-carousel" data-options="{center: true, loop: true, items: 3, onChanged: vm.menu.selectCurrentShape, URLhashListener:true, startPosition: 'URLHash'}">
+            <a href="#shape{{oneCrestShape.id}}" data-hash="shape{{oneCrestShape.id}}" owl-carousel-item="" class="item img-responsive" ng-repeat="oneCrestShape in vm.model.crestShapes.data track by $index"
+               ng-include="oneCrestShape.svg_url" style="width: 150px; margin: auto auto;">
+            </a>
+        </data-owl-carousel>
+
+        <div class="borders-sections clearfix">
+            <div class="col-sm-4 col-xs-4">
+                <div class="green-border"></div>
+            </div>
+            <div class="col-sm-4 col-xs-4">
+                <div class="green-border">
+                    <div class="green-corner"></div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-4">
+                <div class="green-border"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center m-t10 create-club-button">
+        <button class="btn btn-gray" style="letter-spacing: .04em;" ng-click="vm.menu.goChangeFormState(vm.formStates.states.enterName)">Previous</button>
+        <button class="btn btn-green" style="letter-spacing: .04em;" ng-click="vm.menu.goChangeFormState(vm.formStates.states.choosePattern)">Next</button>
+    </div>
+</div>
+
+
+<div class="row" ng-if="vm.formStates.isState(vm.formStates.states.choosePattern)">
+    <div class="col-md-12 dark-bg-header text-center">
+        <i class="fa fa-futbol-o" style="font-size: 36px; color: #555555;"></i>
+        <h2>{{vm.model.clubs.one.name || 'No name club'}}</h2>
+        <p class="lead">Pick Crest Pattern</p>
+    </div>
+</div>
+<div class="row dark-bg text-center crest-carousel" ng-if="vm.formStates.isState(vm.formStates.states.choosePattern)">
+    <div class="col-sm-12" style="padding-bottom: 50px">
+        <div class="row">
+
+            <data-owl-carousel class="owl-carousel" data-options="{center: true, loop: true, items: 3, onChanged: vm.menu.selectCurrentPattern, URLhashListener:true, startPosition: 'URLHash'}">
+                <a href="#pattern{{oneCrestPattern.id}}" data-hash="pattern{{oneCrestPattern.id}}"
+                     id="pattern_{{oneCrestPattern.id}}" owl-carousel-item="" class="item img-responsive" ng-repeat="oneCrestPattern in vm.model.crestShapes.selectedShape.crest_patterns track by $index"
+                     ng-include="oneCrestPattern.svg_url" class="img-responsive" style="width: 150px; margin: auto auto;">
+                    <style type="text/css">
+                        #pattern_{{oneCrestPattern.id}} .st0{fill:{{vm.model.clubs.one.color1}} !important;}
+                        #pattern_{{oneCrestPattern.id}} .st1{fill:{{vm.model.clubs.one.color2}} !important;}
+                        #pattern_{{oneCrestPattern.id}} .st2{fill:{{vm.model.clubs.one.color3}} !important;}
+                    </style>
+                </a>
+            </data-owl-carousel>
+        </div>
+    </div>
+    <div class="borders-sections clearfix">
+        <div class="col-sm-4 col-xs-4">
+            <div class="green-border"></div>
+        </div>
+        <div class="col-sm-4 col-xs-4">
+            <div class="green-border">
+                <div class="green-corner"></div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-xs-4">
+            <div class="green-border"></div>
+        </div>
+    </div>
+    <div class="row text-center create-club-button">
+        <button class="btn btn-gray" ng-click="vm.menu.goChangeFormState(vm.formStates.states.chooseShape)">Previous</button>
+        <button class="btn btn-green" ng-click="vm.menu.goChangeFormState(vm.formStates.states.chooseColors)">Next</button>
+    </div>
+</div>
+
+<div class="row" ng-if="vm.formStates.isState(vm.formStates.states.chooseColors)">
+    <div class="col-md-12 white-bg-header text-center">
+        <i class="fa fa-futbol-o" style="font-size: 36px; color: #555555;"></i>
+        <h2 style="color: #000;">{{vm.model.clubs.one.name || 'No name club'}}</h2>
+        <p class="lead">Pick Club Colors</p>
+    </div>
+</div>
+<div class="row white-bg text-center" ng-if="vm.formStates.isState(vm.formStates.states.chooseColors)">
+    <div class="col-sm-4 col-xs-4">
+        <div style="position: relative;">
+            <div class="choose-color" style="background-color: {{vm.model.clubs.one.color1}}; position: absolute; top: 0; left: 0; color: #cccccc;">Color 1</div>
+            <input colorpicker ng-model="vm.model.clubs.one.color1" style="width: 100%; height: 160px; opacity: 0; filter:alpha(opacity: 0); cursor: pointer; cursor: hand;">
+        </div>
+    </div>
+    <div class="col-sm-4 col-xs-4">
+        <div style="position: relative;">
+            <div class="choose-color" style="background-color: {{vm.model.clubs.one.color2}}; position: absolute; top: 0; left: 0; color: #cccccc;">Color 2</div>
+            <input colorpicker ng-model="vm.model.clubs.one.color2" style="width: 100%; height: 160px; opacity: 0; filter:alpha(opacity: 0); cursor: pointer; cursor: hand;">
+        </div>
+    </div>
+    <div class="col-sm-4 col-xs-4">
+        <div style="position: relative;">
+            <div class="choose-color" style="background-color: {{vm.model.clubs.one.color3}}; position: absolute; top: 0; left: 0; color: #cccccc;">Color 3</div>
+            <input colorpicker ng-model="vm.model.clubs.one.color3" style="width: 100%; height: 160px; opacity: 0; filter:alpha(opacity: 0); cursor: pointer; cursor: hand;">
+        </div>
+    </div>
+</div>
+<div class="row white-bg" ng-if="vm.formStates.isState(vm.formStates.states.chooseColors)">
+    <div class="col-sm-offset-4 col-sm-4">
+        <div class="result-icon text-center">
+            <style type="text/css">
+                #one_club_{{vm.model.clubs.one.name[0]}} .st0{fill:{{vm.model.clubs.one.color1}} !important;}
+                #one_club_{{vm.model.clubs.one.name[0]}} .st1{fill:{{vm.model.clubs.one.color2}} !important;}
+                #one_club_{{vm.model.clubs.one.name[0]}} .st2{fill:{{vm.model.clubs.one.color3}} !important;}
+            </style>
+            <div id="one_club_{{vm.model.clubs.one.name[0]}}" ng-include="vm.model.crestShapes.selectedPattern.svg_url" class="img-responsive" style="width: 200px; margin: auto auto;"></div>
+            <h2 style="color: black;">{{vm.model.clubs.one.name || 'No name club'}}</h2>
+        </div>
+    </div>
+</div>
+<div class="row text-center" ng-if="vm.formStates.isState(vm.formStates.states.chooseColors)" style="padding: 20px 0;">
+    <button class="btn btn-gray" ng-click="vm.menu.goChangeFormState(vm.formStates.states.choosePattern)">Previous</button>
+    <button class="btn btn-green" ng-click="vm.menu.goCreateClub()">save</button>
+</div>

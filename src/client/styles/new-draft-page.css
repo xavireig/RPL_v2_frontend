@@ -1,0 +1,382 @@
+.player-list-odd {
+    background-color: #ECF0F1;
+}
+
+.player-list-even {
+    background-color: #FFFFFF;
+}
+
+.my-queue-background {
+    background-color: #eafaf1;
+}
+
+.border-right {
+    border-right: 1px solid #dddddd;
+}
+
+.drafting-club {
+    width: 24px;
+    line-height: 0;
+}
+
+.black-text {
+    color: #000000;
+}
+
+.white-background {
+    background-color: white !important;
+    color: #000;
+    font-size: 12px;
+    padding-bottom: 30px;
+}
+
+.league-title {
+    margin-top: 15px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 260px;
+    letter-spacing: .04em;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.club-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.new-draft-queue {
+    height: 328px;
+    overflow-y: scroll;
+}
+
+.draft-chat-club-name {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100px;
+    letter-spacing: .04em;
+    display: flex;
+}
+
+.your-queue-list li.next-auto-pick {
+    border: 2px solid #5ed590 !important;
+    background-color: #d6f5cb !important;
+}
+
+.draft-chat-content {
+    width: 190px;
+    word-wrap: break-word;
+}
+
+.bg-white {
+    background-color: #FFFFFF;
+    border-bottom: 2px solid #CDCFCD;
+    height: 96px;
+}
+
+.wrap-nationality {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.no-padding-topbar {
+    padding: 0 !important;
+}
+
+.draft-order-table {
+    width: 100%;
+    border: 2px solid #000000;
+}
+
+.draft-table-bordered {
+    border: 1px solid #000000;
+    background: #bdc3c7;
+    display: inline-flex;
+    width: 100%;
+}
+
+.text13 {
+    font-size: 13px;
+}
+
+.draft-current-club-highlight {
+    background: #c0392b;
+}
+
+.draft-table-round {
+    background: #000000;
+    font-weight: bold;
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+.draft-table-club-logo {
+    width: 15%;
+}
+
+.draft-table-club-name {
+    width: 70%;
+    padding-top: 5px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: left;
+    padding-left: 6px;
+}
+
+.draft-table-club-name-white {
+    width: 70%;
+    max-width: 100px;
+    padding-top: 5px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: left;
+    padding-left: 6px;
+}
+
+.serial {
+    width: 15%;
+    padding-top: 5px;
+    font-weight: bold;
+}
+
+.draft-table-scroll {
+    height: 694px;
+    overflow-y: scroll;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+   .no-padding-right {
+        padding-right: 15px !important;
+    }
+
+    .no-padding-left {
+        padding-left: 15px !important;
+    }
+
+     .no-padding {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+     .square-bordered {
+        border: 3px solid #CDCFCD;
+        border-radius: 20px;
+        margin-top: 10px;
+    }
+
+    .sortable-long-table {
+        height: 300px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+
+    .info-padding {
+        padding-top: 2%;
+        width: 100%;
+    }
+
+    .draft-queue-btn {
+        background-color: transparent;
+        border: 2px solid #43a3bb;
+        width: 45%;
+        border-radius: 6px;
+    }
+
+    .draft-btn {
+        background-color: #2ecc71;
+        border: 2px solid #2ecc71;
+        border-radius: 6px;
+        width: 45%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+
+    .no-padding {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .no-padding-right {
+        padding-right: 0px !important;
+    }
+
+    .no-padding-left {
+        padding-left: 0px !important;
+    }
+
+    .square-bordered {
+        border: 2px solid #CDCFCD;
+    }
+
+    .sortable-long-table {
+        height: 646px;
+        /*overflow-x: scroll;
+        overflow-y: scroll;*/
+    }
+
+    .queue-height {
+        height: 451px;
+    }
+
+    .queue-content-height {
+        height: 310px;
+    }
+
+    .draft-result-height {
+        height: 451px;
+    }
+
+    .timer-left {
+        padding-right: 60px !important;
+        padding-left: 0px !important;
+    }
+
+    .span-col {
+        margin-left:  -91px;
+        margin-right: -66px;
+    }
+
+    .no-span-col {
+        margin-left: -91px;
+    }
+
+    .small-size-btn {
+        font-size: 10px !important;
+    }
+
+    .btn-margin {
+        margin-top: 25px;
+    }
+
+    .btn-padding-left {
+        padding-left: 40px;
+    }
+
+    .auto-pick {
+        margin-left: -3px;
+        margin-right: 3px;
+        margin-top: 20px;
+        font-size: 11px;
+    }
+
+    md-radio-button.md-default-theme .md-on, md-radio-button .md-on {
+        background-color: #53bf80;
+    }
+
+    md-radio-button.md-off {
+        border-color: #53bf80;
+    }
+
+    md-radio-button.md-default-theme.md-checked .md-off, md-radio-button.md-checked .md-off {
+        border-color: #53bf80;
+    }
+
+    .left-border {
+        border-left: 2px solid #CDCFCD;
+    }
+
+    .epl-flag {
+        width: 6%;
+    }
+
+    .footballer-info {
+        margin-top: -15px;
+    }
+
+    .draft-queue-btn {
+        background-color: transparent;
+        border: 2px solid #43a3bb;
+        width: 47%;
+        border-radius: 6px;
+    }
+
+    .draft-queue-btn:hover {
+        background-color: #43a3bb;
+        border: 2px solid #43a3bb;
+        width: 47%;
+        border-radius: 6px;
+    }
+
+    .draft-queue-btn:active {
+        background-color: #43a3bb;
+        border: 2px solid #43a3bb;
+        width: 47%;
+        border-radius: 6px;
+    }
+
+    .draft-btn {
+        background-color: transparent;
+        border: 2px solid #2ecc71;
+        border-radius: 6px;
+        width: 47%;
+    }
+
+    .draft-btn:hover {
+        background-color: #2ecc71;
+        border: 2px solid #2ecc71;
+        border-radius: 6px;
+        width: 47%;
+    }
+
+    .draft-btn:active {
+        background-color: #2ecc71;
+        border: 2px solid #2ecc71;
+        border-radius: 6px;
+        width: 47%;
+    }
+
+    .info-padding {
+        padding-top: 4%;
+        width: 19%;
+    }
+}
+
+
+.footballer-info-row {
+    width: 100%;
+    font-size: 12px;
+    text-align: left;
+}
+
+.footballer-info-key {
+    color: #9aa7c3;
+}
+
+.left-padding {
+    padding-left: 10%;
+}
+
+.footballer-name {
+    padding-left: 6%;
+    font-size: 20px;
+    height: 25px;
+    margin-bottom: 0px;
+}
+
+.keywords tbody tr.active_footballer {
+    border: 3px solid #5ed590 !important;
+    background-color: #d6f5cb !important;
+}
+
+.close-selected-footballer-icon {
+    position: absolute;
+    right: 4px;
+    top: 5px;
+}
+
+.close-selected-footballer-icon svg {
+    height: 25px;
+}

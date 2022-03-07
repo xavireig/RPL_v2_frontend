@@ -1,0 +1,177 @@
+<div class="col-xs-12 settings-page">
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="basics-settings clearfix">
+                <tbody>
+                <tr>
+                    <td class="text-right">League name</td>
+                    <td class="text-left"><input type="text" ng-model="bs.model.league.one.title" ng-disabled="bs.model.league.one['draft_status'] !== 'pending'"
+                                                 class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="text-right">League size</td>
+                    <td class="text-left">
+                        <div class="dropdown blue-drpdn pull-right" dropdown>
+                            <button class="dropdown-toggle" dropdown-toggle type="button"
+                                    ng-disabled="bs.model.league.one['draft_status'] !== 'pending' "
+                                    aria-haspopup="true" aria-expanded="true"
+                                    style="width: 256px;margin-right:0;"
+                                    id="teams">
+                                <div class="clip">{{bs.model.league.one['req_teams']}} Teams</div>
+                                <span class="glyphicon glyphicon-menu-down"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="teams" style="min-width: 256px;">
+                                <li><a href="#" ng-click="bs.menu.chooseNumberOfTeams(8)">8 Teams</a></li>
+                                <li><a href="#" ng-click="bs.menu.chooseNumberOfTeams(9)">9 Teams</a></li>
+                                <li><a href="#" ng-click="bs.menu.chooseNumberOfTeams(10)">10 Teams</a></li>
+                                <li><a href="#" ng-click="bs.menu.chooseNumberOfTeams(11)">11 Teams</a></li>
+                                <li><a href="#" ng-click="bs.menu.chooseNumberOfTeams(12)">12 Teams</a></li>
+                                <li><a href="#" ng-click="bs.menu.chooseNumberOfTeams(13)">13 Teams</a></li>
+                                <li><a href="#" ng-click="bs.menu.chooseNumberOfTeams(14)">14 Teams</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right">Season length</td>
+                    <td class="text-left">
+                        <div class="dropdown blue-drpdn  pull-right" dropdown>
+                            <button class="dropdown-toggle" dropdown-toggle type="button"
+                                    ng-disabled="bs.model.league.one['draft_status'] !== 'pending'"
+                                    aria-haspopup="true" aria-expanded="true"
+                                    style="width: 256px;margin-right:0;"
+                                    id="start_date">
+                                <div class="clip">{{bs.model.league.one['num_matches']}} Matches</div>
+                                <span class="glyphicon glyphicon-menu-down"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="start_date" style="min-width: 256px;">
+                                <li ng-click="bs.menu.selectNumberOfMatches($index + 1)" ng-repeat="week in bs.model.possibleEPLWeeks track by $index"><a href="#">{{$index + 1}} Matches</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right">League starts</td>
+                    <td class="text-left">
+                        <div class="dropdown blue-drpdn  pull-right" dropdown>
+                            <button class="dropdown-toggle" dropdown-toggle type="button"
+                                    ng-disabled="bs.model.league.one['draft_status'] !== 'pending'"
+                                    aria-haspopup="true" aria-expanded="true"
+                                    style="width: 256px;margin-right:0;"
+                                    id="end_date">
+                                <div class="clip">EPL Week {{bs.model.league.one['start_round_num']}}</div>
+                                <span class="glyphicon glyphicon-menu-down"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="end_date" style="min-width: 256px;">
+                                <li ng-click="bs.menu.selectStartingWeek(bs.model.commonModel.currentWeekNumber + 1 + $index)" ng-repeat="week in bs.model.possibleEPLWeeks track by $index"><a href="#" value="0">EPL Week {{bs.model.commonModel.currentWeekNumber + $index + 1}}</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <p class="text-center">
+                <small class="small-note">Note: these settings cannot be changed once your league's season starts.</small>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <hr/>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class=" text-center">
+                    <div class="text-center h2">Invite owners</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-4 col-md-4">
+                <form class=" text-center">
+                    <div class="form-group">
+                        <textarea class="border form-control inv-own-inp" rows="6" placeholder="Add emails of users you'd like to invite to your league, separated by commas." ng-model="bs.model.emails"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <p><small ng-if="bs.model.emails != ''">Invites not yet sent. Click the "send" button.</small></p>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <div class="btn-center">
+                    <button type="submit" class="btn btn-default btn-blue" ng-click="bs.menu.checkEmailsForValid(bs.model.emails)">SEND <span class="glyphicon glyphicon-envelope"></span></button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <hr/>
+            </div>
+        </div>
+        <!--<div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <div class="white-headline text-center">
+                    share link
+                </div>
+                <div class="inv-own-inp text-center">
+                    Anyone who clicks the link will be able to join your league.
+                </div>
+                <div class="col-md-12 text-center">
+                    <span class="inv-own-inp">League link: </span><input class="form-control shared_links_link" type="text" id="invitationLink" value="{{bs.model.link}}" onclick="this.select();">
+                    <button type="submit" class="btn btn-default btn-blue" ng-click="bs.menu.copyLinkToClipboard()">COPY LINK<span class="glyphicon glyphicon-link"></span></button>
+                </div>
+                <div class="col-md-4 text-center">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{vm.view.sharedLink}}" target="_blank" class="fb-share-button shared_links social" style="padding-right: 60px; padding-left: 60px;">
+                        <i class="fa fa-facebook pull-left" style="font-size: 28px; line-height: 22px; display: block; margin: 2px 10px 0 0;"></i>
+                        <span style="display: inline-block;">Share on Facebook</span>
+                    </a>
+                </div>
+                <div class="col-md-4 text-left">
+                    <a href="https://twitter.com/home?status={{vm.view.sharedLink}}" target="_blank" class="shared_links social" style="padding-right: 60px; padding-left: 60px;">
+                        <i class="fa fa-twitter pull-left" style="font-size: 28px; line-height: 22px; display: block; margin: 2px 10px 0 0;"></i>
+                        <span style="display: inline-block;">Tweet on Twitter</span>
+                    </a>
+                </div>
+                <div class="col-md-12 text-center">
+                    <p><small>Note: Anyone who clicks the link will be able to join your league.</small></p>
+                </div>
+            </div>
+        </div>-->
+
+        <!--<div class="row">
+            <div class="col-xs-12">
+                <hr/>
+            </div>
+        </div>-->
+
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <div class="h2 text-center">
+                    league code
+                </div>
+                <div class="inv-own-inp text-center">
+                    Or owners can enter this code to join your league:
+                </div>
+                <div class="col-md-12 text-center">
+                    <span class="inv-own-inp">League Code: </span><input class="form-control shared_links_link league-code inv-own-inp" type="text" id="invitationLink" value="{{bs.model.code}}" onclick="this.select();">
+                </div>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <hr/>
+        </div>
+    </div>
+
+    <promotion-relegation></promotion-relegation>
+
+    <div class="row">
+        <div class="col-xs-6 text-right">
+            <button class="btn btn-gray" ng-click="vm.menu.goLeague()">cancel</button>
+        </div>
+        <div class="col-xs-6 text-left">
+            <button class="btn btn-green" ng-click="bs.menu.saveBasics()">save</button>
+        </div>
+    </div>
+</div>

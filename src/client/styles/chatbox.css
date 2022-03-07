@@ -1,0 +1,34 @@
+.header {
+    padding-bottom: 15px;
+}
+
+.row .chat-box {
+    padding: 15px;
+    padding-top: 0px;
+}
+
+.box {
+    border: 2px solid #34495e;
+    padding: 15px;
+}
+
+.chat-table {
+    height: 300px
+}
+
+.msg-send-btn {
+    background-color: #111a23;
+    padding: 4px;
+    font-size: 110%;
+    padding-left: 3%;
+    padding-right: 3%;
+    border: 3px solid #26527d
+}
+
+.chat-input {
+    width: 75%
+}
+
+.chat-box table tbody tr td {
+    border-top: 0px;
+}

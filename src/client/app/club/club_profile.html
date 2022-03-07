@@ -1,0 +1,81 @@
+<account-top-bar></account-top-bar>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3 col-md-2 small-sidebar" style="margin-left: -10px;">
+            <aside>
+                <menu-side-bar></menu-side-bar>
+            </aside>
+        </div>
+        <div class="col-xs-12 col-md-10 league">
+            <commercial-header></commercial-header>
+            <div class="row club-profile-result-container">
+                <div class="col-xs-12 col-md-7 club-profile-container">
+                    <h2>Club profile</h2>
+                    <table class="table club-profile-block">
+                        <tr>
+                            <td>
+                                <div class="club-logo text-center">
+                                    <club-crest club="vm.model.info" data-width="120" style="display: block;"></club-crest>
+                                    <p class="fantasy-club-profile clip">{{vm.model.info.name}}</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-top: none;">
+                                <table class="profile-info" style="width: 100%; table-layout: fixed;">
+                                    <tbody>
+                                    <tr>
+                                        <td><span class="label">Manager:</span></td>
+                                        <td><p class="gray-text">{{vm.model.info.user.full_name}}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="label">Email:</span></td>
+                                        <td><p class="gray-text">{{vm.model.info.user.email}}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="label">League Pos:</span></td>
+                                        <td><p class="gray-text" ng-if="vm.model.info.place">{{vm.model.info.place | EndOfNumber}} Place, {{vm.model.info.pts}}pts</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="label">Form:</span></td>
+                                        <td><p class="gray-text uppercase">{{vm.model.info.form_str || ''}}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="label">Transfer Budget:</span></td>
+                                        <td><p class="gray-text uppercase">&pound; {{vm.model.info.budget || 0}}M</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="label"># of Transfers:</span></td>
+                                        <td><p class="gray-text"> {{vm.model.totalTransfers}} </p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="label">Stadium:</span></td>
+                                        <td><p class="gray-text">{{vm.model.info.stadium}}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="label">Motto:</span></td>
+                                        <td><p class="gray-text" style="word-wrap: break-word;">{{vm.model.info.motto | limitTo: 140}}{{vm.model.info.motto.length > 140 ? '...' : ''}}</p></td>
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <fixture-list class="col-xs-12 col-md-5 fixture-block"></fixture-list>
+            </div>
+
+            <div class="row squad-table-container">
+                <club-squad club="vm.model.info"></club-squad>
+            </div>
+
+            <!--<div class="row">
+                <club-stats class="col-xs-12 col-md-7 team-stats-table-block"></club-stats>
+                <club-news class="col-xs-12 col-md-5 club-profile-news-block"></club-news>
+            </div>-->
+            <commercial-footer></commercial-footer>
+
+        </div>
+    </div>
+</div>

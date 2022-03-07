@@ -1,0 +1,51 @@
+.white-headline{
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.league-code {
+    color: #82cf62;
+}
+
+.row-bordered:after {
+    content: "";
+    display: block;
+    border-bottom: 1px solid #1C5379;
+    margin: 25px 15px;
+}
+
+.border {
+    border: 1px solid #1C5379;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .btn-middle {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn-center {
+        text-align: center;
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .btn-middle {
+        margin-top: 100px;
+    }
+    .btn-center {
+        margin-top: 30px; 
+    }
+}
+
+
+
+.top-padding {
+    padding-top: 20px;
+}

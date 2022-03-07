@@ -1,0 +1,93 @@
+<div class="transfer-dialog-bid">
+    <div class="row">
+        <h2 class="col-xs-12 text-center" style="color: #fff;">Create Your Bid</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <div ng-if="ngDialogData.showClubList">
+                <p class="white-text">From {{vm.model.acceptor.name}}:</p>
+            </div>
+            <div ng-repeat="oneFootballer in vm.model.footballersForAddHash" class="checked-players-now">
+                <div class="check-player pull-left" ng-click="vm.menu.removePlayerFrom(oneFootballer, 'Add')"></div>
+                <div class="check-player-inf pull-left">
+                    <div class="squads-pos violet-text ng-binding">{{vm.model.lineUp.footballerPositionsSymbols[oneFootballer.footballer.position]}}</div>
+                    <div style="color: #fff;" class="squads-name h3 m0">
+                        {{oneFootballer.footballer.full_name | FootballerFullName}}
+                        <br>
+                        <span class="epl-team">{{oneFootballer.footballer.real_team.short_club_name}}</span>
+                    </div>
+                </div>
+            </div>
+            <md-input-container class="modal-dropdown">
+                <!--<md-select ng-model="vm.model.playerForAdd" placeholder="Add Player(s)">-->
+                <md-select ng-model="vm.model.playerForAdd" placeholder="Add Player(s)">
+                    <md-select-label><strong>Select Player</strong></md-select-label>
+                    <md-option style="color: #fff;" ng-click="vm.menu.choosePlayerForAdd(oneFootballer)" ng-value="oneFootballer" ng-class="vm.menu.returnSelectedPlayerStyle(oneFootballer)" ng-repeat="oneFootballer in vm.model.acceptorLineUp.virt_footballers">
+                        <div class="check-player pull-left"></div>
+                        <div class="check-player-inf pull-left">
+                            <div class="squads-pos violet-text ng-binding">{{vm.model.lineUp.footballerPositionsSymbols[oneFootballer.footballer.position]}}</div>
+                            <div class="squads-name dropdown-modal ng-binding">
+                                <span class="clip h3 m0">{{oneFootballer.footballer.full_name | FootballerFullName}}</span>
+                                <br>
+                                <span class="epl-team">{{oneFootballer.footballer.real_team.short_club_name}}</span>
+                            </div>
+                        </div>
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+
+        <div class="col-xs-4">
+            <p class="white-text">Cash Amount:</p>
+            <div class="modal-dropdown" style="padding: 2px 2px 26px;">
+                <!--
+                <div class="pull-left pound-sym">&pound;</div>
+                <input ng-model="vm.model.moneyOffered" class="create-bid-input pull-left" type="text" ng-change="vm.menu.checkMSymbol()" style="width: 90%;"/>
+                -->
+                <div class="input-symbol">
+                    <span class="cash">&pound;</span>
+                    <span class="postcash">M</span>
+                    <input class="create-bid-input pull-left" type="number" min="0.1" max="99999999" step="0.1" ng-model="vm.model.moneyOffered" ng-keydown="vm.menu.checkEnterNumber($event)" ng-keyup="vm.menu.checkEnterNumber($event)">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <p class="white-text">Add Players to BID:</p>
+            <div ng-repeat="oneFootballer in vm.model.footballersForDropHash" class="checked-players-now">
+                <div class="check-player pull-left" ng-click="vm.menu.removePlayerFrom(oneFootballer, 'Drop')"></div>
+                <div class="check-player-inf pull-left">
+                    <div class="squads-pos violet-text ng-binding">{{vm.model.lineUp.footballerPositionsSymbols[oneFootballer.footballer.position]}}</div>
+                    <div style="color: #fff;" class="squads-name h3 m0">
+                        {{oneFootballer.footballer.full_name | FootballerFullName}}
+                        <br>
+                        <p class="epl-team m0">{{oneFootballer.footballer.real_team.short_club_name}}</p>
+                    </div>
+                </div>
+            </div>
+            <md-input-container class="modal-dropdown">
+                <md-select ng-model="vm.model.playerForAdd" placeholder="Add Player(s)">
+                    <md-select-label><strong>Add Players</strong></md-select-label>
+                    <md-option style="color: #fff;" ng-click="vm.menu.choosePlayerForDrop(oneFootballer)" ng-value="oneFootballer" ng-class="vm.menu.returnSelectedPlayerStyle(oneFootballer)" ng-repeat="oneFootballer in vm.model.senderLineUp.virt_footballers">
+                        <div class="check-player pull-left"></div>
+                        <div class="check-player-inf pull-left">
+                            <div class="squads-pos violet-text ng-binding">{{vm.model.lineUp.footballerPositionsSymbols[oneFootballer.footballer.position]}}</div>
+                            <div class="squads-name dropdown-modal ng-binding">
+                                <span class="clip h3 m0">{{oneFootballer.footballer.full_name | FootballerFullName}}</span>
+                                <br>
+                                <small class="epl-team">{{oneFootballer.footballer.real_team.short_club_name}}</small>
+                            </div>
+                        </div>
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 text-right m-b10">
+            <button class="btn btn-gray" style="color: #fff;" ng-click="vm.menu.closeDialog()">cancel</button>
+        </div>
+        <div class="col-xs-6 text-left m-b10">
+            <button class="btn btn-green" ng-click="vm.menu.makeTeamToTeamTransfer()">next</button>
+        </div>
+    </div>
+</div>

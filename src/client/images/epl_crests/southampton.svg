@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 343.76">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fcfeef;
+      }
+
+      .cls-2 {
+        fill: #dc3522;
+      }
+
+      .cls-3 {
+        fill: #5b4100;
+      }
+
+      .cls-4 {
+        fill: #26ab57;
+      }
+    </style>
+  </defs>
+  <title>Southampton</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g id="Southampton">
+        <path class="cls-1" d="M300,0V266.28a23,23,0,0,1-13.95,20.86l-123.81,54a31.85,31.85,0,0,1-25.39,0l-123.44-54A22.54,22.54,0,0,1,0,266.28V0Z"/>
+        <path class="cls-2" d="M300,172v94.28a23,23,0,0,1-13.95,20.86l-123.81,54a31.85,31.85,0,0,1-25.39,0l-123.44-54A22.54,22.54,0,0,1,0,266.28V172Z"/>
+        <g>
+          <rect class="cls-3" x="129.74" y="147.37" width="39.8" height="84.11" rx="9.89" ry="9.89"/>
+          <rect class="cls-3" x="122.24" y="146.43" width="15" height="86" rx="3.68" ry="3.68" transform="translate(-94.03 138.03) rotate(-42.66)"/>
+          <rect class="cls-3" x="129.61" y="147.37" width="39.8" height="84.11" rx="9.89" ry="9.89" transform="translate(299.03 378.85) rotate(-180)"/>
+          <rect class="cls-3" x="161.91" y="146.43" width="15" height="86" rx="3.68" ry="3.68" transform="translate(165.66 443.53) rotate(-137.34)"/>
+          <g>
+            <ellipse class="cls-4" cx="155.95" cy="71.04" rx="45.57" ry="53.42" transform="translate(70.66 219.68) rotate(-84.65)"/>
+            <ellipse class="cls-4" cx="104.7" cy="91.32" rx="37.86" ry="47.39" transform="matrix(0.09, -1, 1, 0.09, 4, 187.04)"/>
+            <ellipse class="cls-4" cx="101.01" cy="129.79" rx="37.86" ry="47.39" transform="translate(-37.63 218.25) rotate(-84.65)"/>
+            <ellipse class="cls-4" cx="150.84" cy="100.1" rx="37.86" ry="47.39" transform="translate(37.1 240.94) rotate(-84.65)"/>
+            <ellipse class="cls-4" cx="207.72" cy="97.78" rx="27.46" ry="38.49" transform="translate(90.98 295.47) rotate(-84.65)"/>
+            <ellipse class="cls-4" cx="194.91" cy="133.39" rx="30.13" ry="40.06" transform="translate(43.91 315.01) rotate(-84.65)"/>
+            <ellipse class="cls-4" cx="150.91" cy="125.39" rx="30.13" ry="40.06" transform="translate(11.98 263.94) rotate(-84.65)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

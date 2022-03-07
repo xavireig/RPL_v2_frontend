@@ -1,0 +1,30 @@
+<div class="chairman-dropdown transfers-dropdown" dropdown>
+
+    <div style="cursor: pointer;" dropdown-toggle>
+        <img src="images/topbar/transfers.svg" width="30" height="30" alt="">
+        <div ng-if="!tdc.view.noTransfers()" class="notify circle-notify" style="position: absolute; top: 26px; left: 50px;">{{tdc.model.transferNotifications.length}}</div>
+    </div>
+
+    <ul class="dropdown-menu" style="position: absolute; top: 75px; right: -4px;">
+        <li class="dropdown-menu-title">Transfers</li>
+
+        <li ng-if="tdc.view.noTransfers()"><p style="padding: 10px;" class="page-info-body">You have no transfer notifications</p></li>
+
+        <li ng-repeat="notification in tdc.model.transferNotifications" ng-if="!notification.hidden" class="list-item clearfix" style="position: relative;">
+            <div class="pull-left">
+                <style type="text/css">
+                    #transfer_{{notification.bid.offerer_club.id}} .st0{fill:{{notification.bid.offerer_club.color1}} !important;}
+                    #transfer_{{notification.bid.offerer_club.id}} .st1{fill:{{notification.bid.offerer_club.color2}} !important;}
+                    #transfer_{{notification.bid.offerer_club.id}} .st2{fill:{{notification.bid.offerer_club.color3}} !important;}
+                </style>
+                <div id="transfer_{{notification.bid.offerer_club.id}}" ng-include="notification.bid.offerer_club.crest_pattern.svg_url" class="club-logo-list"></div>
+            </div>
+            <div class="pull-left notification-list" ng-click="tdc.menu.goToTransfersPage()">{{notification.short_description}}</div>
+            <div ng-click="tdc.menu.markNotificationViewed($event, notification)" class="pull-right" style="position: absolute; right: -2px; top: -4px;"><img src="/images/cancel.svg" width="20" style="margin: 14px 10px 0 0"/> </div>
+        </li>
+
+        <li ng-if="tdc.model.commonModel.selectedClub['league']['draft_status'] == 'completed'" class="text-center">
+            <div ng-click="tdc.menu.goToTransfersPage()" class="col-xs-12"><div class="uppercase text-center gray-text" style="">See all transfers</div></div>
+        </li>
+    </ul>
+</div>

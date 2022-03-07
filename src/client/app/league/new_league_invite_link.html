@@ -1,0 +1,174 @@
+<div class="row">
+    <div class="container" style="background-color: #000000;">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <div class="col-xs-3">
+                        <a class="navbar-brand" href="#" ng-click="vm.menu.goToDashboard()">
+                            <img alt="RPL" ng-src="images/logo.svg" width="100">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 settings-page" style="padding:30px 0;">
+                <!--<div class="row" ng-if="vm.view.showInvite()">-->
+                    <div class="row">
+                    <div class="col-sm-offset-2 col-sm-8 m20">
+                        <div class="panel panel-rpl">
+                            <div class="panel-heading text-center">You have been invited to join this league ({{vm.model.league.title}})</div>
+                            <div class="panel-body">
+                                <div class="col-xs-6">
+                                    <div class="btn btn-red pull-right" ng-click="vm.menu.goToDecline()">
+                                        decline
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="btn btn-green pull-left" ng-click="vm.menu.goToAccept()">
+                                        accept
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-8 m20">
+                        <h2 class="text-center">League Info</h2>
+                        <div class="league-inf">
+                            <!--<table class="scoring-type clearfix">-->
+                                <!--<tbody>-->
+                                    <!--<tr>-->
+                                        <!--<td class="text-right">League name:</td>-->
+                                        <!--<td class="text-left violet-text">{{vm.model.league.one.title}}</td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                        <!--<td class="text-right"># of Teams:</td>-->
+                                        <!--<td class="text-left violet-text">{{vm.model.league.one.num_teams}}</td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                        <!--<td class="text-right">Season Length:</td>-->
+                                        <!--<td class="text-left violet-text">{{vm.model.league.one.num_matches}} matches</td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                        <!--<td class="text-right">League Starts:</td>-->
+                                        <!--<td class="text-left violet-text">week {{vm.model.league.one.start_round_num}}</td>-->
+                                    <!--</tr>-->
+                                <!--</tbody>-->
+                            <!--</table>-->
+                            <league-info id="invite-league-info" if="vm.model.league.title" league="vm.model.league" ></league-info>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-offset-4 col-sm-4">
+                        <div class="league-inf" style="padding: 10px;margin-top: 15px;">
+                            <h2 class="text-center">Draft Starts in:</h2>
+                            <table class="table starts-draft">
+                                <tbody>
+                                    <tr>
+                                        <td class="col-xs-4">
+                                            <div class="hours-block">{{vm.model['time_to_draft']['dd']}}</div>
+                                        </td>
+                                        <td class="col-xs-4">
+                                            <div class="hours-block">{{vm.model['time_to_draft']['hh']}}</div>
+                                        </td>
+                                        <td class="col-xs-4">
+                                            <div class="hours-block">{{vm.model['time_to_draft']['mm']}}</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-xs-4 text-center">
+                                            <span class="uppercase light-green-text">days</span>
+                                        </td>
+                                        <td class="col-xs-4 text-center">
+                                            <span class="uppercase light-green-text">hrs</span>
+                                        </td>
+                                        <td class="col-xs-4 text-center">
+                                            <span class="uppercase light-green-text">min</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-8 m20">
+                        <h2 class="text-center">Teams in League ({{vm.model.league.num_teams}} of {{vm.model.league.req_teams}})</h2>
+                        <table class="invites-table col-xs-12 teams-in-league">
+                            <tr>
+                                <th class="text-left"><span class="pull-left" style="padding-left: 10px;">Team</span></th>
+                                <th class="text-center" width="360">Owner</th>
+                                <th class="text-center" width="100">Status</th>
+                            </tr>
+                            <tr ng-repeat="club in vm.model.league.clubs">
+                                <td>
+                                    <div class="pull-left" style="height: 22px;width: 22px;">
+                                        <style type="text/css">
+                                            #clubmain_{{club.id}} .st0{fill:{{club.color1}} !important;}
+                                            #clubmain_{{club.id}} .st1{fill:{{club.color2}} !important;}
+                                            #clubmain_{{club.id}} .st2{fill:{{club.color3}} !important;}
+                                        </style>
+                                        <div id="clubmain_{{club.id}}" ng-include="club.crest_pattern.svg_url" height="40"></div>
+                                    </div>
+                                    <div class="pull-left text-left" style="padding-left: 9px;">
+                                        <span class="clip">{{club.name}}</span>
+                                    </div>
+                                </td>
+                                <td>{{club.owner.fname}}</td>
+                                <td>
+                                    <span style="color: #2FAA57;"><img src="../images/ios-checkmark-outline.svg" width="40"/></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-offset-1 col-sm-10 m20">
+                        <h2 class="text-center">Scoring & Rules</h2>
+                        <div class="league-inf">
+                            <!--<table class="scoring-rules clearfix col-xs-6">-->
+                                <!--<tbody>-->
+                                    <!--<tr>-->
+                                        <!--<td class="text-right">League Chairman:</td>-->
+                                        <!--<td class="text-left violet-text">-->
+                                            <!--{{vm.model.league.one.owner.full_name}}<br/>-->
+                                            <!--<a href="mailto:stephen.schaller@gmail.com" class="violet-text">{{vm.model.league.one.owner.email}}</a></td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                        <!--<td class="text-right">Scoring type:</td>-->
+                                        <!--<td class="text-left violet-text">{{vm.model.scoringType[vm.model.league.one.league_sco_type.scoring_type]}}</td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                        <!--<td class="text-right">Categories:</td>-->
+                                        <!--<td class="text-left violet-text">-->
+                                            <!--Goals (2x)<br/>-->
+                                            <!--Key Passes<br/>-->
+                                            <!--Total Passes<br/>-->
+                                            <!--Minutes Played<br/>-->
+                                            <!--Discipline<br/>-->
+                                            <!--Goals Conceded<br/>-->
+                                            <!--Clean Sheets<br/>-->
+                                        <!--</td>-->
+                                    <!--</tr>-->
+                                <!--</tbody>-->
+                            <!--</table>-->
+                            <scoring-info id="invite-scoring-info" class="col-xs-6" league='vm.model.league'></scoring-info>
+                            <div class="col-xs-6">
+                                
+                                <transfer-info id="invite-transfer-info" league="vm.model.league"></transfer-info>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

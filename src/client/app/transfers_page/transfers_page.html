@@ -1,0 +1,162 @@
+<account-top-bar></account-top-bar>
+<div class="container">
+
+    <div class="row">
+        <div class="col-xs-3 col-md-2 small-sidebar" style="margin-left: -10px;">
+            <aside>
+                <menu-side-bar></menu-side-bar>
+            </aside>
+        </div>
+        <div class="col-xs-12 col-md-offset-1 col-md-7">
+            <commercial-header></commercial-header>
+          </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-offset-1 col-md-7 profile-page transfer-page">
+
+                    <h2>My transfers / bids</h2>
+                      <div class="row m-b25" ng-repeat="bid in vm.model.myBids" ng-if="vm.menu.showTransfers(bid)">  
+                        <div class="col-xs-12 top-bot-border left-border right-border">
+                            <div class="row text-center">
+                                <h2 class="col-xs-12">Offer to</h2>
+                                <h4 class="col-xs-12 fantasy-club">{{bid.acceptor_club.name}}</h4>
+                            </div>
+
+                            <div class="row transfers-page-clubs" style="display: flex;">
+                                <club-gets club="bid.offerer_club" footballer-list="bid.requested_virt_footballers"></club-gets>
+                                <club-gets club="bid.acceptor_club" footballer-list="bid.offered_virt_footballers" money="bid.money_offered"></club-gets>
+                            </div>
+
+                            <!--<div class="row m-t10">-->
+                            <!--<div class="col-xs-12 text-center">-->
+                            <!--<span style="color: #ffffff; font-size: 14px;" class="proxima-nova">Offer expires Oct 10. 2015</span>-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <button ng-click="vm.menu.revokeBidDialog(bid)" style="color: #fff;" class="btn btn-red">Revoke</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="row m-b25" ng-repeat="bid in vm.model.bidsProposedToMe" ng-if="vm.menu.showTransfers(bid)"> 
+                        <div class="col-xs-12 top-bot-border left-border right-border">
+                            <div class="row text-center">
+                                <h2 class="col-xs-12 m-t10">Offer from</h2>
+                                <p class="proxima-s-bold">{{bid.offerer_club.name}}</p>
+                            </div>
+
+                            <div class="row transfers-page-clubs" style="display: flex;">
+                                <club-gets club="bid.acceptor_club" footballer-list="bid.offered_virt_footballers" money="bid.money_offered"></club-gets>
+                                <club-gets club="bid.offerer_club" footballer-list="bid.requested_virt_footballers"></club-gets>
+                            </div>
+
+                            <!--<div class="row m-t10">-->
+                            <!--<div class="col-xs-12 text-center">-->
+                            <!--<span style="color: #ffffff; font-size: 14px;" class="proxima-nova">Offer expires Oct 10. 2015</span>-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+                            <div class="message-show row">
+                              <div ng-if="bid.message">
+                                <span class="message">Message:</span>
+                                <span class="message-text">{{bid.message}}</span>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6 text-right">
+                                    <button ng-click="vm.menu.rejectBidDialog(bid)" style="color: #fff;" class="btn btn-red">Reject</button>
+                                </div>
+                                <div class="col-xs-6 text-left">
+                                    <button ng-click="vm.menu.openBidDialog(bid)" class="btn btn-green">Accept</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            <div class="row m-b25" ng-if="vm.model.waiverBids.length > 0">
+                <div class="col-xs-12 top-bot-border left-border right-border">
+                    <div class="row text-center">
+                        <h2 class="col-xs-12">Pending waiver<br>bids</h2>
+                        <p><small class="proxima-nova">Waiver bids are listed in order of priority</small></p>
+                    </div>
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table currently-team-table waiver-bids-tbl">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">Priority:</th>
+                                    <th class="text-center">Adding:</th>
+                                    <th class="text-center">Bid:</th>
+                                    <th class="text-center">Dropping:</th>
+                                    <th class="text-center"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-if="waiverBid.status==='pending'"ng-repeat="waiverBid in vm.model.waiverBids">
+                                    <td class="text-center"><div class="squads-name text-center" style="line-height: 1;float: none;"><span style="display: inline-block;font-size: 26px;">&#8597;</span> {{$index + 1}}</div></td>
+                                    <td>
+                                        <div class="squads-pos violet-text ng-binding">
+                                            {{vm.model.lineupModel.footballerPositionsSymbols[waiverBid.footballer.position]}}
+                                        </div>
+                                        <div class="squads-name ng-binding">
+                                            {{waiverBid.footballer.full_name | FootballerFullName}}<br>
+                                            <small class="violet-text ng-binding">{{waiverBid.footballer.real_team.short_club_name}}</small>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="squads-name ng-binding" style="margin-left: 35px;">
+                                            &pound; {{waiverBid.money_offered}}M <br>
+                                            <small class="violet-text ng-binding">Cash</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div ng-if="waiverBid.footballer_to_drop">
+                                            <div class="squads-pos violet-text ng-binding">
+                                                {{vm.model.lineupModel.footballerPositionsSymbols[waiverBid.footballer_to_drop.position]}}
+                                            </div>
+                                            <div class="squads-name ng-binding">
+                                                {{waiverBid.footballer_to_drop.full_name | FootballerFullName}}<br>
+                                                <small class="violet-text ng-binding">{{waiverBid.footballer_to_drop.real_team.short_club_name}}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <img ng-click="vm.menu.deleteOneWaiverBidDialog(waiverBid)" width="26" src="images/cancel.svg" alt="">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                            <div class="row m-t10">
+                                <div class="col-xs-12 text-center">
+                                    <span style="color: #ffffff; font-size: 14px;" class="proxima-nova">Waivers will be processed on {{vm.model.leagueAuctionDate || '-' | date: "EEEE, MMM d, yyyy 'at' HH:mm"}}</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <button ng-click="vm.menu.deleteAllWaiverBidsDialog()" style="color: #fff;" class="btn radius btn-big-red-dark small-padding">Delete bid(s)</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row m-b25" ng-if="vm.model.myBids.length == 0 && vm.model.bidsProposedToMe.length == 0 && vm.model.waiverBids.length == 0">
+                        <h2 class="col-xs-12">You have no transfers yet</h2>
+                    </div>
+
+                </div>
+
+        <div class="col-xs-12 col-md-2 text-left create-bid-btn-container">
+            <a ng-click="vm.menu.makeTeamToTeamTransfer()" class="btn btn-green" style="margin-top: 66px;">Create<br>new bid</a>
+        </div>
+
+    </div>
+    <commercial-footer></commercial-footer>
+</div>

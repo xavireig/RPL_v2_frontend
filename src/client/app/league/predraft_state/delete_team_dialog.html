@@ -1,0 +1,46 @@
+<div class="row" style="color: white; background-color: #182432; border-radius: 15px;">
+    <div class="col-xs-12">
+            <span ng-click="closeThisDialog()" class="glyphicon glyphicon-remove-circle" style="font-size: 24px; position: absolute; left: 6px; top: 5px;">
+            </span>
+        <div class="row text-center flama-med" style="border-top-left-radius: 6px; border-top-right-radius: 6px; font-size: 24px; font-weight: bold; padding: 8px 20px; background-color: #C0392B; text-transform: capitalize">
+            Remove teams
+        </div>
+
+        <div class="row" style="padding: 10px; font-family: 'Proxima Nova Bold'; font-size: 14px; border-bottom: 2px solid #33475c">
+            <div class="col-xs-5 text-left" style="font-weight: bold; color: #78849B;">Team</div>
+            <div class="col-xs-6 text-left" style="font-weight: bold; color: #78849B;">Owner</div>
+            <div class="col-xs-1 text-center" style="font-weight: bold; color: #78849B;">Status</div>
+        </div>
+
+        <div class="row" style="padding: 10px; font-family: 'proximan_nova_regular'; font-size: 14px;">
+            <div class="col-xs-12">
+                <div class="row" ng-repeat="club in ngDialogData.clubList">
+                    <div class="col-xs-5 text-left ellipsis">
+                        <style type="text/css">
+                            #club_id_{{club.id}} .st0{fill:{{club.color1}} !important;}
+                            #club_id_{{club.id}} .st1{fill:{{club.color2}} !important;}
+                            #club_id_{{club.id}} .st2{fill:{{club.color3}} !important;}
+                        </style>
+                        <div id="club_id_{{club.id}}" ng-include="club.crest_pattern.svg_url" style="vertical-align: middle; display: inline-block; width: 24px; margin: 1px auto;     margin-right: 8px;" class="text-center"></div>
+                        {{club.name}}
+                    </div>
+                    <div class="col-xs-6 text-left">
+                        <div style="display: inline-block; vertical-align: middle; line-height: 28px;">
+                            {{club.owner.full_name || club.owner.email}}
+                            {{club.owner.id === (vm.model.league || {})['user_id'] ? '(C)' : ''}}
+                        </div>
+                    </div>
+                    <div class="col-xs-1 text-center">
+                        <span ng-click="vm.menu.deleteConfirmation(club)" class="glyphicon glyphicon-remove-circle" style="font-size: 24px; color: red;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <span ng-click="closeThisDialog()">
+                <a href="#" class="btn btn-big-dark-blue radius" style="border-color: #2D4054; padding: 10px 40px; color: #fff">Cancel</a>
+            </span>
+        </div>
+    </div>
+</div>

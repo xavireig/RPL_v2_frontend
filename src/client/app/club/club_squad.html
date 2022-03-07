@@ -1,0 +1,37 @@
+<div class="col-xs-12 squad-table-block">
+    <h2>squad</h2>
+    <div class="club-profile-block gk-col squad-table">
+        <div class="row squad-row">
+            <div class="col-md-6 squad-col" ng-repeat="positionName in csc.model.lineUp.footballersPositionsOrderArray">
+                <ul class="squads">
+                    <li ng-repeat="oneFootballer in csc.model.lineUp.footballersHash[positionName]">
+                        <div class="squads-pos violet-text">
+                            {{csc.model.lineUp.footballerPositionsSymbols[oneFootballer.footballer.position]}}
+                        </div>
+                        <div class="squads-name" ng-click="csc.menu.dialogPlayerInfo(oneFootballer)" style="float: none; padding-left: 35px;">
+                            <p class="player-name m0">
+                                {{oneFootballer.footballer.full_name | FootballerFullName:20}}
+                                <span>
+                                    <img width="20" ng-src="{{csc.model.injuryModel.statuses[oneFootballer.footballer.injury_status].icon}}" alt="">
+                                </span>
+                                <span>
+                                    <img width="20" ng-src="{{csc.model.footballer.getNewsStatusIcon(oneFootballer.footballer.last_news_date)}}" alt="">
+                                </span>
+                            </p>
+                            <span class="epl-team violent-color">{{oneFootballer.footballer.real_team.short_club_name}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12" style="border: 0;">
+                <a ng-if="csc.menu.lineUpIsLoad && csc.model.commonModel.selectedClub.id != club.id" href="#" class="btn btn-green pull-right" ng-click="csc.menu.makeTeamToTeamTransfer()">send transfer<br/>bid</a>
+            </div>
+            <!--<td style="border: 0;" colspan="{{csc.model.lineUp.footballersPositionsOrderArray.length}}">-->
+                <!--<a ng-if="csc.menu.lineUpIsLoad && csc.model.commonModel.selectedClub.id != club.id" href="#" class="btn btn-green pull-right" ng-click="csc.menu.makeTeamToTeamTransfer()">send transfer<br/>bid</a>-->
+            <!--</td>-->
+        </div>
+    </div>
+
+</div>

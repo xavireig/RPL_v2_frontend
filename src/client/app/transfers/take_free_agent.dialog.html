@@ -1,0 +1,67 @@
+<div>
+    <div class="row">
+        <h2 class="col-xs-12 text-center" style="color: #fff;">Replace players</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-7">
+            <p style="color: #fff;">Selected free agent</p>
+            <div class="checked-players-now">
+                <!--<div class="check-player pull-left"></div>-->
+                <div class="check-player-inf pull-left">
+                    <div class="squads-pos violet-text ng-binding">{{vm.model.lineUp.footballerPositionsSymbols[vm.model.freeAgent.position]}}</div>
+                    <div style="color: #fff; width: 160px" class="squads-name ng-binding">
+                        {{vm.model.freeAgent.full_name | FootballerFullName}}
+                        <br>
+                        <small class="violet-text ng-binding">{{vm.model.freeAgent.real_team.short_club_name}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-5">
+            <p style="color: #fff;">Select a player to drop</p>
+            <div class="checked-players-now" ng-if="vm.model.footballerToFreeAgent.footballer" ng-click="vm.model.footballerToFreeAgent = {}">
+                <div class="check-player-inf pull-left" ng-if="vm.model.footballerToFreeAgent.footballer">
+                    <div class="squads-pos violet-text ng-binding">{{vm.model.lineUp.footballerPositionsSymbols[vm.model.footballerToFreeAgent.footballer.position]}}</div>
+                        <div class="squads-name ng-binding" style="color: #fff; width: 160px">
+                            {{vm.model.footballerToFreeAgent.footballer.full_name | FootballerFullName}}
+                            <br>
+                        <small class="violet-text ng-binding">{{vm.model.footballerToFreeAgent.footballer.real_team.short_club_name}}</small>
+                    </div>
+                </div>
+            </div>
+            <md-input-container class="modal-dropdown" ng-if="!vm.model.footballerToFreeAgent.footballer">
+                <md-select ng-model="vm.model.footballerToFreeAgent" placeholder="Add Player(s)">
+                    <md-select-label>
+                        <strong>
+                            Add Players
+                        </strong>
+                    </md-select-label>
+                    <md-option style="margin-top: 13px; color: #fff;" ng-value="oneFootballer" ng-repeat="oneFootballer in vm.model.lineUp.data.virt_footballers" ng-class="vm.menu.returnSelectedPlayerStyle(oneFootballer)">
+                        <div class="check-player pull-left"></div>
+                        <div style="width: 250px;" class="check-player-inf pull-left">
+                            <div class="squads-pos violet-text ng-binding">{{vm.model.lineUp.footballerPositionsSymbols[oneFootballer.footballer.position]}}</div>
+                            <div style="width: 200px; overflow: hidden; text-overflow: ellipsis;" class="squads-name ng-binding">
+                                {{oneFootballer.footballer.full_name | FootballerFullName}}
+                                <br>
+                                <p class="white-text">{{oneFootballer.footballer.real_team.short_club_name}}</p>
+                            </div>
+                        </div>
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+    </div>
+    <div class="row">
+        <p class="white-text"><span class="col-xs-offset-3 col-xs-8 content" ng-if="vm.model.lineUp.data.virt_footballers.length < vm.model.leagues.one.squad_size && vm.menu.lineUpIsLoad" style="color: #fff;">You have {{vm.model.lineUp.data.virt_footballers.length}} players on your squad. You are not required to drop anyone.</span></p>
+        <p class="white-text"><span class="col-xs-offset-3 col-xs-8 content" ng-if="vm.model.lineUp.data.virt_footballers.length >= vm.model.leagues.one.squad_size && vm.menu.lineUpIsLoad" style="color: #fff;">You have {{vm.model.lineUp.data.virt_footballers.length}} players on your squad. You are not required to drop anyone.</span></p>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 text-right m-b10">
+            <button class="btn btn-red" style="color: #fff;" ng-click="vm.menu.closeDialog()">cancel</button>
+        </div>
+        <div class="col-xs-6 text-left m-b10">
+            <button class="btn btn-green" ng-click="vm.menu.takeFreeAgent()">next</button>
+        </div>
+    </div>
+</div>
+

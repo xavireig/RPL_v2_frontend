@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-xs-5">
+        <div class="row uppercase text-center m-t20 m-b10" style="font-size: 24px;line-height: 30px;">
+           RPL </br>
+           SUBSCRIPTION 
+        </div>
+        <div class="row text-center m20">
+            <img src="../images/subscription/cup.svg" width="60" alt="">
+        </div>
+        <div class="row text-center m20" style="font-size: 28px; color: #2ECC71;">
+            <b>JUST &pound;{{vm.model.selectedSubscription.amount | number:2}} {{vm.model.subscriptionService.subscriptionDetails[vm.model.selectedSubscription.name].description}}!</b>
+        </div>
+     
+        <div  class="row" ng-if="vm.model.selectedSubscription.amount == 12" style="padding: 8%; padding-left: 20%; font-weight: 800;"> 
+            Save 33% by paying
+        </div>
+
+        <div class="subscription-dropdown customizing-fixtures-drpdn" dropdown>
+            <div>
+                <div class="selected-item text-capitalize">{{vm.model.selectedSubscription.name}}</div>
+                <span class="glyphicon glyphicon-menu-down" style="float: right;" dropdown-toggle></span>
+            </div>
+            <ul class="dropdown-menu">
+                <li ng-click="vm.model.selectedSubscription = subscription"
+                    ng-repeat="subscription in ngDialogData.subscriptions"><a class="text-capitalize">{{subscription.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <!--<div class="row promo-row">
+            <div class="col-md-offset-1">
+                <input type="text" style="color:black" placeholder="promo code" ng-model="vm.model.promoCode"/>
+                <button class="promo-code-btn"> Apply</button>
+            </div>
+        </div>-->
+
+        <div class="row">
+            <div class="col-xs-12 m20" style="font-size: 12px;">
+                <span ng-click="vm.menu.toggleAgreement()">
+                    <span ng-if="!vm.view.userAgreedToTermsAndConditions()" class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+                    <span ng-if="vm.view.userAgreedToTermsAndConditions()" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </span>
+                I agree to <b><a href="../images/docs/terms_conditions.pdf" target="_blank">Terms &amp; Conditions</a></b>
+            </div>
+            <div class="col-xs-12" style="font-size: 12px;">
+                <a href="{{ vm.model.subscriptionFeaturesUrl }}">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    Subscription features
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-7"
+         style="height: 350px; background-color: white; margin-top: -1em; margin-bottom: -1em;  border-radius: 0 25px 25px 0; padding-top: 1em; padding-bottom: 1em;">
+        <subscription-form data-token="{{ngDialogData.token}}"
+                           data-model="{{vm.model.selectedSubscription.id}}"
+                           data-agreed="{{vm.model.agreedToTerms}}"
+                           data-plan="{{vm.model.selectedSubscription.id}}"
+        ></subscription-form>
+    </div>
+</div>

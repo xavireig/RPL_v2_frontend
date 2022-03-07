@@ -1,0 +1,44 @@
+<div ng-controller="SubscriptionModalController as vm">
+    <div class="row" style="color: white;">
+        <div class="col-xs-12">
+
+            <div class="row text-center text-capitalize confirmation-title trial-ending">
+                TRIAL ENDING
+            </div>
+
+            <span ng-click="closeThisDialog()"
+                  ng-include="'images/dialog_window/x_close.svg'"
+                  class="close-dialog-icon"></span>
+
+            <div class="text-area">
+                <div class="text-center">
+                  Just a heads-up that your free trail is ending soon.
+                </div>
+
+                <div class="text-center">
+                    You'll still be able to access your team and league, but you will:
+                </div>
+
+                <div class="list-info">
+                    <ul class="list-unstyled">
+                        <li>- Lose your free transfer war chest</li>
+                        <li>- Limit your formation options</li>
+                        <li>- Disable live scoring on match days</li>
+                        <li>- Disable auto-sub</li>
+                        <li>- See ads. Lots and lots of annoying ads.</li>
+                    </ul>
+                </div>
+
+                <div class="text-center trial-modal">
+                   <span class="text-mark">Become a subscriber and support the site for just &pound;1.50/month.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 text-center btn-section">
+          <span ng-click="vm.payNow('£1.5 / month')">
+            <a href="#" class="btn btn-green">JUST &pound;1.50/MONTH</a>
+          </span>
+        </div>
+    </div>
+</div>

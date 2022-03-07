@@ -1,0 +1,56 @@
+.feedback-form {
+    font-family: 'proximan_nova_regular';
+    color: white;
+}
+
+.feedback-title {
+    color: #fff;
+    font-family: 'flamamedium';
+    font-size: 50pt;
+    letter-spacing: .04em;
+    margin-bottom: 40px;
+}
+
+.input-label {
+    font-size: 16pt;
+    font-weight: bold;
+    height: 36px;
+    line-height: 36px;
+    margin-bottom: 15px;
+}
+
+.input-field {
+    font-size: 14pt;
+    border-width: 0 0 1px;
+    background-color: black;
+}
+
+.feedback-dropdown {
+    font-size: 16px;
+    padding: 8px 25px 8px 20px;
+    border: solid 1px #606D7A;
+    border-radius: 4px;
+    background-image: url('../images/arrow_down.svg');
+    background-position: 97% center;
+    background-size: 14px;
+    background-repeat: no-repeat;
+    width: 250px;
+    display: inline-block;
+}
+
+.feedback-dropdown-menu {
+    width: 250px;
+    position: absolute;
+    left: 10px;
+    top: -2px;
+    padding-right: 6px;
+    border: solid 1px #A2FF73;
+}
+
+.btn-customized {
+    margin: 30px;
+    width: 120px;
+    border-width: 3px;
+    border-radius: 15px;
+    border-color: lightskyblue;
+}

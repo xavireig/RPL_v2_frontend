@@ -1,0 +1,44 @@
+<div class="row">
+    <div ng-if="vm.model.leagueScoringType['league_sco_type']['scoring_type'] === 'category'" class="col-xs-12 text-center reserve-key-content">
+        <div class="keys">
+            <p><small>Key:</small></p>
+
+            <div ng-repeat="(key, icon) in vm.view.categoryIcons" ng-if="vm.view.showLegendIcon(icon)" class="key">
+                <div class="svg-icons text-center" style="width: 50px;">
+                    <img ng-if="key != 'pass_comp'" ng-src="{{icon['icon']}}" height="15"/>
+                    <img ng-if="key == 'tackle_interception'" ng-src="{{icon['icon1']}}" height="15"/>
+                    <img ng-if="key == 'tackle_interception'" ng-src="{{icon['icon2']}}" height="15"/>
+                    <span ng-if="key == 'pass_comp'" style="border: solid 1px #2de1fc; padding-left: 3px; padding-right: 3px; line-height: 15px;">26/50</span>
+                    <span ng-if="key == 'min_played'">10'</span>
+                </div>
+                <div class="text-center ellipsis" style="width: 50px;">
+                    <span>{{icon['title']}}</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div ng-if="vm.model.leagueScoringType['league_sco_type']['scoring_type'] === 'point'" class="col-xs-12 text-center">
+        <div class="keys">
+            <p><small>Key:</small></p>
+
+            <div ng-repeat="(key, icon) in vm.view.pointIcons" ng-if="vm.view.showPointLegendIcon(icon)" class="key">
+                <div class="svg-icons text-center" style="width: 50px;">
+                    <img ng-if="key != 'pass_comp'" ng-src="{{icon['icon']}}" height="15"/>
+                    <span ng-if="key == 'pass_comp'" style="border: solid 1px #2de1fc; padding-left: 3px; padding-right: 3px; line-height: 15px;">26/50</span>
+                    <span ng-if="key == 'min_played'">10'</span>
+                </div>
+                <div class="text-center ellipsis" style="width: 50px;">
+                    <span>{{icon['title']}}</span>
+                </div>
+            </div>
+            <p style="clear: both;">
+                <small>
+                    <b>Note:</b> In category scoring leagues, DEF/GK who play zero minutes are penalized two goals conceded; MIDs are penalized one goal conceded
+                </small>
+            </p>
+        </div>
+    </div>
+
+</div>

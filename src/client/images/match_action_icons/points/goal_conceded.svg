@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 299.99">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #c0392b;
+      }
+    </style>
+  </defs>
+  <title>Goal conceded</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <path class="cls-1" d="M150,0C67.29,0,0,67.29,0,150S67.29,300,150,300s150-67.29,150-150S232.71,0,150,0Zm0,262A111.93,111.93,0,0,1,58.53,85.45l156,156A111.33,111.33,0,0,1,150,262Zm91.42-47.38-156-156a111.93,111.93,0,0,1,156,156Z"/>
+    </g>
+  </g>
+</svg>

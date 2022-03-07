@@ -1,0 +1,95 @@
+<account-top-bar></account-top-bar>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3 col-md-2 small-sidebar" style="margin-left: -10px;">
+            <aside>
+                <menu-side-bar></menu-side-bar>
+            </aside>
+        </div>
+        <div class="col-xs-12 col-md-10 news-page">
+            <commercial-header></commercial-header>
+            <div class="row news-title-container">
+                <h1 class="col-xs-12 news-title-text">News</h1>
+            </div>
+            <div class="row news-section">
+                <div class="col-xs-12 col-md-6 news-block">
+                    <h2 class="text-center">Player News</h2>
+                    <div class="news" style="font-size: 0;">
+                        <news-block news="vm.model.news.data"></news-block>
+                    </div>
+                    <div class="m-t10 text-center"><a href="#" class="link">All players news</a></div>
+
+                </div>
+                <div class="col-xs-12 col-md-6 news-block">
+                    <h2 class="text-center">EPL Headlines</h2>
+                    <div class="epl-headlings">
+                        <div class="hedlines" ng-repeat="oneNew in vm.model.news.news">
+                            <div class="violet-text pull-left"><strong>{{vm.menu.clubAbbr[oneNew.real_team.extid] || ' - - - '}}:</strong></div>
+                            <div class="pull-left decsr">{{oneNew.short_description}}
+                                <a ng-href="{{oneNew.source}}" ng-if="oneNew.source" class="small-blue-link text-right">More >></a>
+                                <a ng-if="!oneNew.source" class="small-blue-link text-right">More >></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-t10 text-center"><a href="#" class="link">All EPL headlines</a></div>
+
+                </div>
+            </div>
+
+            <!--<div class="row features" style="margin-top: 30px;">-->
+                <!--<div class="row">-->
+                    <!--<div class="col-xs-12 text-center small-title">Features</div>-->
+                <!--</div>-->
+                <!--<div class="row">-->
+                    <!--<div class="col-xs-4">-->
+                        <!--<div class="features-block">-->
+                            <!--<p class="big-feature-title">Week 13<br>power ranking</p>-->
+                            <!--<img ng-src="../images/fc.png" class="img-responsive"/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-4">-->
+                        <!--<div class="features-block">-->
+                            <!--<p class="big-feature-title">Week 13<br>power ranking</p>-->
+                            <!--<img ng-src="../images/fc.png" class="img-responsive"/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-4">-->
+                        <!--<div class="features-block">-->
+                            <!--<p class="big-feature-title">Week 13<br>power ranking</p>-->
+                            <!--<img ng-src="../images/fc.png" class="img-responsive"/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<a href="#" class="small-blue-link text-center">All Feature Stories</a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <features features-list="vm.model.featuresList" ng-if="vm.model.featuresList.length > 0" show-desc="0"></features>
+
+            <div class="row injuries-container">
+                <h2 class="text-center">Injuries &#x00026; Suspensions</h2>
+                <div class="col-xs-12 transfer-activity" style="padding: 0">
+                    <table ng-table="vm.tableParams" fixed-table-headers="scrollable-area" class="table transparent-border-table injuries-table">
+                        <tbody class="rpl-scrollable" >
+
+                        <tr ng-repeat="injAndSusp in $data">
+                            <td class="text-left" data-title="'Player'" sortable="'full_name'">
+                                <span class="clip" style="width: auto">{{injAndSusp.full_name}}</span><br/>
+                                <span class="thin-text epl-team violet-text"><span class="uppercase">{{vm.model.footballerPositionsHash[injAndSusp.position]}}</span> - {{injAndSusp.short_club_name}}</span>
+                            </td>
+                            <td class="text-left" data-title="'Description'" sortable="'description'">
+                                <span>{{injAndSusp.description}}</span>
+                            </td>
+                            <td class="text-left" data-title="'Status'" sortable="'status'">
+                                <span>{{vm.model.injAndSusp.statuses[injAndSusp.status].title}}</span>
+                            </td>
+                            <td class="text-left" data-title="'Expected Return'" sortable="'expected_return'">
+                                <span>{{(injAndSusp.expected_return | date:'EEE, MMM d, yyyy') || 'No return date'}}</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <commercial-footer></commercial-footer>
+        </div>
+    </div>
+</div>

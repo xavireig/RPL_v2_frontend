@@ -1,0 +1,232 @@
+<div class="col-xs-12 settings-page">
+    <!-- Draft date/time -->
+    <div class="row" style="padding-bottom: 10px;">
+        <div class="col-xs-12">
+            <div class="text-center h2">Draft date/time</div>
+        </div>
+    </div>
+    <div class="row" style="border-bottom: 2px solid #243046; padding-bottom: 30px;">
+        <div class="col-xs-12 text-center">
+            <span class="settings-label" style="padding-right: 15px;">Draft Date/Time</span>
+            <div style="display: inline-block; background-color: #000000; border: 1px solid #9AA7C3; padding: 5px; border-radius: 4px; text-align: center;" >
+                <input id="dateTimePickerDraft" ng-if="!ds.menu.blockForAction()" date-time-picker-wrapped date-model="ds.model.leagueDraftSettings" type="text" style="background-color: #000000; border: 0; text-shadow: 0 0 0 #FCFEEE; color: transparent;" />
+                <input ng-if="ds.menu.blockForAction()" readonly ng-value="ds.menu.returnLeagueDraftTimeInFormat()" style="background-color: #000000; border: 0;" type="text" />
+                <span ng-if="!ds.menu.blockForAction()" onclick="getElementById('dateTimePickerDraft').focus();" class="arrow-down" ng-include="'images/ic_keyboard_arrow_down.svg'" style="cursor: pointer;"></span>
+            </div>
+        </div>
+    </div>
+    <!-- Time per pick -->
+    <div class="row" style="padding-bottom: 10px; padding-top: 15px;">
+        <div class="col-xs-12">
+            <div class="text-center h2">Time per pick</div>
+        </div>
+    </div>
+    <div class="row" style="border-bottom: 2px solid #243046; padding-bottom: 30px;">
+        <div class="col-xs-12 text-center">
+            <input type="text" ng-model="ds.model.leagueDraftSettings.timePerPick" size="4" style="text-align: center; margin-right: 20px;" ng-disabled="ds.menu.blockForAction()" />
+            <div class="time-per-pick" dropdown>
+                <div>
+                    <div class="selected-item">{{ds.model.leagueDraftSettings.timePerPickUnit}}</div>
+                    <span ng-if="!ds.menu.blockForAction()" class="arrow-down" dropdown-toggle ng-include="'images/ic_keyboard_arrow_down.svg'"></span>
+                </div>
+                <ul class="dropdown-menu">
+                    <li ng-click="ds.menu.setTimePerPickUnit('seconds')"><a>Seconds</a></li>
+                    <li ng-click="ds.menu.setTimePerPickUnit('minutes')"><a>Minutes</a></li>
+                    <li ng-click="ds.menu.setTimePerPickUnit('hours')"><a>Hours</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+     <!--Draft order 
+    <div class="row" style="padding-bottom: 10px; padding-top: 15px;">
+        <div class="col-xs-12">
+            <ls-small-title class="h2"
+                title="'Draft order'"
+                context="[
+                    'A `Snake` draft means the order of odd rounds is reversed in even rounds',
+                    '`Custom` allows you to change the order of every pick in every round']">
+            </ls-small-title>
+        </div>
+    </div>
+    <div class="row" style="border-bottom: 2px solid #243046;">
+        <div class="col-xs-12 text-center">
+            <table class="scoring-type clearfix" style="margin-top: 5px; margin-bottom: 5px;">
+                <tbody>
+                <tr>
+                    <td class="text-right settings-label">Snake</td>
+                    <td>
+                        <form class="scoring-switch">
+                            <switch id="disabled" name="enabled" disabled="ds.menu.blockForAction()" ng-model="ds.model.customDraftOrder" class="long-blue"></switch>
+                        </form>
+                    </td>
+                    <td class="text-left settings-label">Custom</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>-->
+
+    <div class="row" style="padding-bottom: 10px; padding-top: 15px; border-bottom: 2px solid #243046;">
+        <div class="col-xs-12 text-center">
+            <!-- TITLE BLOCK -->
+            <!--<div ng-if="ds.model.customDraftOrder">
+                <ls-small-title
+                                title="'Customize draft order'"
+                                context="[
+                    'Change the order of any round or pick by dragging and dropping',
+                    'Note: each team must have one pick per round']">
+                </ls-small-title>
+                <div class="row text-center small-note">
+                    Drag and drop to change a custom draft order
+                </div>
+            </div>-->
+
+            <!--<div ng-if="!ds.model.customDraftOrder">-->
+                <ls-small-title class="h2" 
+                                title="'Modify Snake'"
+                                context="[
+                                    'A `Snake` draft means the order of odd rounds is reversed in even rounds. 
+                                    Drag and drop to change the order of the snake pattern that will repeat throughout the draft.']">
+                </ls-small-title>
+                <div class="row text-center small-note">
+                    Change the order of the repeating "snake" pattern by dragging and dropping teams in the odd rounds.
+                </div>
+            <!--</div>-->
+            <!-- END OF TITLE BLOCK -->
+
+            <!-- CUSTOM DRAFT QUEUE -->
+            <!--<div ng-if="ds.model.customDraftOrder" class="row">
+                <div class="col-xs-12" style="float: none; margin: 0 auto;">
+                    <div class="row text-center snake-dragable">
+
+                        <div class="col-xs-1">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="modify-snake-header">Pick</div>
+                                    <ul class="numbers-list" style="list-style: none;">
+                                        <li ng-repeat="leagueClub in ds.model.leagueClubsArray">{{$index + 1}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-11">
+                            <div class="row">
+                                <data-owl-carousel id="data-owl-carousel" class="owl-carousel" data-options="{ items: 6, mouseDrag: false, slideBy: 6, touchDrag: false ,margin: 10, onTranslate: ds.menu.getCarouselPosition, onInitialized: ds.menu.getCarouselPosition}">
+                                    <div class="item" ng-repeat="draftQueue in ds.model.draftQueues track by $index" owl-carousel-item="">
+                                        <div class="modify-snake-header">Round {{$index + 1}}</div>
+
+                                        <ul ng-if="!ds.menu.blockForAction()" style="list-style: none;" dragula="'bag-{{draftQueue.cur_iter}}'" dragula-model="draftQueue['club_queue_list']">
+                                            <li ng-repeat="leagueClub in draftQueue['club_queue_list']" class="snake-dragable">
+                                                <div>{{ds.model.leagueClubsHash[leagueClub].name}}</div>
+                                            </li>
+                                        </ul>
+                                        <ul ng-if="ds.menu.blockForAction()" style="list-style: none;">
+                                            <li ng-repeat="leagueClub in draftQueue['club_queue_list']" class="snake-dragable">
+                                                <div>{{ds.model.leagueClubsHash[leagueClub].name}}</div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </data-owl-carousel>
+                            </div>
+                        </div>
+                        <div class="">
+                            <span ng-if="ds.model.carouselItems.index > 0" style="font-size: 18px;" class="glyphicon glyphicon-menu-left" ng-click="ds.menu.goPrevOwlCarousel()" role="button" tabindex="0"></span>
+                            <span class="modify-snake-header">Rounds {{ds.model.carouselItems.index + 1}} - {{ds.model.carouselItems.index + 6}}</span>
+                            <span ng-if="(ds.model.carouselItems.index + 6) !== ds.model.carouselItems.count" style="font-size: 18px;" class="glyphicon glyphicon-menu-right" ng-click="ds.menu.goNextOwlCarousel()" role="button" tabindex="0"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <!-- END OF CUSTOM DRAFT QUEUE -->
+
+            <!-- SNAKE DRAFT QUEUE -->
+            <div ng-if="!ds.model.customDraftOrder && ds.model.leagueClubsArray.length > 0" class="row">
+                <div class="col-xs-6" style="float: none; margin: 0 auto;">
+                    <div class="row text-center modify-snake-header">
+                        <div class="col-xs-3">
+                            Pick
+                        </div>
+                        <div class="col-xs-4">
+                            Odd rounds
+                        </div>
+                        <div class="col-xs-4">
+                            Even rounds
+                        </div>
+                    </div>
+                    <div class="row text-center snake-dragable">
+                        <div class="col-xs-3">
+                            <ul class="numbers-list" style="list-style: none;">
+                                <li ng-repeat="leagueClub in ds.model.leagueClubsArray">
+                                    {{$index + 1}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-4">
+
+                            <ul ng-if="!ds.menu.blockForAction()" style="list-style: none;" dragula="'bag-0'" dragula-model="ds.model.draftQueues['club_queue_list']">
+                                <li ng-repeat="leagueClub in ds.model.draftQueues['club_queue_list']" class="snake-dragable">
+                                    <div>{{ds.model.leagueClubsHash[leagueClub].name}}</div>
+                                </li>
+                            </ul>
+                            <ul ng-if="ds.menu.blockForAction()" style="list-style: none;">
+                                <li ng-repeat="leagueClub in ds.model.draftQueues['club_queue_list']" class="snake-dragable">
+                                    <div>{{ds.model.leagueClubsHash[leagueClub].name}}</div>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-xs-4">
+                            <ul class="disabled" style="list-style: none;">
+                                <li ng-repeat="leagueClub in ds.model.draftQueues['club_queue_list'].slice().reverse()">
+                                    {{ds.model.leagueClubsHash[leagueClub].name}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF SNAKE DRAFT QUEUE -->
+
+            <!-- RANDOMIZE -->
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <button ng-disabled="ds.menu.blockForAction()" ng-click="ds.menu.randomizeLeagueDraftQueues()" class="btn btn-green">Randomize</button>
+                    <div class="context-help" dropdown>
+                        <span dropdown-toggle class="context-help-icon" ng-include="'images/ic_help_outline_black.svg'"></span>
+                        <ul class="dropdown-menu left-arrow context-block">
+                            <li class="context-block-header text-center light-blue-background m0">
+                                <div class="row">
+                                    <div class="col-xs-offset-1 col-xs-10">Randomize</div>
+                                    <div class="col-xs-1 text-right"><img class="close-icon" src="/images/x_close.svg" alt="x"></div>
+                                </div>
+                            </li>
+                            <li class="content">
+                                <ul style="list-style-type: disc;">
+                                    <li>Randomizes the order of every odd round</li>
+                                    <li>The corresponding even round will snake with each randomized odd round</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF RANDOMIZE -->
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12" style="float: none;">
+            <div class="row">
+                <div class="col-xs-6 text-right">
+                    <button ng-click="vm.menu.goLeague()" class="btn btn-gray">Cancel</button>
+                </div>
+                <div class="col-xs-6 text-left">
+                    <button ng-disabled="ds.menu.blockForAction()" ng-click="ds.menu.saveChanges()" class="btn btn-green">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

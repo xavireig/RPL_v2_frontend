@@ -1,0 +1,700 @@
+<div ng-if="vm.menu.draftIsLoading" class="draft-overlay">
+</div>
+
+<!--<ng-include src="'app/layout/account_topbar.html'"></ng-include>-->
+<account-top-bar ng-if="vm.model.isDraftClosed()"></account-top-bar>
+<div class="container white-background">
+
+    <!--previous draft ongoing layout-->
+    <!--<div class="row dark-bg" ng-if="vm.model.isDraftGoing()">
+        <div class="col-xs-4">
+            <a href="" ng-click="vm.menu.goDashboard()"><img ng-src="images/logo.svg" width="144" class="logo pull-left"></a>
+            <div class="draft-header-pick-info pull-right">
+                <div class="pull-right">
+                    <span class="now-pick-num">
+                        <timer ng-show="vm.model.showTimer" interval="1000" end-time="vm.model.draftStatus.timer_milliseconds" finish-callback="vm.model.timerFinished()">{{minutes}}:{{sseconds}}</timer>
+                        <div ng-show="!vm.model.showTimer" id="floatingBarsG">
+                            <div class="blockG" id="rotateG_01"></div>
+                            <div class="blockG" id="rotateG_02"></div>
+                            <div class="blockG" id="rotateG_03"></div>
+                            <div class="blockG" id="rotateG_04"></div>
+                            <div class="blockG" id="rotateG_05"></div>
+                            <div class="blockG" id="rotateG_06"></div>
+                            <div class="blockG" id="rotateG_07"></div>
+                            <div class="blockG" id="rotateG_08"></div>
+                        </div>
+                    </span>
+                </div>
+                <strong>Latest pick:</strong></br>
+                <strong class="green-text">{{vm.model.draftResult.last.footballer.full_name}}</strong></br>
+                <span class="grey-text" ng-if="vm.model.draftResult.last.footballer">
+                    <small>{{vm.model.draftResult.last.footballer.position | FootballerPosition}}, {{vm.model.draftResult.last.footballer.real_team.name}}</small>
+                </span></br>
+                {{vm.model.draftResult.last.club.name}}
+                <div class="clearfix"></div>
+                <span class="lead red-text text18" ng-if="vm.model.numberOfPicksUntilUserTurn() > 0">{{vm.model.numberOfPicksUntilUserTurn()}} picks until your turn</span>
+                <span class="lead green-text text18" ng-if="vm.model.numberOfPicksUntilUserTurn() === -100500">Your turn!</span>
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <div class="row command-logo-name">
+                <div class="col-xs-2 text-center command-logo-name-item" ng-repeat="clubId in vm.model.draftStatus.data.short_status.club_queue_list track by $index" ng-if="$index >= (vm.model.draftStatus.data.short_status.cur_step_num - 1) && $index <= ((vm.model.draftStatus.data.short_status.cur_step_num - 1) + 5)">
+                    <strong>{{vm.model.draftStatus.data.short_status.cur_iter + ($index >= vm.model.leagues.one['num_teams'] ? 1 : 0)}}.{{$index + 1 - ($index >= vm.model.leagues.one['num_teams'] ? vm.model.leagues.one['num_teams'] : 0)}}</strong></br>
+                    <style type="text/css">
+                        #club_id_{{clubId}} .st0{fill:{{vm.model.leagues.clubsHash[clubId].color1}} !important;}
+                        #club_id_{{clubId}} .st1{fill:{{vm.model.leagues.clubsHash[clubId].color2}} !important;}
+                        #club_id_{{clubId}} .st2{fill:{{vm.model.leagues.clubsHash[clubId].color3}} !important;}
+                    </style>
+                    <div id="club_id_{{clubId}}" ng-include="vm.model.leagues.clubsHash[clubId].crest_pattern.svg_url" style="width: 40px; margin: 1px auto;" class="text-center"></div>
+                    <span class="club-draft-subtitle">{{vm.model.leagues.clubsHash[clubId].name}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-1 text-center">
+            <a href="#" class="help-header-btn">
+                <span class=" glyphicon glyphicon-question-sign" style="font-size: 38px;"></span>
+            </a>
+            <p>Help</p>
+        </div>
+    </div>-->
+
+<!-- draft is going right now -->
+    <div class="row dark-bg no-padding-topbar" style="display: block;" ng-if="vm.model.isDraftGoing()">
+        <div class="col-xs-12 col-md-2 text-center bg-white">
+            <div class="pull-left">
+                <span class="now-pick-num" style="height: 64px;">
+                    <timer ng-show="vm.model.showTimer" interval="1000" end-time="vm.model.draftStatus.timer_milliseconds" finish-callback="vm.model.timerFinished()">{{minutes}}:{{sseconds}}</timer>
+                    <div ng-show="!vm.model.showTimer" id="floatingBarsG">
+                        <div class="blockG" id="rotateG_01"></div>
+                        <div class="blockG" id="rotateG_02"></div>
+                        <div class="blockG" id="rotateG_03"></div>
+                        <div class="blockG" id="rotateG_04"></div>
+                        <div class="blockG" id="rotateG_05"></div>
+                        <div class="blockG" id="rotateG_06"></div>
+                        <div class="blockG" id="rotateG_07"></div>
+                        <div class="blockG" id="rotateG_08"></div>
+                    </div>
+                </span>
+            </div>
+            <strong class="black-text">Latest pick:</strong></br>
+            <strong class="green-text">{{vm.model.draftResult.last.footballer.full_name}}</strong></br>
+            <div>
+                <span class="grey-text" ng-if="vm.model.draftResult.last.footballer">
+                <small>{{vm.model.draftResult.last.footballer.position | FootballerPosition}}, {{vm.model.draftResult.last.footballer.real_team.short_club_name}}</small>
+            </span></br>
+            </div>
+            <div class="clearfix"></div>
+            <div ng-if="vm.model.draftStatusLoaded">
+            <span class="lead red-text text13" ng-if="vm.menu.showNumberOfTurns() > 0">{{vm.menu.showNumberOfTurns()}} picks until your turn</span>
+            <span class="lead green-text text18" ng-if="vm.menu.showNumberOfTurns() === 0">Your turn!</span>
+            </div>
+        </div>
+
+        <div ng-show = "vm.model.footballerDetails != null "> 
+           <ng-include src="'app/draft/footballer_details.html'"></ng-include>
+        </div>
+        
+        <div ng-show = "vm.model.footballerDetails == null ">
+            <div class="col-xs-12 col-md-2 text-center timer-left">
+                
+            </div>
+            <div class="col-xs-12 col-md-4 padding-0">
+                
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4 text-center left-border">  
+            <div class="col-xs-12 col-md-10">
+                <div class="row">
+                    <div class="pull-left club-name-title uppercase">
+                        <div class="league-title text-left">
+                            {{vm.model.leagues.one.title}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 10px;">
+                    <div class="col-xs-2 col-md-2 no-padding-left">
+                        <style type="text/css">
+                            #clubmain_{{vm.model.currentClub.one.id}} .st0{fill:{{vm.model.currentClub.one.color1}} !important;}
+                            #clubmain_{{vm.model.currentClub.one.id}} .st1{fill:{{vm.model.currentClub.one.color2}} !important;}
+                            #clubmain_{{vm.model.currentClub.one.id}} .st2{fill:{{vm.model.currentClub.one.color3}} !important;}
+                        </style>
+                        <div id="clubmain_{{vm.model.currentClub.one.id}}" ng-include="vm.model.currentClub.one.crest_pattern.svg_url" class="drafting-club"></div>
+                    </div>
+                    <div class="col-xs-10 col-md-10 text-left no-padding-left club-title">
+                        {{vm.model.currentClub.one.name}}
+                    </div> 
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-2">
+                <a href="https://www.rotopremierleague.com/game-guide/" target="_blank" class="help-header-btn">
+                    <span class=" glyphicon glyphicon-question-sign" style="font-size: 38px; color: #2de1fc"></span>
+                </a>
+                <p style="font-size: 17px; color: #2de1fc; font-weight: bold">Help</p>
+            </div> 
+        </div>     
+    </div>
+
+<!-- normal user: draft has not started yet and the league is not full yet -->
+    <div class="row dark-bg no-padding-topbar" style="display: block;" ng-if="vm.model.isDraftCanBegin()&&!vm.menu.isChairman()">
+        <div class="col-xs-12 col-md-2 text-center bg-white">
+            <a href="" ng-click="vm.menu.goDashboard()"><img ng-src="images/RPL_logo_on_white.svg" width="153" class="logo"></a>    
+        </div>
+
+        <div ng-show = "vm.model.footballerDetails != null "> 
+           <ng-include src="'app/draft/footballer_details.html'"></ng-include>
+        </div>
+        
+        <div ng-show = "vm.model.footballerDetails == null ">
+            <div class="col-xs-12 col-md-2 text-center timer-left">
+                <timer interval="60000" end-time="vm.model.leagues.one.draft_time_milliseconds">
+                <ul class="timer" style="margin-top: 12px;">
+                    <span class="clearfix uppercase text-center"><small>draft starts in: </small></span>
+                    <li class="text-center">
+                        <div class="numbers">
+                            {{days}} 
+                        </div>
+                        <span class="clearfix uppercase"><small>days</small></span>
+                    </li>
+                    <li class="text-center">
+                        <div class="numbers">
+                            {{hours}}
+                        </div>
+                        <span class="clearfix uppercase"><small>hrs</small></span>
+                    </li>
+                    <li class="text-center">
+                        <div class="numbers">
+                            {{minutes}} 
+                        </div>
+                        <span class="clearfix uppercase"><small>min</small></span>
+                    </li>
+                </ul>
+                </timer>
+            </div>
+            <div class="col-xs-12 col-md-4 padding-0">
+                <div class="draft-teams-header-text text-center no-span-col">
+                    <strong>{{vm.model.leagues.one.num_teams}} 0f {{vm.model.leagues.one.req_teams}} Teams in League</strong><br/>
+                    <small>
+                            Draft cannot begin until all teams have registered.</br>
+                            (League chairman can change the number of teams in your league on the league settings page)
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4 text-center left-border">  
+            <div class="col-xs-12 col-md-10">
+                <div class="row">
+                    <div class="pull-left club-name-title uppercase">
+                        <div class="league-title text-left">
+                            {{vm.model.leagues.one.title}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 10px;">
+                    <div class="col-xs-2 col-md-2 no-padding-left">
+                        <style type="text/css">
+                            #clubmain_{{vm.model.currentClub.one.id}} .st0{fill:{{vm.model.currentClub.one.color1}} !important;}
+                            #clubmain_{{vm.model.currentClub.one.id}} .st1{fill:{{vm.model.currentClub.one.color2}} !important;}
+                            #clubmain_{{vm.model.currentClub.one.id}} .st2{fill:{{vm.model.currentClub.one.color3}} !important;}
+                        </style>
+                        <div id="clubmain_{{vm.model.currentClub.one.id}}" ng-include="vm.model.currentClub.one.crest_pattern.svg_url" class="drafting-club"></div>
+                    </div>
+                    <div class="col-xs-10 col-md-10 text-left no-padding-left club-title">
+                        {{vm.model.currentClub.one.name}}
+                    </div> 
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-2">
+                <a href="https://www.rotopremierleague.com/game-guide/" target="_blank" class="help-header-btn">
+                    <span class=" glyphicon glyphicon-question-sign" style="font-size: 38px; color: #2de1fc"></span>
+                </a>
+                <p style="font-size: 17px; color: #2de1fc; font-weight: bold">Help</p>
+            </div> 
+        </div>
+           
+    </div>
+
+    <!-- normal user: draft has not started yet and the league is full -->
+    <div class="row dark-bg no-padding-topbar" style="display: block;" ng-if="vm.model.isDraftWaitClubs()&&!vm.menu.isChairman()">
+        <div class="col-xs-12 col-md-2 text-center bg-white">
+            <a href="" ng-click="vm.menu.goDashboard()"><img ng-src="images/RPL_logo_on_white.svg" width="153" class="logo"></a>    
+        </div>
+        <div ng-show = "vm.model.footballerDetails != null "> 
+           <ng-include src="'app/draft/footballer_details.html'"></ng-include>
+        </div>
+        <div ng-show = "vm.model.footballerDetails == null ">
+            <div  class="col-xs-12 col-md-2 text-center timer-left">
+                <timer interval="60000" end-time="vm.model.leagues.one.draft_time_milliseconds">
+                <ul class="timer" style="margin-top: 12px;">
+                    <span class="clearfix uppercase text-center"><small>draft starts in: </small></span>
+                    <li class="text-center">
+                        <div class="numbers">
+                            {{days}} 
+                        </div>
+                        <span class="clearfix uppercase"><small>days</small></span>
+                    </li>
+                    <li class="text-center">
+                        <div class="numbers">
+                            {{hours}}
+                        </div>
+                        <span class="clearfix uppercase"><small>hrs</small></span>
+                    </li>
+                    <li class="text-center">
+                        <div class="numbers">
+                            {{minutes}} 
+                        </div>
+                        <span class="clearfix uppercase"><small>min</small></span>
+                    </li>
+                </ul>
+                </timer>
+            </div>
+            <div class="col-xs-12 col-md-4 padding-0">
+                <div class="draft-teams-header-text text-center no-span-col">
+                    <strong>{{vm.model.leagues.one.num_teams}} 0f {{vm.model.leagues.one.req_teams}} Teams in League</strong><br/>
+                    <small>
+                    <strong>Draft will begin once date/time has arrived and chairman hits "start" button</strong>
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4 text-center left-border">  
+            <div class="col-xs-12 col-md-10">
+                <div class="row">
+                    <div class="pull-left club-name-title uppercase">
+                        <div class="league-title text-left">
+                            {{vm.model.leagues.one.title}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 10px;">
+                    <div class="col-xs-2 col-md-2 no-padding-left">
+                        <style type="text/css">
+                            #clubmain_{{vm.model.currentClub.one.id}} .st0{fill:{{vm.model.currentClub.one.color1}} !important;}
+                            #clubmain_{{vm.model.currentClub.one.id}} .st1{fill:{{vm.model.currentClub.one.color2}} !important;}
+                            #clubmain_{{vm.model.currentClub.one.id}} .st2{fill:{{vm.model.currentClub.one.color3}} !important;}
+                        </style>
+                        <div id="clubmain_{{vm.model.currentClub.one.id}}" ng-include="vm.model.currentClub.one.crest_pattern.svg_url" class="drafting-club"></div>
+                    </div>
+                    <div class="col-xs-10 col-md-10 text-left no-padding-left club-title">
+                        {{vm.model.currentClub.one.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-2">
+                <a href="https://www.rotopremierleague.com/game-guide/" target="_blank" class="help-header-btn">
+                    <span class=" glyphicon glyphicon-question-sign" style="font-size: 38px; color: #2de1fc"></span>
+                </a>
+                <p style="font-size: 17px; color: #2de1fc; font-weight: bold">Help</p>
+            </div> 
+        </div> 
+        
+    </div>
+
+    <!-- chairman: draft has not started yet and the league is not full yet -->
+    <div class="row dark-bg no-padding-topbar" style="display: block;" ng-if="vm.model.isDraftCanBegin()&&vm.menu.isChairman()">
+        <div class="col-xs-12 col-md-2 text-center bg-white">
+            <a href="" ng-click="vm.menu.goDashboard()"><img ng-src="images/RPL_logo_on_white.svg" width="153" class="logo"></a>    
+        </div>
+         <div ng-show = "vm.model.footballerDetails != null "> 
+           <ng-include src="'app/draft/footballer_details.html'"></ng-include>
+        </div>
+        <div ng-show="vm.model.footballerDetails == null">
+            <div  class="col-xs-12 col-md-2 text-center timer-left">
+                <timer interval="60000" end-time="vm.model.leagues.one.draft_time_milliseconds">
+                <ul class="timer" style="margin-top: 12px;">
+                    <span class="clearfix uppercase text-center"><small>draft starts in: </small></span>
+                    <li class="text-center">
+                        <div class="numbers">
+                            {{days}} 
+                        </div>
+                        <span class="clearfix uppercase"><small>days</small></span>
+                    </li>
+                    <li class="text-center">
+                        <div class="numbers">
+                            {{hours}}
+                        </div>
+                        <span class="clearfix uppercase"><small>hrs</small></span>
+                    </li>
+                    <li class="text-center">
+                        <div class="numbers">
+                            {{minutes}} 
+                        </div>
+                        <span class="clearfix uppercase"><small>min</small></span>
+                    </li>
+                </ul>
+                </timer>
+            </div>
+            <div  class="col-xs-12 col-md-2 padding-0">
+                <div class="draft-teams-header-text text-center span-col">
+                    <strong>{{vm.model.leagues.one.num_teams}} 0f {{vm.model.leagues.one.req_teams}} Teams in League</strong><br/>
+                    <small>
+                        Draft cannot start until all teams have registered.<br/>
+                        Chairman can change the number of teams under <a class="link" href="" ng-click="vm.menu.goToLeagueSettings()"><strong>League Settings</strong></a>
+                    </small>
+                </div>
+            </div>
+            <div ng-show = "vm.model.footballerDetails == null" class="col-xs-12 col-md-2 padding-0">
+                <div class="draft-teams-header-text text-center btn-padding-left">
+                    <button ng-disabled="!vm.menu.startDraftButtonAllowed()" class="btn small-size-btn btn-blue btn-margin" ng-click="startDraft()">Start Draft</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4 text-center left-border">  
+            <div class="col-xs-12 col-md-10">
+                <div class="row">
+                    <div class="pull-left club-name-title uppercase">
+                        <div class="league-title text-left">
+                            {{vm.model.leagues.one.title}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 10px;">
+                    <div class="col-xs-2 col-md-2 no-padding-left">
+                        <style type="text/css">
+                            #clubmain_{{vm.model.currentClub.one.id}} .st0{fill:{{vm.model.currentClub.one.color1}} !important;}
+                            #clubmain_{{vm.model.currentClub.one.id}} .st1{fill:{{vm.model.currentClub.one.color2}} !important;}
+                            #clubmain_{{vm.model.currentClub.one.id}} .st2{fill:{{vm.model.currentClub.one.color3}} !important;}
+                        </style>
+                        <div id="clubmain_{{vm.model.currentClub.one.id}}" ng-include="vm.model.currentClub.one.crest_pattern.svg_url" class="drafting-club"></div>
+                    </div>
+                    <div class="col-xs-10 col-md-10 text-left no-padding-left club-title">
+                        {{vm.model.currentClub.one.name}}
+                    </div> 
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-2">
+                <a href="https://www.rotopremierleague.com/game-guide/" target="_blank" class="help-header-btn">
+                    <span class=" glyphicon glyphicon-question-sign" style="font-size: 38px; color: #2de1fc"></span>
+                </a>
+                <a href="https://www.rotopremierleague.com/game-guide/" target="_blank">
+                    <p style="font-size: 17px; color: #2de1fc; font-weight: bold">Help</p>
+                </a>
+            </div> 
+        </div> 
+    </div>
+
+    <!-- chairman: draft has not started yet and the league is full -->
+    <div class="row dark-bg no-padding-topbar" style="display: block;" ng-if="vm.model.isDraftWaitClubs()&&vm.menu.isChairman()">
+        <div class="col-xs-12 col-md-2 text-center bg-white">
+            <a href="" ng-click="vm.menu.goDashboard()"><img ng-src="images/RPL_logo_on_white.svg" width="153" class="logo"></a>    
+        </div>
+
+         <div ng-show = "vm.model.footballerDetails != null "> 
+           <ng-include src="'app/draft/footballer_details.html'"></ng-include>
+        </div>
+ 
+        <div ng-show = "vm.model.footballerDetails == null ">
+            <div  class="col-xs-12 col-md-2 text-center timer-left">
+                <timer interval="60000" end-time="vm.model.leagues.one.draft_time_milliseconds">
+                <ul class="timer" style="margin-top: 12px;">
+                    <span class="clearfix uppercase text-center"><small>draft starts in: </small></span>
+                    <li class="text-center">
+                        <div class="numbers">
+                            {{days}} 
+                        </div>
+                        <span class="clearfix uppercase"><small>days</small></span>
+                    </li>
+                    <li class="text-center">
+                        <div class="numbers">
+                            {{hours}}
+                        </div>
+                        <span class="clearfix uppercase"><small>hrs</small></span>
+                    </li>
+                    <li class="text-center">
+                        <div class="numbers">
+                            {{minutes}} 
+                        </div>
+                        <span class="clearfix uppercase"><small>min</small></span>
+                    </li>
+                </ul>
+                </timer>
+            </div>
+            
+            <div class="col-xs-12 col-md-2 padding-0">
+                <div class="draft-teams-header-text text-center span-col">
+                    <strong>{{vm.model.leagues.one.num_teams}} 0f {{vm.model.leagues.one.req_teams}} Teams in League</strong><br/>
+                    <small>
+                    <strong>Draft will begin when chairman hits Start Button</strong>
+                    </small>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-2 padding-0">
+                <div class="draft-teams-header-text text-center btn-padding-left">
+                    <button ng-disabled="!vm.menu.startDraftButtonAllowed()" class="btn small-size-btn btn-blue btn-margin" ng-click="startDraft()">Start Draft</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4 text-center left-border">  
+            <div class="col-xs-12 col-md-10">
+                <div class="row">
+                    <div class="pull-left club-name-title uppercase">
+                        <div class="league-title text-left">
+                            {{vm.model.leagues.one.title}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 10px;">
+                    <div class="col-xs-2 col-md-2 no-padding-left">
+                        <style type="text/css">
+                            #clubmain_{{vm.model.currentClub.one.id}} .st0{fill:{{vm.model.currentClub.one.color1}} !important;}
+                            #clubmain_{{vm.model.currentClub.one.id}} .st1{fill:{{vm.model.currentClub.one.color2}} !important;}
+                            #clubmain_{{vm.model.currentClub.one.id}} .st2{fill:{{vm.model.currentClub.one.color3}} !important;}
+                        </style>
+                        <div id="clubmain_{{vm.model.currentClub.one.id}}" ng-include="vm.model.currentClub.one.crest_pattern.svg_url" class="drafting-club"></div>
+                    </div>
+                    <div class="col-xs-10 col-md-10 text-left no-padding-left club-title">
+                        {{vm.model.currentClub.one.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-2">
+                <a href="https://www.rotopremierleague.com/game-guide/" target="_blank" class="help-header-btn">
+                    <span class=" glyphicon glyphicon-question-sign" style="font-size: 38px; color: #2de1fc"></span>
+                </a>
+                <p style="font-size: 17px; color: #2de1fc; font-weight: bold">Help</p>
+            </div> 
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-2 no-padding">
+            <div class="draft-headling text-center">
+                Draft Order
+            </div>
+            <div class="draft-table-scroll">
+            <table class="text-center draft-order-table">
+            <tr ng-repeat="iteration in objectKeys(vm.model.draftStatus.data)" ng-init="round = 1*iteration + 1" ng-hide="vm.model.draftStatus.data.current_iteration > iteration">
+                <td>
+                    <div class="draft-table-round">
+                        Round {{round}}
+                    </div>
+                    <div ng-repeat="club in vm.model.draftStatus.data[iteration].queue" ng-hide="(($parent.$index)*vm.model.draftStatus.data[iteration].queue.length + ($index)) < ((vm.model.draftStatus.data.current_iteration) *vm.model.draftStatus.data[iteration].queue.length + vm.model.draftStatus.data.current_step)" ng-class="(($parent.$index)*vm.model.draftStatus.data[iteration].queue.length + ($index)) == ((vm.model.draftStatus.data.current_iteration) * vm.model.draftStatus.data[iteration].queue.length + vm.model.draftStatus.data.current_step) ? 'draft-table-bordered draft-current-club-highlight ' : 'draft-table-bordered'">
+                        <style type="text/css">
+                            #club_id_{{club.id}} .st0{fill:{{club.color1}} !important;}
+                            #club_id_{{club.id}} .st1{fill:{{club.color2}} !important;}
+                            #club_id_{{club.id}} .st2{fill:{{club.color3}} !important;}
+                        </style>
+                        <div class="serial">{{($parent.$index)*vm.model.draftStatus.data[iteration].queue.length + ($index+1)}}</div>
+                        <div id="club_id_{{club.id}}" ng-include="vm.model.leagues.clubsHash[club.id].crest_pattern.svg_url"  class="text-center draft-table-club-logo"></div>
+                        <div class="pull-left" ng-class="(($parent.$index)*vm.model.draftStatus.data[iteration].queue.length + ($index)) == ((vm.model.draftStatus.data.current_iteration) * vm.model.draftStatus.data[iteration].queue.length + vm.model.draftStatus.data.current_step) ? 'draft-table-club-name-white' : 'draft-table-club-name'">{{vm.model.leagues.clubsHash[club.id].name}}</div>
+                    </div>
+                </td> 
+            </tr>
+            </table>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 no-padding">
+            <div class="square-bordered draft-players-block">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="draft-headling text-center">
+                            Player List
+                        </div>
+                        <div class="player-list-odd" layout="row" layout-align="space-around center">
+                            <div id="search-players" class="input-group pull-left white-form" style="width: 220px;">
+                                <input style="color: #182432;" type="text" ng-model-options="{debounce: 100}" ng-model="vm.model.search.full_name" placeholder="search players..." class="form-control">
+                                <span class="input-group-btn">
+                                    <div class="btn btn-default" style="height: 34px;"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span  ng-click="vm.model.search.full_name = ''"  class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+                                </span>
+                            </div>
+                            <div class="dropdown white-dropdown pull-left white-form draft-element" dropdown>
+                                <button class="btn btn-blue dropdown-toggle" dropdown-toggle type="button" aria-haspopup="true" aria-expanded="true" id="position">
+                                    <div class="pull-left">{{vm.model.search.position}}</div>
+                                    <!--<span><div class="corner"></div></span>-->
+                                    <div class="corner pull-right"></div>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="position">
+                                    <li ng-repeat="position in vm.menu.positions" ng-class="vm.model.search.position == position ? 'active' : ''">
+                                        <a href="#" ng-click="vm.model.search.position = position">{{position}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="dropdown white-dropdown pull-left white-form draft-element draft-club-dropdown" dropdown>
+                                <button class="btn btn-blue dropdown-toggle" dropdown-toggle type="button" aria-haspopup="true" aria-expanded="true" id="club">
+                                    <div class="pull-left">{{vm.model.search.real_team.name}}</div>
+                                    <div class="corner pull-right"></div>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="club">
+                                    <li ng-class="vm.model.search.real_team.name == 'club' ? 'active' : ''">
+                                        <a href="#" ng-click="vm.model.search.real_team.name = 'club'">club</a>
+                                    </li>
+                                    <li ng-repeat="club in vm.model.realTeams | orderBy:'name'" ng-class="vm.model.search.real_team.name == club.name ? 'active' : ''">
+                                        <a href="#" ng-click="vm.model.search.real_team.name = club.name">{{club.name}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <style>
+                            #scrollable-area {
+                                overflow-y: scroll; /* here is what is important*/
+                                overflow-x: scroll;
+                            }
+                        </style>
+                        <div id="scrollable-area" class="sortable-long-table">
+                            <table ng-table="vm.tableParams" fixed-table-headers="scrollable-area" cellspacing="0" cellpadding="0" class="keywords tablesorter table" ng-mouseleave="vm.menu.table.collapseRows()">
+                                <tbody class="rpl-scrollable">
+                                <!--<tr class="rpl-league-draft-footballer-select" ng-repeat="oneFootballer in $data | filter:vm.model.search:strict track by oneFootballer.id" ng-mouseenter="vm.menu.table.expandRow(oneFootballer)" ng-if="!oneFootballer.is_drafted">-->
+                                <tr ng-class= "{'active_footballer': vm.model.footballerDetails.id == oneFootballer.id }"  ng-click="vm.menu.setFootballerDetails(oneFootballer)" ng-class-odd="'player-list-odd'" ng-class-even="'player-list-even'" ng-if="oneFootballer.footballer_stats_all_match[previousSeasonId]" ng-repeat="oneFootballer in $data | filter:vm.menu.getSearchFilter():strict track by oneFootballer.id" ng-mouseenter="vm.menu.table.expandRow(oneFootballer)" ng-hide="oneFootballer.is_drafted">
+                                    <td class="border-right" data-title="'Rank'" sortable="'rank'">{{oneFootballer.rank || '-'}}</td>
+                                    <td class="border-right" data-title="'ADP'" sortable="'adp'">{{oneFootballer.adp || '-'}}</td>
+                                    <td class="header plus-circle">
+                                        <span class="glyphicon glyphicon-ok-sign" ng-if="oneFootballer.is_personal_queue"></span>
+                                    </td>
+                                    <td class="lalign width-spec-another" sortable="'full_name'" data-title="'Player'">
+                                        <span class="green-text">{{oneFootballer.full_name}} {{oneFootballer.is_drafted}}</span></br>
+                                        <span class="grey-text">{{oneFootballer.position | FootballerPosition}}, {{oneFootballer.real_team.short_club_name}}</span>
+
+                                        <!--<div class="invis-info" ng-show="oneFootballer.id === vm.model.footballerExpandedId">
+                                            <span class="dark-green-text"><strong>Age:</strong> {{oneFootballer.birth_date | FootballerAge}}</span></br>
+                                            <span class="dark-green-text"><strong>Country:</strong> {{oneFootballer.country}}</span>
+                                            <div class="btn btn-full-grey" ng-click="vm.menu.table.addToQueue(oneFootballer)">
+                                                Add to queue
+                                            </div>
+                                            <div class="btn btn-full-green" ng-click="vm.menu.letDraftPlayer(oneFootballer)">
+                                                Draft Player
+                                            </div>
+                                        </div>-->
+                                    </td>
+                                    <td data-title="'Min'" sortable="'footballer_stats_all_match[' + previousSeasonId + '].int_minutes'">{{oneFootballer.footballer_stats_all_match[previousSeasonId].int_minutes || '-'}}</td>
+                                    <td data-title="'Gls'" sortable="'footballer_stats_all_match[' + previousSeasonId + '].int_goals'">{{oneFootballer.footballer_stats_all_match[previousSeasonId].int_goals || '-'}}</td>
+                                    <td data-title="'KyPs'" sortable="'footballer_stats_all_match[' + previousSeasonId + '].out_kpass'">{{oneFootballer.footballer_stats_all_match[previousSeasonId].out_kpass || '-'}}</td>
+                                    <td data-title="'TotPs'" sortable="'footballer_stats_all_match[' + previousSeasonId + '].int_succ_passes'">{{oneFootballer.footballer_stats_all_match[previousSeasonId].int_succ_passes || '-'}}</td>
+                                    <td data-title="'Disc'" sortable="'footballer_stats_all_match[' + previousSeasonId + '].discipline'">{{oneFootballer.footballer_stats_all_match[previousSeasonId].discipline || '-'}}</td>
+                                    <td data-title="'GlCn'" sortable="'footballer_stats_all_match[' + previousSeasonId + '].goals_conceded'">{{oneFootballer.footballer_stats_all_match[previousSeasonId].goals_conceded || '-'}}</td>
+                                    <td data-title="'ClSh'" sortable="'footballer_stats_all_match[' + previousSeasonId + '].clean_sheet'">{{oneFootballer.footballer_stats_all_match[previousSeasonId].clean_sheet || '-'}}</td>
+                                    <td data-title="'S/G'" sortable="'footballer_stats_all_match[' + previousSeasonId + '].saves_per_goal'">{{oneFootballer.footballer_stats_all_match[previousSeasonId].saves_per_goal || '-'}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4 no-padding">
+            <div class="row">
+                <div class="col-xs-12 col-md-6 no-padding-right">
+                    <div class="draft-your-queue square-bordered queue-height my-queue-background">
+                        <div class="draft-headling text-center">
+                            Your Queue
+                        </div>
+                        <!--<md-switch ng-model="vm.model.autopickValue" ng-change="vm.menu.toggleAutopick()" aria-label="AutopickSwitch" layout="row" layout-align="center center" >
+                            Auto-pick {{vm.model.autopickValue ? 'ON' : 'OFF'}}
+                        </md-switch>-->
+                        <div class="col-xs-12 col-md-4 text-center no-padding auto-pick">
+                            Auto-pick:
+                        </div>
+                        <div class="col-xs-12 col-md-4 text-center no-padding">
+                            <md-radio-group ng-model="vm.model.autopickValue">
+                                <md-radio-button ng-class="{'md-checked': vm.model.autopickValue==true}" value="true" class="md-primary" ng-click="vm.menu.turnAutoPickOn()">On</md-radio-button>
+                            </md-radio-group>
+                        </div>
+                        <div class="col-xs-12 col-md-4 text-center no-padding">
+                            <md-radio-group ng-model="vm.model.autopickValue">
+                                <md-radio-button ng-class="{'md-checked': !vm.model.autopickValue}" value="false" class="md-accent" ng-click="vm.menu.turnAutoPickOff()"> Off</md-radio-button>
+                            </md-radio-group>
+                        </div>
+
+                        <p class="red-text text-center"><strong>Next auto-pick would be:</strong></p>
+                        <div ui-tree="vm.menu.treeOptions" class="new-draft-queue">
+                            <ul class="your-queue-list" ui-tree-nodes="" ng-model="vm.model.queue.data">
+                                <li ng-class= "{'next-auto-pick': vm.model.footballerDetails.id == oneElement.footballer.id }" ui-tree-handle ng-repeat="oneElement in vm.model.queue.data" ng-mousedown="vm.menu.setFootballerDetails(oneElement.footballer)" ui-tree-node>
+                                    <strong class="green-text" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; display: inline-block;">{{oneElement.footballer.full_name}}</strong></br>
+                                    <span class="grey-text">{{oneElement.footballer.position | FootballerPosition}}, {{oneElement.footballer.real_team.name}}</span>
+                                    <div data-nodrag class="remove" ng-click="removeFromQueue(oneElement.id, $index)"><img src="../images/close-ios.svg"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 no-padding-left">
+                    <div class="draft-results square-bordered draft-result-height">
+                        <div class="draft-headling text-center">
+                            Draft Results
+                        </div>
+
+                        <md-menu md-offset="88 58">
+                            <div class="dropdown white-dropdown brown-form text-center" ng-click="$mdOpenMenu($event)">
+                                <button class="btn btn-white"><span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 90px; display: inline-block;">{{vm.model.currentDraftResultPoint.name}}</span> <span class="caret"></span></button>
+                            </div>
+                            <md-menu-content width="3">
+                                <md-menu-item>
+                                    <md-button ng-click="vm.menu.switchDraftResult({id: 0, name: 'All'})"> <span md-menu-align-target>All</span></md-button>
+                                </md-menu-item>
+                                <md-menu-item ng-repeat="oneClub in vm.model.leagues.one.clubs">
+                                    <md-button ng-click="vm.menu.switchDraftResult(oneClub)"> <span md-menu-align-target>{{oneClub.name}}</span></md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+
+                        <br/>
+                        <p ng-if="vm.model.isDraftGoing() || vm.model.isDraftClosed()" class="red-text text-center">{{vm.model.draftStatus.data.current_iteration >= vm.model.max_iter ? 0 : vm.model.max_iter - vm.model.draftStatus.data.current_iteration}} picks left in draft</p>
+                        <p ng-if="vm.model.isDraftWaitClubs() || vm.model.isDraftCanBegin()" class="red-text text-center">{{vm.model['max_iter']}} picks left in draft</p>
+                        <div class="result-table-block">
+                            <table class="table result-table"  cellspacing="0" cellpadding="0">
+                                <thead>
+                                <tr>
+                                    <th>Rd.Pk Player</th>
+                                    <th class="text-center">Selected by</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="oneFootballer in vm.model.draftResult.data | filter:draftHistoryFilter" ng-init="iter = oneFootballer.iter*1 + 1; step= oneFootballer.step*1+1">
+                                    <td>
+                                        <strong>{{iter}}.{{step}}</strong></br>
+                                        <strong class="green-text">{{oneFootballer.footballer.full_name}}</strong><br>
+                                        <span class="grey-text">{{oneFootballer.footballer.position | FootballerPosition}}, {{oneFootballer.footballer.real_team.name}}</span>
+                                    </td>
+                                    <td>
+                                        {{oneFootballer.club.name}}
+                                    </td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="pos-player-table">
+                                        <span class="uppercase">FWD</span>
+                                    </td>
+                                    <td>
+                                        <strong class="green-text">Rahemm Sterling</strong><br>
+                                        <span class="grey-text">MID,Arsenal</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="draft-chat square-bordered draft-chat-block no-padding">
+                        <div class="draft-headling">
+                            Draft chat
+                        </div>
+                        <table cellspacing="0" cellpadding="0" class="table">
+                            <tbody style="overflow-y: scroll; height: 150px; display: block;" id="chatScroll" scroll-glue>
+                                <tr ng-repeat="oneChatMessage in vm.model.chat.data track by $index">
+                                    <td><club-crest club="oneChatMessage.club" data-width="24"
+                                                style="vertical-align: middle; display: inline-block; margin: 1px auto;"
+                                                class="text-center fantasy-club"></club-crest></td>
+                                    <td><p><span class="draft-chat-club-name pull-left"><strong>{{oneChatMessage.club.name}}</strong>:</span></p></td>
+                                    <td><p class="draft-chat-content">{{oneChatMessage.content}} <span style="font-size: 10px; color: #555555;"></span></p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <input type="text" ng-model="vm.model.chat.message" ng-keyup="vm.menu.chat.keyUp($event);">
+                            <button ng-click="vm.menu.chat.sendMessage()">Send</button>
+                            <!--<button ng-click="vm.menu.chat.sendUndone()">Request an Undo</button>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

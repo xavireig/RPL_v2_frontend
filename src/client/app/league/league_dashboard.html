@@ -1,0 +1,220 @@
+<account-top-bar></account-top-bar>
+<div class="container">
+    <div class="row">
+        <div id="navbar" class="col-xs-3 col-md-2 small-sidebar" style="margin-left: -10px;">
+
+            <aside>
+                <menu-side-bar></menu-side-bar>
+            </aside>
+        </div>
+        <div class="col-xs-12 col-md-10 league">
+            <div class="row">
+                <div class="col-xs-12 col-md-6 p15">
+                    <div class="col-xs-12 black-bg match-result-table-block">
+                        <!--<div>-->
+                        <!--<h2 class="text-center">Match day: round {{vm.model.roundWeekNum}}</h2>-->
+                        <!--</div>-->
+                        <data-owl-carousel ng-if="vm.model.leagueIsLoad" class="owl-carousel"
+                                           data-options="{center: true, loop: true, items: 1, onChanged: vm.model.getNewMatchDay, startPosition: vm.menu.getCarouselPosition()}">
+                            <h2 owl-carousel-item="" class="text-center"
+                                ng-repeat="round in vm.model.roundList">
+                                Match day: round {{round.number - vm.model.firstWeek + 1}}
+                            </h2>
+                        </data-owl-carousel>
+
+                        <table class="table light-bordered-tbl no-margin match-result-table">
+                            <thead>
+                            <tr>
+                                <th class="text-center">
+                                    {{vm.model.matchDay.one.vf.home_line_up.matches_left_in_round_by_line_up}}
+                                </th>
+                                <th class="text-center" colspan="3">matches left in round</th>
+                                <th class="text-center">
+                                    {{vm.model.matchDay.one.vf.away_line_up.matches_left_in_round_by_line_up}}
+                                </th>
+                                <th>&nbsp;</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="text-center">
+                                    <div class="match-day-logo">
+                                        <style type="text/css">
+                                            #clubmain_{{vm.model.matchDay.one.vf.home_club.id}} .st0{fill: {{vm.model.matchDay.one.vf.home_club.color1}} !important;}
+                                            #clubmain_{{vm.model.matchDay.one.vf.home_club.id}} .st1{fill: {{vm.model.matchDay.one.vf.home_club.color2}} !important;}
+                                            #clubmain_{{vm.model.matchDay.one.vf.home_club.id}} .st2{fill: {{vm.model.matchDay.one.vf.home_club.color3}} !important;}
+                                        </style>
+                                        <div id="clubmain_{{vm.model.matchDay.one.vf.home_club.id}}"
+                                             ng-include="vm.model.matchDay.one.vf.home_club.crest_pattern.svg_url"
+                                             style="width: 50px; margin: 0 auto;"></div>
+                                    </div>
+                                    <span class=little-club-title>{{vm.model.matchDay.one.vf.home_club.name}}</span>
+                                </td>
+                                <td class="text-center"><span class="round-count">{{vm.model.matchDay.one.vf.home_score}}</span>
+                                </td>
+                                <td class="text-center"><span class="vs">vs.</span></td>
+                                <td class="text-center"><span class="round-count">{{vm.model.matchDay.one.vf.away_score}}</span>
+                                </td>
+                                <td class="text-center">
+                                    <div class="match-day-logo">
+                                        <style type="text/css">
+                                            #clubmain_{{vm.model.matchDay.one.vf.away_club.id}} .st0{fill: {{vm.model.matchDay.one.vf.away_club.color1}} !important;}
+                                            #clubmain_{{vm.model.matchDay.one.vf.away_club.id}} .st1{fill: {{vm.model.matchDay.one.vf.away_club.color2}} !important;}
+                                            #clubmain_{{vm.model.matchDay.one.vf.away_club.id}} .st2{fill: {{vm.model.matchDay.one.vf.away_club.color3}} !important;}
+                                        </style>
+                                        <div id="clubmain_{{vm.model.matchDay.one.vf.away_club.id}}"
+                                             ng-include="vm.model.matchDay.one.vf.away_club.crest_pattern.svg_url"
+                                             style="width: 50px; margin: 0 auto;"></div>
+                                    </div>
+                                    <span class=little-club-title>{{vm.model.matchDay.one.vf.away_club.name}}</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                        <table class="table light-bordered-tbl categories">
+                            <thead>
+                            <tr>
+                                <th class="text-center" colspan="5">Categories</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="oneParam in vm.menu.matchDayStatParams">
+                                <td class="text-right" width="28" style="padding-left: 0;padding-right: 0;">
+                                    <div ng-if="vm.menu.returnBestStatParamImage(oneParam, 'home', 'away')">
+                                        <img ng-if="oneParam.name === 'goals'" src="../images/square.svg" width="12"
+                                             style="margin:0 1px;float: right;">
+                                        <img src="../images/square.svg" width="12" style="float: right;">
+                                    </div>
+                                </td>
+                                <td class="text-center" width="20">
+                                    <p ng-class="vm.menu.returnBestStatParamStyle(oneParam, 'home', 'away')">
+                                        {{vm.model.matchDay.one.homeClubData['out_' + oneParam.hashName]}}</p>
+                                </td>
+                                <td class="text-center"><p>{{oneParam.name}}</p></td>
+                                <td class="text-center" width="20">
+                                    <p ng-class="vm.menu.returnBestStatParamStyle(oneParam, 'away', 'home')">
+                                        {{vm.model.matchDay.one.awayClubData['out_' + oneParam.hashName]}}</p>
+                                </td>
+                                <td class="text-left" width="28" style="padding-left: 0;padding-right: 0;">
+                                    <div ng-if="vm.menu.returnBestStatParamImage(oneParam, 'away', 'home')">
+                                        <img ng-if="oneParam.name === 'goals'" src="../images/square.svg" width="12"
+                                             style="margin:0 1px;float: left;">
+                                        <img src="../images/square.svg" width="12" style="float: left;">
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="text-center"><a href="#" ng-click="vm.menu.goMatchDay()" class="link">All
+                            matches</a></div>
+                    </div>
+                </div>
+
+                <club-news class="col-xs-12 col-md-6 p15"></club-news>
+
+                <!--<div class="col-xs-12 col-md-6 p15">-->
+                    <!--<div class="col-xs-12 black-bg">-->
+                        <!--<h2 class="text-center">News</h2>-->
+                        <!--<ul class="links-news-block">-->
+                            <!--<li ng-class="vm.menu.returnCurrentNewsStyle('my_club')"-->
+                                <!--ng-click="vm.menu.toggleNews('my_club')">My news-->
+                            <!--</li>-->
+                            <!--<li ng-class="vm.menu.returnCurrentNewsStyle('all')" ng-click="vm.menu.toggleNews('all')">-->
+                                <!--All news-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                        <!--<div class="news-board" ng-repeat="oneNew in vm.model.news.data">-->
+                            <!--<p><strong>{{oneNew.sign_text}}</strong></p>-->
+                            <!--<small class="light-blue-text">{{oneNew.created_at | showTimePassed}}</small>-->
+                            <!--<hr/>-->
+                        <!--</div>-->
+                        <!--<div ng-if="vm.model.news.data.length === 0" class="news-board">-->
+                            <!--<p><strong class="light-blue-text" ng-if="vm.menu.newsIsLoad">Still no news</strong></p>-->
+                            <!--<hr/>-->
+                        <!--</div>-->
+                        <!--<div class="text-center m-t10"><a href="#" ng-click="vm.menu.goNews(false)" class="link">All-->
+                            <!--news</a></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            </div>
+            <div class="row">
+                <club-stats class="col-xs-12 col-md-6 team-stats-table-block"></club-stats>
+                <!--<div class="col-xs-12 col-md-6 team-stats-table-block">-->
+                    <!--<h2 class="text-center">Team stats</h2>-->
+                    <!--<ul class="season-last-tabs">-->
+                        <!--<li ng-repeat="stats in vm.model.stats" ng-click="vm.menu.clickStatsLast(stats)"-->
+                            <!--ng-class="vm.menu.getActiveStatsClass(stats)">-->
+                            <!--{{stats.title}}-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--<div class="club-profile-block">-->
+                        <!--<div class="season-last">-->
+                            <!--<img src="../images/stats/rank.svg" class="stats-frame-rank-image" width="26"/>-->
+                            <!--<div class="stats-frame">-->
+                                <!--<table class="table no-bordered" style="margin-bottom: 0; margin-top: 31px;">-->
+                                    <!--<tbody>-->
+                                    <!--<tr>-->
+                                        <!--<td ng-if="vm.view.showStatColumn(stat)" class="text-center" ng-repeat="stat in vm.model['stats_value']">-->
+                                        <!--<span class="graph">-->
+                                            <!--<img ng-if="stat.svg > 0" ng-src="../images/stats/{{stat.svg}}.svg" width="16"/>-->
+                                            <!--<span ng-if="stat.title == 'Ps%'" class="graph-num">{{100 * stat.cur | number:0 }}%</span>-->
+                                            <!--<span ng-if="stat.title != 'Ps%'"class="graph-num">{{stat.cur}}</span>-->
+                                        <!--</span>-->
+                                        <!--</td>-->
+                                    <!--</tr>-->
+                                    <!--</tbody>-->
+                                    <!--<tfoot>-->
+                                    <!--<tr>-->
+                                        <!--<td ng-if="vm.view.showStatColumn(stat)" ng-repeat="stat in vm.model['stats_value']">-->
+                                            <!--{{stat.title}}-->
+                                        <!--</td>-->
+                                    <!--</tr>-->
+                                    <!--</tfoot>-->
+                                <!--</table>-->
+                                <!--<div class="text-center">-->
+                                    <!--<a href="#" ng-click="vm.menu.goLeague()" class="link">All stats</a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="col-xs-12 col-md-6 p15">
+                    <div class="col-xs-12 black-bg">
+                        <h2 class="text-center">Table</h2>
+                        <div class="table-responsive">
+                            <table class="table light-bordered-tbl">
+                                <thead>
+                                <tr>
+                                    <th class="text-left">Pos</th>
+                                    <th class="text-left">Team</th>
+                                    <th class="text-center">GD</th>
+                                    <th class="text-center">Points</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="oneClub in vm.model.clubs.data | orderBy:'place'">
+                                    <td class="text-center">{{oneClub.place}}</td>
+                                    <td class="text-left" ng-class="vm.menu.returnUserClubStyle(oneClub.id)"
+                                        ng-click="vm.menu.goClub(oneClub)"><span class="clip">{{oneClub.name}}</span></td>
+                                    <td class="text-center">{{oneClub.data_tt_gd}}</td>
+                                    <td class="text-center"><strong>{{oneClub.data_tt_pts}}</strong></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-center"><a href="#" ng-click="vm.menu.goLeague()" class="link">Full Table</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <features features-list="vm.model.featuresList" ng-if="vm.model.featuresList.length > 0"
+                      show-desc="1"></features>
+        </div>
+    </div>
+</div>

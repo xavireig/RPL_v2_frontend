@@ -1,0 +1,19 @@
+<div class="row" style="color: white;" ng-controller = "SignUpController as vm" >
+    <div class="col-xs-12">
+        <div class="row text-center text-capitalize confirmation-title">
+            CONFIRM YOUR EMAIL
+        </div>
+
+        <div class="row text-center body" style="padding: 10px;">
+            <span> Your club has been created but you gotta verify your email. </br>
+                We'll send a confirmation to : {{ngDialogData}}
+            </span>
+        </div>
+
+        <div class="row text-center">
+            <span ng-click="vm.menu.closeDialog()">
+                <a class="btn btn-green">Got it</a>
+            </span>
+        </div>
+    </div>
+</div>

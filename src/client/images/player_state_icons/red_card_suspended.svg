@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 211.34 300">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e50000;
+      }
+
+      .cls-2 {
+        fill: #b70000;
+      }
+    </style>
+  </defs>
+  <title>Red card</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g>
+        <rect class="cls-1" width="211.34" height="300" rx="12.38" ry="12.38"/>
+        <path class="cls-2" d="M199,0a12.38,12.38,0,0,1,12.38,12.38V287.62A12.38,12.38,0,0,1,199,300H12.38A12.38,12.38,0,0,1,0,287.62"/>
+      </g>
+    </g>
+  </g>
+</svg>

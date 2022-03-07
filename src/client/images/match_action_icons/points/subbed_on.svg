@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 299.98 254.13">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        fill: #2ecc71;
+      }
+    </style>
+    <clipPath id="clip-path" transform="translate(0 -0.01)">
+      <rect class="cls-1" width="300" height="254.13"/>
+    </clipPath>
+  </defs>
+  <title>Subbed on</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g class="cls-2">
+        <polygon class="cls-3" points="172.89 0 148.65 24.33 234.18 110.04 0 110.04 0 144.33 234.56 144.33 148.65 230.06 172.89 254.13 299.99 127.05 172.89 0"/>
+      </g>
+    </g>
+  </g>
+</svg>

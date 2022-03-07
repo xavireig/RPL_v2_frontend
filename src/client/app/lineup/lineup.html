@@ -1,0 +1,112 @@
+<account-top-bar></account-top-bar>
+<div class="container">
+    <div class="row">
+        <div id="navbar" class="col-xs-3 col-md-2 small-sidebar" style="margin-left: -10px;">
+            <aside>
+                <menu-side-bar></menu-side-bar>
+            </aside>
+        </div>
+        <div class="col-xs-12 col-md-10 profile-page">
+            <div class="lineup-control clearfix visible-xs visible-sm">
+                <div class="btn-group btn-select pull-left">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="selected-text">Match Week {{vm.menu.returnVirtualWeekNum()}}</span><span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li ng-click="vm.menu.goToOtherWeek(n)" data-ng-repeat="n in [] | range:vm.model.lastWeek"><a href="#">Match Week {{n}}</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group btn-select btn-test pull-right">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="selected-text" ng-bind="vm.model.commonModel.formations[vm.model.currentFormation]"></span><span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="formation in vm.model.currentLeague.one['league_settings_formations']"
+                            ng-click="vm.model.changeFormation(formation.formation)"
+                            ng-class="vm.menu.returnCurrentFormationStyle(formation.formation)">
+                            <a href="#">{{vm.model.commonModel.formations[formation.formation]}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <commercial-header></commercial-header>
+            <div class="row">
+                <div class="col-xs-7">
+                    <div class="match-week">
+                        <span class="glyphicon glyphicon-menu-left" ng-click="vm.menu.goToPrevWeek()"></span>
+                        <div style="display: inline-block;">
+                            <span class="label add-string">Match Week {{vm.menu.returnVirtualWeekNum()}}</span>
+                        </div>
+                        <span class="glyphicon glyphicon-menu-right" ng-click="vm.menu.goToNextWeek()"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="view-control-container text-center visible-xs visible-sm">
+                <ul id="viewControl" class="view-control clearfix">
+                    <li data-id="listViewContent" class="active">List View</li>
+                    <li data-id="fieldViewContent">Field View</li>
+                </ul>
+            </div>
+            <div class="row">
+                <div id="fieldViewContent" class="col-xs-12 col-md-7 view-content">
+                    <h2>Formation</h2>
+                    <ul class="command-type">
+                        <li ng-repeat="formation in vm.model.currentLeague.one['league_settings_formations']"
+                            ng-click="vm.model.changeFormation(formation.formation)"
+                            ng-class="vm.menu.returnCurrentFormationStyle(formation.formation)"><span class="label">{{vm.model.commonModel.formations[formation.formation]}}</span></li>
+                    </ul>
+                    <div class="field">
+                        <!-- !vm.model.lineUp.footballersHash[positionsData.className][$index] || vm.menu.setNoActive() ? '' : -->
+                        <div ng-if="vm.menu.clubDataIsLoad">
+                            <div class="{{positionsData.className}}" ng-repeat="positionsData in vm.model.lineUp.formationTypes[vm.model.currentFormation]">
+                                <div ng-click="vm.model.checkBeforeReplaceAction(vm.model.lineUp.footballersHash[positionsData.className][$index])" class="player text-center" style="{{formationPositionStyle}}" ng-repeat="formationPositionStyle in positionsData.styleData track by $index">
+                                    <div ng-include="'images/shirt.svg'" style="width: 80px;" id="jersey_{{vm.model.lineUp.footballersHash[positionsData.className][$index]['footballer_id']}}"></div>
+                                    <span class="footballer-name label">{{vm.menu.returnFootballerJerseyData(vm.model.lineUp.footballersHash[positionsData.className][$index], 'full_name') || '' | FootballerFullName}}</span>
+                                    <span class="player-num">{{vm.menu.returnFootballerJerseyData(vm.model.lineUp.footballersHash[positionsData.className][$index], 'jersey_num')}}</span>
+                                    <style type="text/css">
+                                        #jersey_{{vm.model.lineUp.footballersHash[positionsData.className][$index]['footballer_id']}} .st0{fill:{{vm.model.currentClub.one.color2}} !important; {{vm.menu.returnSelectedFootballerJerseyOpacity(vm.model.lineUp.footballersHash[positionsData.className][$index]['footballer_id'])}} }
+                                        #jersey_{{vm.model.lineUp.footballersHash[positionsData.className][$index]['footballer_id']}} .st1{fill:{{vm.model.currentClub.one.color1}} !important; {{vm.menu.returnSelectedFootballerJerseyOpacity(vm.model.lineUp.footballersHash[positionsData.className][$index]['footballer_id'])}} }
+                                    </style>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div ng-repeat="change in vm.model.listOfChanges">
+                            <div class="row" style="background-color: green; border:1px solid white; margin: 10px; padding: 10px;">
+                                In: {{change.in.footballer.full_name}}, {{vm.model.footballerExtendedPositionsHash[change.in.footballer.position]}}, {{change.in.footballer.real_team.short_club_name}}
+                            </div>
+                            <div class="row" style="background-color: red; border:1px solid white; margin: 10px; padding: 10px;">
+                                Out: {{change.out.footballer.full_name}}, {{vm.model.footballerExtendedPositionsHash[change.out.footballer.position]}}, {{change.out.footballer.real_team.short_club_name}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="listViewContent" class="col-xs-12 col-md-5 view-content" style="display: block;">
+                    <h2>Starting XI</h2>
+                    <footballers-list footballers="vm.model.lineUp['players_starting_xi']" real-teams="vm.model.realTeams" replace-data-hash="vm.model.replaceDataHash" line-up-was-announced="vm.model.lineUp.lineUpWasAnnounced" replace-action="vm.menu.replaceAction" set-no-active="vm.menu.setNoActive" round-week-num="vm.model.roundWeekNum" move-player="vm.model.movePlayer" stats-player="vm.menu.statsPlayer"></footballers-list>
+                    <h2 class="reserve-list">Bench</h2>
+                    <div class="switch-on-off">
+                        <span class="switch-on"> On</span>
+                        <switch disabled=" !vm.model.currentLeague.one.auto_subs"
+                            ng-model="vm.model.auto_sub"
+                            class="light-green pull-right"
+                            ng-change="vm.menu.saveAutoSub">
+                        </switch>
+                        <span class="switch-off" > Off</span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <footballers-list footballers="vm.model.lineUp['players_bench']" real-teams="vm.model.realTeams" replace-data-hash="vm.model.replaceDataHash" line-up-was-announced="vm.model.lineUp.lineUpWasAnnounced" replace-action="vm.menu.replaceAction" set-no-active="vm.menu.setNoActive" round-week-num="vm.model.roundWeekNum" move-player="vm.model.movePlayer" stats-player="vm.menu.statsPlayer"></footballers-list>
+                    <div class="clearfix"></div>
+                    <h2>Reserve</h2>
+                    <footballers-list footballers="vm.model.lineUp['players_reserve']" real-teams="vm.model.realTeams" replace-data-hash="vm.model.replaceDataHash" line-up-was-announced="vm.model.lineUp.lineUpWasAnnounced" replace-action="vm.menu.replaceAction" set-no-active="vm.menu.setNoActive" round-week-num="vm.model.roundWeekNum" move-player="vm.model.movePlayer" stats-player="vm.menu.statsPlayer"></footballers-list>
+                </div>
+            </div>
+            <commercial-footer></commercial-footer>
+        </div>
+
+    </div>
+</div>

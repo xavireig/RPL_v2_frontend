@@ -1,0 +1,24 @@
+<div class="text-center settings-title m20">
+    {{title}}
+    <div class="context-help" dropdown>
+        <span dropdown-toggle class="context-help-icon" ng-include="'images/ic_help_outline_black.svg'"></span>
+        <ul class="dropdown-menu left-arrow context-block">
+            <li class="h2 context-block-header text-center light-blue-background m0">
+                <div class="row">
+                    <div class="col-xs-offset-1 col-xs-10">{{title}}</div>
+                    <div class="col-xs-1 text-right"><img class="close-icon" src="/images/x_close.svg" alt="x"></div>
+                </div>
+            </li>
+            <li ng-if="showArray()" class="content">
+                <ul style="list-style-type: disc;">
+                    <li ng-repeat="line in context" ng-bind-html="line"></li>
+                </ul>
+            </li>
+
+            <li ng-if="!showArray()" class="content" style="">
+                <span style="display: inline-block; margin-left: 10px;">{{context}}</span>
+            </li>
+
+        </ul>
+    </div>
+</div>

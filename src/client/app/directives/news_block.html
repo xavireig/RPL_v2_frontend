@@ -1,0 +1,18 @@
+<div class="news-block">
+    <div ng-if="!!news.length" ng-repeat="new in news">
+        <div ng-if="!personal"class="headline" ng-style="{'background': (new.headline_background_color)}">
+           {{getFootballersNames(new.footballers)}} {{new.headline}}
+        </div>
+        <div ng-if="personal" class="headline" >
+            {{new.headline}}
+        </div>
+
+        <div class="main-block">
+            <span class="date">{{(new.news_date | date:'EEE, MMM d, yyyy')}}</span>
+            <p>{{new.notes}}</p>
+            <p ng-if="new.analysis"><span class="analysis-title">ANALYSIS: </span>{{new.analysis}}</p>
+            <a ng-if="!personal && new.source_name" class="link" ng-href="{{new.source}}" target="_blank">Source: {{new.source_name}}</a>
+        </div>
+    </div>
+</div>
+

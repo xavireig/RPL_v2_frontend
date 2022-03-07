@@ -1,0 +1,74 @@
+<div class="form-group feedback-form" style="background-color: black;">
+    <div class="row">
+        <h2 class="col-xs-12 text-center feedback-title">Get in touch</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3 text-right text-uppercase input-label">
+            name*
+        </div>
+        <div class="col-xs-8 text-left">
+            <input ng-model="vm.model.creatorName" type="text" class="form-control input-field">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3 text-right text-uppercase input-label">
+            email*
+        </div>
+        <div class="col-xs-8 text-left">
+            <input class="form-control input-field" ng-model="vm.model.creatorEmail" type="text" class="form-control">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3 text-right text-uppercase input-label">
+            subject*
+        </div>
+        <div class="col-xs-8 text-left" dropdown>
+            <span dropdown-toggle class="feedback-dropdown">
+                {{vm.model.subjects[vm.model.subjectIndex].title || vm.model.subjects[0].title}}
+            </span>
+            <ul class="dropdown-menu feedback-dropdown-menu">
+                <li ng-repeat="subject in vm.model.subjects" ng-click="vm.model.subjectIndex = $index"><a>{{subject.title}}</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3 text-right text-uppercase input-label">
+            message*
+        </div>
+        <div class="col-xs-8 text-left" style="margin-bottom: 15px;">
+            <textarea rows="5" class="form-control input-field" style="border: solid 1px #606D7A; border-radius: 5px;" ng-model="vm.model.message" type="text" class="form-control"></textarea>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3 text-right text-uppercase input-label">
+            Favourite goal
+        </div>
+        <div class="col-xs-8 text-left" dropdown>
+            <span dropdown-toggle class="feedback-dropdown" style="width: 100%;">
+                {{vm.model.favouriteGoals[vm.model.favouriteGoalIndex]}}
+            </span>
+            <ul class="dropdown-menu feedback-dropdown-menu" style="width: 100%;">
+                <li ng-repeat="goal in vm.model.favouriteGoals" ng-click="vm.model.favouriteGoalIndex = $index"><a>{{goal}}</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <a ng-click="vm.menu.sendFeedback()" href="javascript:void(0);" class="btn btn-green-border-rounded btn-customized">send</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-8 text-left input-label" style="margin-bottom: 0; font-size: 14px;">
+            * required fields
+        </div>
+    </div>
+</div>
+

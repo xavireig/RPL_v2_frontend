@@ -1,0 +1,71 @@
+<div>
+    <div class="col-xs-12 col-md-offset-1 col-md-11 match-summary-tbl-content" ng-if="!vm.view.scoringTypeIsPoint()">
+
+        <div class="table-responsive">
+            
+
+            <table class="table light-head-tbl">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th ng-repeat="category in vm.view.categories"
+                        ng-if="vm.model.leagueScoringType['league_sco_cat'][category['checker']]"
+                        class="text-center">
+                        {{category['title']}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="text-left">
+                        <span class="mathc-day-club">
+                            {{vm.model.selectedMatch.pair.home_club.abbr}}
+                        </span>
+                        <span class="pull-right">
+                            {{vm.model.selectedMatch.data.vf.home_score}}
+                        </span>
+                    </td>
+
+                <td ng-repeat="category in vm.view.categories"
+                    ng-if="vm.model.leagueScoringType['league_sco_cat'][category['checker']]" class="text-center">
+                    <span ng-if="category.paramName !== 'out_pass_pers' && category.paramName !== 'out_save_percent'" ng-class="vm.menu.returnBetterStatParamStyle(category['paramName'], 'home', 'away')">
+                        {{vm.model.selectedMatch.data.home_line_up_full_data.home_result[category['paramName']]}}
+                    </span>
+                    <span ng-if="category.paramName == 'out_pass_pers'" ng-class="vm.menu.returnBetterStatParamStyle(category['paramName'], 'home', 'away')">
+                        {{vm.model.selectedMatch.data.home_line_up_full_data.home_result[category['paramName']] * 100 | number:0}}%
+                    </span>
+                    <span ng-if="category.paramName == 'out_save_percent'" ng-class="vm.menu.returnBetterStatParamStyle(category['paramName'], 'home', 'away')">
+                        {{vm.view.toFloat(vm.model.selectedMatch.data.home_line_up_full_data.home_result[category['paramName']]) >= 100500 ? '&infin;' : vm.model.selectedMatch.data.home_line_up_full_data.home_result[category['paramName']].toFixed(2)}}
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-left">
+                    <span class="mathc-day-club">
+                        {{vm.model.selectedMatch.pair.away_club.abbr}}
+                    </span>
+                    <span class="pull-right">
+                        {{vm.model.selectedMatch.data.vf.away_score}}
+                    </span>
+                </td>
+
+                <td ng-repeat="category in vm.view.categories"
+                    ng-if="vm.model.leagueScoringType['league_sco_cat'][category['checker']]" class="text-center">
+                    <span ng-if="category.paramName !== 'out_pass_pers' && category.paramName !== 'out_save_percent'" ng-class="vm.menu.returnBetterStatParamStyle(category['paramName'], 'away', 'home')">
+                        {{vm.model.selectedMatch.data.away_line_up_full_data.away_result[category['paramName']]}}
+                    </span>
+                    <span ng-if="category.paramName == 'out_pass_pers'" ng-class="vm.menu.returnBetterStatParamStyle(category['paramName'], 'away', 'home')">
+                        {{vm.model.selectedMatch.data.away_line_up_full_data.away_result[category['paramName']] * 100 | number:0}}%
+                    </span>
+                    <span ng-if="category.paramName == 'out_save_percent'" ng-class="vm.menu.returnBetterStatParamStyle(category['paramName'], 'away', 'home')">
+                        {{vm.view.toFloat(vm.model.selectedMatch.data.away_line_up_full_data.away_result[category['paramName']]) >= 100500.0 ? '&infin;' : vm.model.selectedMatch.data.away_line_up_full_data.away_result[category['paramName']].toFixed(2)}} 
+                        
+                    </span>
+                </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

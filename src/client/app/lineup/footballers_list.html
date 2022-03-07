@@ -1,0 +1,23 @@
+<div>
+    <ul class="side-list">
+        <li ng-repeat="oneFootballer in footballers | orderBy: 'sortId'" ng-class="menu.returnFootballerStatusStyle(oneFootballer)">
+            <div class="player-pos" ng-click="model.checkBeforeReplaceAction(oneFootballer)">
+                {{model.footballerPositionsHash[oneFootballer.footballer.position]}}
+            </div>
+            <div class="player-pos-info" ng-click="statsPlayer(oneFootballer)">
+                <div class="small-teazer pull-right text-right">{{menu.returnMatchTypeSymbol(oneFootballer.match_data.home_match)}}{{oneFootballer.match_data.opponent_team_data.short_club_name}} <br/>{{menu.returnMatchData(oneFootballer.match_data)}}
+                </div>
+                <div class="h3">
+                    <span class="player-name">
+                        {{oneFootballer.footballer.full_name | FootballerFullName | limitTo: 14}}{{(oneFootballer.footballer.full_name | FootballerFullName).length > 14 ? '...' : ''}}
+                        <span ng-if="model.injuryModel.statuses[oneFootballer.footballer.injury_status].icon"><img width="20" ng-src="{{model.injuryModel.statuses[oneFootballer.footballer.injury_status].icon}}" alt=""></span>
+                        <span ng-if="oneFootballer.footballer.last_news_date"><img width="20" ng-src="{{model.footballer.getNewsStatusIcon(oneFootballer.footballer.last_news_date)}}" alt=""></span>
+                        <span class="after-name" ng-class="menu.returnFootballerGameRoleStyle(oneFootballer, oneFootballer)"></span>
+                    </span>
+                </div>
+                 <p><small class="epl-team" ng-if="realTeams.dataHash[oneFootballer.footballer.real_team_id] != 'null '">{{realTeams.dataHash[oneFootballer.footballer.real_team_id].short_club_name}}</small></p> 
+                <p><small class="epl-team" ng-if="!realTeams.dataHash[oneFootballer.footballer.real_team_id] === 'null' ">{{Left}}</small></p>
+            </div>
+        </li>
+    </ul>
+</div>

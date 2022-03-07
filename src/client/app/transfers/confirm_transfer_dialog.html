@@ -1,0 +1,96 @@
+<div class="row">
+    <h2 class="col-xs-12 text-center" style="color: #fff;">Confirm offer</h2>
+</div>
+<div class="row" style="display: flex;">
+    <div class="col-xs-6 top-bot-border">
+        <div class="confirm-order">
+            <strong ng-if="vm.menu.confirmType !== 'waiver'" class="violet-text">{{vm.model.confirmDialogData.offerer.name}} gets:</strong><br/>
+            <strong ng-if="vm.menu.confirmType === 'waiver'" class="violet-text">Waiver:</strong><br/>
+            <div ng-if="(vm.menu.confirmType !== 'waiver') && vm.model.confirmDialogData.requestedVirtualFootballer">
+                <div class="confim-order-item">
+                    <div class="squads-pos violet-text ng-binding">
+                        {{vm.model.lineUp.footballerPositionsSymbols[vm.model.requestedVirtualFootballer.footballer.position]}}
+                    </div>
+                    <div class="squads-name ng-binding">
+                        {{vm.model.requestedVirtualFootballer.footballer.full_name | FootballerFullName}}<br>
+                        <small class="violet-text ng-binding">{{oneFootballer.footballer.real_team.short_club_name}}</small>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="(vm.menu.confirmType !== 'waiver') && !vm.model.confirmDialogData.requestedVirtualFootballer">
+                <div ng-repeat="oneFootballer in vm.model.confirmDialogData.footballersForAddHash" class="confim-order-item">
+                    <div class="squads-pos violet-text ng-binding">
+                        {{vm.model.lineUp.footballerPositionsSymbols[oneFootballer.footballer.position]}}
+                    </div>
+                    <div class="squads-name ng-binding">
+                        {{oneFootballer.footballer.full_name | FootballerFullName}}<br>
+                        <small class="violet-text ng-binding">{{oneFootballer.footballer.real_team.short_club_name}}</small>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="vm.menu.confirmType === 'waiver'">
+                <div class="confim-order-item">
+                    <div class="squads-pos violet-text ng-binding">
+                        {{vm.model.lineUp.footballerPositionsSymbols[vm.model.confirmDialogData.waiver.position]}}
+                    </div>
+                    <div class="squads-name ng-binding">
+                        {{vm.model.confirmDialogData.waiver.full_name | FootballerFullName}}<br>
+                        <small class="violet-text ng-binding">{{vm.model.confirmDialogData.waiver.real_team.short_club_name}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 top-bot-border left-border">
+        <div class="confirm-order">
+
+            <strong ng-if="vm.menu.confirmType !== 'waiver'" class="violet-text">{{vm.model.confirmDialogData.acceptor.name}} gets:</strong><br/>
+            <strong ng-if="vm.menu.confirmType === 'waiver'" class="violet-text">Your bet:</strong><br/>
+
+            <div ng-if="vm.menu.confirmType !== 'waiver'">
+                <div ng-repeat="oneFootballer in vm.model.confirmDialogData.footballersForDropHash" class="confim-order-item">
+                    <div class="squads-pos violet-text ng-binding">
+                        {{vm.model.lineUp.footballerPositionsSymbols[oneFootballer.footballer.position]}}
+                    </div>
+                    <div class="squads-name ng-binding">
+                        {{oneFootballer.footballer.full_name | FootballerFullName}}<br>
+                        <small class="violet-text ng-binding">{{oneFootballer.footballer.real_team.short_club_name}}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="confim-order-item">
+                <div class="squads-name ng-binding" style="margin-left: 35px;">
+                    &pound; {{vm.model.confirmDialogData.moneyOffered === 'M' ? '0M' : vm.model.confirmDialogData.moneyOffered}} <br>
+                    <small class="violet-text ng-binding">Cash</small>
+                </div>
+            </div>
+            <strong ng-if="vm.menu.confirmType === 'waiver' && ngDialogData.footballerToDrop.footballer" class="violet-text">If bid is successful, you would drop:</strong><br/>
+            <div ng-if="vm.menu.confirmType == 'waiver' && ngDialogData.footballerToDrop.footballer">
+                <div class="confim-order-item">
+                    <div class="squads-name ng-binding" style="margin-left: 35px;">
+                        {{ngDialogData.footballerToDrop.footballer.full_name | FootballerFullName}}<br>
+                        <small class="violet-text ng-binding">{{ngDialogData.footballerToDrop.footballer.real_team.short_club_name}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="message-row row">
+    <strong class="message-header col-xs-6 violet-text">Add Message:</strong>
+    <div class="col-xs-12 box-input-area">
+        <input class= "message-input col-xs-12" type="text"  ng-model="vm.model.confirmDialogData.message">
+    </div>
+</div>
+<div class="row confirm-modal-btn-block">
+    <div class="col-xs-6 text-right m-b10 m-t10">
+        <button ng-disabled="vm.view.buttonBlocked" style="color: #fff;" class="btn btn-red-dark" ng-click="!vm.view.buttonBlocked && vm.menu.goBack()">
+            {{vm.menu.cancelButtonTitle || 'cancel'}}
+        </button>
+    </div>
+    <div class="col-xs-6 text-left m-b10 m-t10">
+        <button ng-disabled="vm.view.buttonBlocked" class="btn btn-green" ng-click="!vm.view.buttonBlocked && vm.menu.confirmButtonCallback()">
+            {{vm.view.buttonBlocked ? 'Please wait...' : (vm.menu.confirmButtonTitle || 'confirm')}}
+        </button>
+    </div>
+</div>

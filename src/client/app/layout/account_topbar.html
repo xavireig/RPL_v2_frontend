@@ -1,0 +1,156 @@
+<div class="row">
+    <div class="container" style="background-color: #000000;">
+        <nav class="navbar" style="margin-bottom: 0;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle shut">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <i class="fa fa-times hidden" aria-hidden="true"></i>
+                    </button>
+                    <div class="col-xs-7 col-md-3 brand-block" ng-click="vmi.menu.goToDashboard(league.id, true)">
+                        <!--<a class="navbar-brand" href="/dashboard/">-->
+                        <a class="navbar-brand">
+                            <img alt="RPL" ng-src="images/logo.svg" width="100">
+                        </a>
+                    </div>
+                    <div class="col-xs-3 col-md-3 league-name-topbar hidden-xs hidden-sm" ng-if="vmi.menu.leaguesListWasReceived" style="padding-top: 25px;">
+                        <md-input-container ng-if="vmi.model.leagues.data.myLeagues.length > 0 || vmi.model.leagues.data.invitedLeagues.length > 0">
+                            <!--<label>League</label>-->
+                            <md-select ng-model="vmi.menu.leagueId" aria-label="League">
+                                 <div ng-repeat="league in vmi.model.leagues.data.myLeagues" class="p15">
+                                    <md-option id="league{{league.id}}"  ng-value="league.id" ng-click="vmi.menu.selectLeague(league)"><p><a href="#">{{league.title}}</a> (Setting)</p> </md-option>
+                                    <span class="clearfix"></span>
+                                </div>
+                                 <div class="p15">
+                                    <md-option id="league{{league.id}}" ng-repeat="league in vmi.model.leagues.data.invitedLeagues" ng-value="league.id" ng-click="vmi.menu.goToDashboard(league.id)"><p><a href="#">{{league.title}}</a></p></md-option>
+                                </div>
+
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <!--Pull right element-->
+                    <div class="col-xs-5 col-md-6 topbar-btn-block">
+                        <div class="topbar-btn profile pull-right" ng-if="vmi.model.user.isSignedIn">
+                        <div class="chairman-dropdown my-club-pulldown" dropdown>
+                            <div class="club-name" dropdown-toggle>
+                                <div class="pull-left" style="position: relative">
+                                    <div ng-if="vmi.model.leagueInvites.data.length > 0" class="notify circle-notify" style="left: -9px; top: -9px;">{{vmi.model.leagueInvites.data.length}}</div>
+                                    <style type="text/css">
+                                        #clubmain_{{club.id}} .st0{fill:{{vmi.model.commonModel.selectedClub.color1}} !important;}
+                                        #clubmain_{{club.id}} .st1{fill:{{vmi.model.commonModel.selectedClub.color2}} !important;}
+                                        #clubmain_{{club.id}} .st2{fill:{{vmi.model.commonModel.selectedClub.color3}} !important;}
+                                    </style>
+                                    <div id="clubmain_{{vmi.model.commonModel.selectedClub.id}}" ng-include="vmi.model.commonModel.selectedClub.crest_pattern.svg_url" class="club-name-img"></div>
+                                </div>
+                                <div class="pull-left club-name-title uppercase"><div class="clip pull-left">{{vmi.model.commonModel.selectedClub.name}}</div> <span class="glyphicon glyphicon-menu-down"></span></div>
+                            </div>
+
+                            <ul class="dropdown-menu profile-menu">
+
+                                <li ng-if="vm.model.commonModel.topBarMenu.currentSeasonClubs.length != 0" class="dropdown-menu-title">My clubs</li>
+                                <li ng-repeat="club in vmi.model.commonModel.topBarMenu.currentSeasonClubs" ng-click="vmi.model.commonModel.selectedClub = club; vmi.menu.chooseClub()" class="clearfix">
+                                    <div class="pull-left">
+                                        <style type="text/css">
+                                            #clubmain_{{club.id}} .st0{fill:{{club.color1}} !important;}
+                                            #clubmain_{{club.id}} .st1{fill:{{club.color2}} !important;}
+                                            #clubmain_{{club.id}} .st2{fill:{{club.color3}} !important;}
+                                        </style>
+                                        <div id="clubmain_{{club.id}}" ng-include="club.crest_pattern.svg_url" class="club-logo-list"></div>
+                                    </div>
+                                    <div class="pull-left club-name-list">{{club.name}}<br>
+                                        <small class="player-pos-sort-table light-blue-text" style="font-weight: 300">{{club.league.title}}</small>
+                                    </div>
+                                </li>
+
+                                <li ng-if="vm.model.commonModel.topBarMenu.oldSeasonClubs.length != 0" class="dropdown-menu-title clearfix">Previous seasons</li>
+                                <li ng-repeat="club in vmi.model.commonModel.topBarMenu.oldSeasonClubs" ng-click="vmi.model.commonModel.selectedClub = club; vmi.menu.chooseClub()" class="clearfix">
+                                    <div class="pull-left">
+                                        <style type="text/css">
+                                            #clubmain_{{club.id}} .st0{fill:{{club.color1}} !important;}
+                                            #clubmain_{{club.id}} .st1{fill:{{club.color2}} !important;}
+                                            #clubmain_{{club.id}} .st2{fill:{{club.color3}} !important;}
+                                        </style>
+                                        <div id="clubmain_{{club.id}}" ng-include="club.crest_pattern.svg_url" class="club-logo-list"></div>
+                                    </div>
+                                    <div class="pull-left club-name-list">{{club.name}}<br>
+                                        <small class="player-pos-sort-table light-blue-text" style="font-weight: 300">{{club.league.title}}</small>
+                                    </div>
+                                </li>
+
+                                <li ng-if="vmi.model.leagueInvites.data.length > 0" class="dropdown-menu-title">League invites</li>
+                                <li ng-if="vmi.model.leagueInvites.data.length > 0"
+                                    ng-repeat="leagueInvite in vmi.model.leagueInvites.data" class="transfer-inf">
+                                    <div class="transfer-inf-img pull-left"></div>
+                                    <div class="clip-box cut-off" style="width: 90%;">
+                                        <span style="line-height: 40px;">
+                                            {{leagueInvite.league.title}}
+                                        </span>
+                                        <span ng-click="vmi.menu.rejectLeague(leagueInvite)"  style="float: right; color: #D63825;"><img src="../images/ios-close-outline.svg" width="40"/></span>
+                                        <span ng-click="vmi.menu.acceptLeague(leagueInvite)"  style="float: right; color: #2FAA57;"><img src="../images/ios-checkmark-outline.svg" width="40"/></span>
+                                    </div>
+                                </li>
+
+                                <!--<li ng-if="vmi.model.notifications.data.length > 0" class="dropdown-menu-title">Notifications</li>-->
+                                <!--<li ng-if="vmi.model.notifications.data.length > 0"-->
+                                    <!--ng-repeat="notification in vmi.model.notifications.data" ng-click="vmi.menu.clickOnNotification($event, notification)" class="transfer-inf">-->
+                                    <!--<div class="transfer-inf-img pull-left"></div>-->
+                                    <!--<div class="clip-box cut-off">-->
+                                        <!--{{notification.short_description}}-->
+                                    <!--</div>-->
+                                <!--</li>-->
+
+                                <li class="text-center">
+                                    <div class="col-xs-6">
+                                        <div class="uppercase text-center gray-text" ng-click="vmi.menu.getToMyAccount()">My Account</div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="uppercase text-center gray-text" ng-click="vmi.menu.signOut()">Sign out</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <transfers-dropdown class="topbar-btn pull-right" ng-if="vmi.model.user.isSignedIn"></transfers-dropdown>
+                    <div class="topbar-btn pull-right chairman-dropdown" dropdown>
+                        <div style="cursor: pointer;" dropdown-toggle>
+                            <img src="images/topbar/help.svg" width="23" height="40" alt="">
+                        </div>
+                        <ul class="dropdown-menu" style="position: absolute; right: -10px;">
+                            <li class="dropdown-menu-title">Help</li>
+                            <li><a href="https://www.rotopremierleague.com/game-guide/" target="_blank">Game Guide</a></li>
+                            <li><a href="https://www.rotopremierleague.com/faq/" target="_blank">FAQ</a></li>
+                            <li ng-click="vmi.menu.createFeedbackDialog(2)"><a href="#">Send Feedback / Submit Idea</a></li>
+                            <li ng-click="vmi.menu.createFeedbackDialog(1)"><a href="#">Report a Problem</a></li>
+                        </ul>
+                    </div>
+                    <div class="topbar-btn pull-right chairman-dropdown" dropdown>
+                        <div style="cursor: pointer;" dropdown-toggle>
+                            <img src="images/topbar/messages.svg" width="25" height="32" alt="">
+                        </div>
+                        <ul class="dropdown-menu" style="position: absolute; right: -10px;">
+                            <li class="dropdown-menu-title">MESSAGES</li>
+                            <li ng-click="vmi.menu.displayLeagueEmailForm()"> <a href="#"> EMAIL ENTIRE LEAGUE</a> </li>
+                        </ul>
+                    </div>
+                    <div ng-if="vmi.menu.checkUserPermissionsInLeague()" class="topbar-btn pull-right chairman-dropdown"dropdown>
+                        <div class="chairman-tools-svg" dropdown-toggle>
+                            <div ng-include="'images/chairman_tools.svg'"></div>
+                            <div ng-if="vmi.model.bids.notApprovedBids.length > 0" class="notify circle-notify settings-notify">{{vmi.menu.returnNotApprovedBidsCount()}}</div>
+                        </div>
+                        <ul class="dropdown-menu" style="position: absolute; right: -6px; top: 75px">
+                            <li class="dropdown-menu-title">Chairman tools</li>
+                            <li ng-click="vmi.menu.goToLeagueSetting()"><a href="#">Edit League Settings</a></li>
+                            <li ng-click="vmi.menu.openApproveDialog()"><a href="#">You have {{vmi.menu.returnNotApprovedBidsCount()}} transfer to review</a></li>
+                        </ul>
+                    </div>
+                    <div ng-if="vmi.menu.isUpgradeNowVisible()">
+                        <commercial-upgrade-now></commercial-upgrade-now>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

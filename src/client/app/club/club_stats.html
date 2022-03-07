@@ -1,0 +1,44 @@
+<div>
+    <h2>Team stats</h2>
+    <div class="club-profile-block" style="height: 400px;">
+        <ul class="season-last-tabs">
+            <li ng-repeat="stats in csc.model.stats" ng-click="csc.menu.clickStatsLast(stats)"
+                ng-class="csc.menu.getActiveStatsClass(stats)">
+                {{stats.title}}
+            </li>
+        </ul>
+        <div>
+            <div class="season-last">
+                <img src="../images/stats/rank.svg" class="stats-frame-rank-image" width="26"/>
+                <div class="stats-frame">
+                    <table class="table no-bordered" style="margin-bottom: 0; margin-top: 31px;">
+                        <tbody>
+                        <tr>
+                            <td ng-if="csc.view.showStatColumn(stat)" class="text-center"
+                                ng-repeat="stat in csc.model['stats_value']">
+                                        <span class="graph">
+                                            <img ng-if="stat.svg > 0" ng-src="../images/stats/{{stat.svg}}.svg" width="16"/>
+                                            <span ng-if="stat.title == 'Ps%'" class="graph-num">{{100 * stat.cur | number: 0}}%</span>
+                                            <span ng-if="stat.title != 'Ps%'" class="graph-num">{{stat.cur}}</span>
+                                        </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td ng-if="csc.view.showStatColumn(stat)" ng-repeat="stat in csc.model['stats_value']">
+                                {{stat.title}}
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <div class="text-center m-t20">
+                        <a href="#" ng-click="csc.menu.goLeague()" class="link uppercase">
+                            Compare stats <span class="glyphicon glyphicon-triangle-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

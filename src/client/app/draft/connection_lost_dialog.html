@@ -1,0 +1,14 @@
+<div class="row" style="color: white;">
+    <div class="col-xs-12">
+        <span ng-click="closeThisDialog()"
+              ng-include="'images/dialog_window/x_close.svg'"
+              class="close-dialog-icon"></span>
+        <div class="row text-center title">
+            {{ngDialogData.title}}
+        </div>
+
+        <div class="row text-center body" style="padding: 10px;">
+            <span ng-bind-html="ngDialogData.text"></span>
+        </div>
+    </div>
+</div>

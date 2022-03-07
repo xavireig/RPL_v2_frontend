@@ -1,0 +1,215 @@
+<account-top-bar></account-top-bar>
+<div ng-if="vm.model.leagueLoaded" class="container">
+    <div class="row">
+        <div class="col-xs-2" style="margin-left: -10px;">
+            <aside>
+                <menu-side-bar></menu-side-bar>
+            </aside>
+        </div>
+
+        <div class="col-xs-10" style="font-size: 14px;">
+            <commercial-header></commercial-header>
+            <div class="row">
+                <div class="col-xs-offset-4 col-xs-4 text-center" style="border:1px solid grey; margin-bottom: 10px;">
+                    <div style="font-size: 24px; font-weight: bold;">
+                        Draft starts in:
+                    <span ng-if="vm.menu.userIsLeagueOwner()" style="float: right;">
+                        <img ng-click="vm.menu.editDraft()" style="width: 24px; vertical-align: baseline;"
+                             src="../images/predraft/pencil.svg" alt="">
+                    </span>
+                    </div>
+                    <div class="row center-block" style="float: none;">
+                        <div
+                            style="display: inline-block; border: solid 2px #a2ff73; min-width: 55px; padding: 5px; font-size: 30px; font-weight: bold; margin: 0 5px;">
+                            {{vm.model.draftDaysLeft}}
+                        </div>
+                        <div
+                            style="display: inline-block; border: solid 2px #a2ff73; min-width: 55px; padding: 5px; font-size: 30px; font-weight: bold; margin: 0 5px;">
+                            {{vm.model.draftHoursLeft}}
+                        </div>
+                        <div
+                            style="display: inline-block; border: solid 2px #a2ff73; min-width: 55px; padding: 5px; font-size: 30px; font-weight: bold; margin: 0 5px;">
+                            {{vm.model.draftMinutesLeft}}
+                        </div>
+                    </div>
+                    <div class="row center-block" style="float: none;">
+                        <div style="display: inline-block; min-width: 55px; margin: 0 5px; color: #a2ff73;">DAYS</div>
+                        <div style="display: inline-block; min-width: 55px; margin: 0 5px; color: #a2ff73;">HRS</div>
+                        <div style="display: inline-block; min-width: 55px; margin: 0 5px; color: #a2ff73;">MIN</div>
+                    </div>
+                <span ng-click="vm.menu.goToDraft()">
+                    <a href="#" class="btn btn-green">go to draft</a>
+                </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6" style="margin-bottom: 20px;">
+                    <div class="col-xs-12" style="border:1px solid grey; padding: 5px;">
+
+                        <!-- LEAGUE INFO -->
+
+                        <div class="text-center h2">
+                            League info
+                    <span ng-if="vm.menu.userIsLeagueOwner()">
+                        <img ng-click="vm.menu.editLeagueInfo()" style="width: 24px; vertical-align: baseline;"
+                             src="../images/predraft/pencil.svg" alt="">
+                    </span>
+                        </div>
+                        <league-info league=vm.model.league></league-info>
+
+                        <!-- SCORING -->
+
+                        <div class="text-center h2">
+                            Scoring
+                        <span ng-if="vm.menu.userIsLeagueOwner()">
+                            <img ng-click="vm.menu.editScoringAndRules()" style="width: 24px; vertical-align: baseline;"
+                                 src="../images/predraft/pencil.svg" alt="">
+                        </span>
+                        </div>
+                        <scoring-info league="vm.model.league"></scoring-info>
+
+                        <!-- TRANSFERS -->
+                        <div class="text-center h2">
+                            Transfers
+                        </div>
+
+                        <transfer-info league="vm.model.league"></transfer-info>
+
+                        <!-- RPL CUP -->
+
+                        <div class="text-center h2">
+                            RPL cup
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-5 text-right proxima-nova">RPL Cup type:</div>
+                            <div class="col-xs-7 text-left proxima-nova" style="color: #78849B">In-season</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-5 text-right proxima-nova">RPL Cup Fixtures:</div>
+                            <div class="col-xs-7 text-left proxima-nova" style="color: #78849B">
+                                Play-in Round Match Week 27 <br>
+                                Quarters, Leg 1: Match Week 30 <br>
+                                Quarters, Leg 2: Match Week 32 <br>
+                                Semis, Leg 1: Match Week 33 <br>
+                                Semis, Leg 2: Match Week 35 <br>
+                                Final: Match Week 35 <br>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-6" style="margin-bottom: 20px;">
+                    <div class="col-xs-12" style="border:1px solid grey; padding: 5px;">
+                        <!-- TEAMS IN LEAGUE -->
+                        <div class="text-center h2">
+                            Teams in League <br> ({{vm.model.league.num_teams}} of {{vm.model.league.req_teams}})
+                        <span ng-if="vm.menu.userIsLeagueOwner()">
+                            <img ng-click="vm.menu.editTeamsInLeague()" style="width: 24px; vertical-align: baseline;"
+                                 src="../images/predraft/pencil.svg" alt="">
+                        </span>
+                        </div>
+                        <div class="row" style="border-bottom:1px solid grey; padding: 5px; margin: 5px -5px;">
+                            <div class="col-xs-7 text-left" style="font-weight: bold; color: #78849B;">Team</div>
+                            <div class="col-xs-5 text-center" style="font-weight: bold; color: #78849B;">Owner</div>
+                        </div>
+                        <div class="row">
+                            <div ng-repeat="club in vm.model.league.clubs">
+                                <div class="col-xs-7 text-left">
+                                    <club-crest club="club" data-width="24"
+                                                style="vertical-align: middle; display: inline-block; margin: 1px auto;"
+                                                class="text-center fantasy-club"></club-crest>
+                                    <span style="margin-left: 5px;">{{club.name}}</span>
+                                </div>
+                                <div class="col-xs-5 text-center">
+                                    <div style="display: inline-block; vertical-align: middle; line-height: 28px;">
+                                        {{club.owner.full_name || club.owner.email}}
+                                        {{club.owner.id === (vm.model.league || {})['user'].id ? '(C)' : ''}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PENDING INVITES -->
+
+                        <div ng-if="vm.menu.userIsLeagueOwner()">
+                            <div class="text-center h2">Pending Invites</div>
+                            <div class="row" style="border-bottom:1px solid grey; padding: 5px; margin: 5px -5px;">
+                                <div class="{{vm.menu.userIsLeagueOwner() ? 'col-xs-4' : 'col-xs-6'}} text-left"
+                                     style="font-weight: bold; color: #78849B;">Email
+                                </div>
+                                <div class="{{vm.menu.userIsLeagueOwner() ? 'col-xs-4' : 'col-xs-6'}} text-center"
+                                     style="font-weight: bold; color: #78849B;">Owner
+                                </div>
+                                <div ng-if="vm.menu.userIsLeagueOwner()" class="col-xs-4 text-center"
+                                     style="font-weight: bold; color: #78849B;">Send reminder?
+                                </div>
+                            </div>
+                            <div class="row" ng-repeat="leagueInvite in vm.model.league.league_invites"
+                                 ng-if="leagueInvite.status == 'waiting'">
+                                <div
+                                    style="overflow: hidden; text-overflow: ellipsis; display: inline-block; white-space: nowrap;"
+                                    class="{{vm.menu.userIsLeagueOwner() ? 'col-xs-4' : 'col-xs-6'}} text-left">
+                                    {{leagueInvite.email}}
+                                </div>
+                                <div
+                                    style="overflow: hidden; text-overflow: ellipsis; display: inline-block; white-space: nowrap;"
+                                    class="{{vm.menu.userIsLeagueOwner() ? 'col-xs-4' : 'col-xs-6'}} text-center">
+                                    {{(leagueInvite.owner.fname + ' '+ leagueInvite.owner.lname  )|| '-'}}
+                                </div>
+                                <div ng-if="vm.menu.userIsLeagueOwner()" ng-click="vm.menu.sendReminder(leagueInvite.email)"
+                                     class="col-xs-4 text-center">
+                                    <img style="width: 24px;" src="../images/predraft/envelope.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- INVITE OWNERS -->
+                        <div ng-if="vm.menu.userIsLeagueOwner()" class="row text-center"
+                             style="border-top: 1px solid grey; padding: 5px; margin: 5px -5px;">
+                            <h2>Invite managers</h2>
+                            <div ng-click="vm.menu.inviteMoreOwners()">
+                                <a href="#" class="btn btn-green">invite owners</a>
+                            </div>
+                        </div>
+
+                      <!-- CHAT BOX -->
+
+                      <div class="row chat-box" style="border-top: 1px solid grey; padding: 5px; margin: 5px -5px;">
+                        <div class="row header" style="border: 1px solid grey; margin: 0px -5px; border-left: none; border-right: none;">
+                          <center><h2>League Chat</h2></center>
+                        </div>
+                        <div class="row box" style="border:none;">
+                            <table cellspacing="0" cellpadding="0" class="table chat-table">
+                                <tbody style="height: 300px; display: block; overflow-y: scroll;" id="chatScroll"
+                                  scroll-glue>
+                                  <tr class= "msg-row" ng-repeat="oneChatMessage in vm.model.chat.data track by $index">
+                                      <td><club-crest club="oneChatMessage.club" data-width="24"
+                                                style="vertical-align: middle; display: inline-block; margin: 1px auto;"
+                                                class="text-center fantasy-club"></club-crest></td>
+                                      <td><p style="color:#2ECC71"><span class="clip pull-left"><strong>{{oneChatMessage.club.name}}:</strong></span></p></td>
+                                      <td><p style="color:#AAAAAA">{{oneChatMessage.content}} </p></td>
+                                  </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="box-input-area">
+                                <input class= "chat-input" type="text" ng-model="vm.model.chat.message" ng-keyup="vm.menu.chat.keyUp($event);">
+                                <button class="msg-send-btn" ng-click="vm.menu.chat.sendMessage()">SEND</button>
+                            </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+            <commercial-footer></commercial-footer>
+        </div>
+    </div>
+</div>

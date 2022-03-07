@@ -1,0 +1,200 @@
+<tr>
+    <td>
+        <span class="player-position pull-left">
+            <span ng-class="vm.view.subStatus(footballer)"> {{vm.view.roleToSymbol[footballer.footballer.position]}} </span>
+        </span>
+        <div class="m-l30">
+            <div class="clip"><span ng-click="vm.menu.showPlayerCard($event, footballer)" class="h3 m0">{{footballer.footballer.full_name | FootballerFullName}}</span> - <span class="epl-team">{{footballer.footballer.real_team.short_club_name}}</span></div><br/>
+            <span ng-if="(footballer.match_data.is_done || footballer.match_data.now_play) && !footballer.match_data.home_match" class="light-blue-text epl-team clip">@ {{footballer.match_data.opponent_team_data.short_club_name}}, {{footballer.match_data.away_score}}-{{footballer.match_data.home_score}},</span>
+            <span ng-if="(footballer.match_data.is_done || footballer.match_data.now_play) && footballer.match_data.home_match" class="light-blue-text epl-team clip">v {{footballer.match_data.opponent_team_data.short_club_name}}, {{footballer.match_data.home_score}}-{{footballer.match_data.away_score}},</span>
+            <span ng-if="!footballer.match_data.now_play && !footballer.match_data.is_done && !footballer.match_data.home_match" class="light-blue-text epl-team clip">@ {{footballer.match_data.opponent_team_data.short_club_name}}, {{footballer.match_data.scheduled | date: 'MMM d'}}</span>
+            <span ng-if="!footballer.match_data.now_play && !footballer.match_data.is_done && footballer.match_data.home_match" class="light-blue-text epl-team clip">v {{footballer.match_data.opponent_team_data.short_club_name}}, {{footballer.match_data.scheduled | date: 'MMM d'}}</span>
+            <span ng-if="footballer.match_data.is_done && footballer.match_data.home_match && (footballer.match_data.home_score > footballer.match_data.away_score)" class="light-blue-text epl-team clip">W</span>
+            <span ng-if="footballer.match_data.is_done && footballer.match_data.home_match && (footballer.match_data.home_score < footballer.match_data.away_score)" class="light-blue-text epl-team clip">L</span>
+            <span ng-if="footballer.match_data.is_done && !footballer.match_data.home_match && (footballer.match_data.away_score > footballer.match_data.home_score)" class="light-blue-text epl-team clip">W</span>
+            <span ng-if="footballer.match_data.is_done && !footballer.match_data.home_match && (footballer.match_data.away_score < footballer.match_data.home_score)" class="light-blue-text epl-team clip">L</span>
+            <span ng-if="footballer.match_data.is_done && (footballer.match_data.home_score === footballer.match_data.away_score)" class="light-blue-text epl-team clip">D</span>
+        </div>
+    </td>
+    <td class="text-center">
+        <span >
+            {{vm.menu.returnRoleInRoundSymbol(footballer)}}
+        </span>
+        <div ng-if="vm.view.leagueScoringTypeIsPoints()" class="points">
+            {{footballer.points}} pts
+        </div>
+    </td>
+
+    <td ng-if="vm.view.leagueScoringTypeIsCategories()" class="match-time">
+        <div class="svg-icons arrow-icons pull-left" ng-if="vm.menu.matchIsInProgressOrFinished(footballer)">
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['min_played'])">
+                <img ng-src="{{vm.view.categoryIcons['min_played']['icon']}}" height="15"/>
+                <span>{{footballer.footballer_stat_in_round.out_minutes > 90 ? 90 : footballer.footballer_stat_in_round.out_minutes}}'</span>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['subbed_on']) && footballer.footballer_stat_in_round.is_sub_on">
+                <img ng-src="{{vm.view.categoryIcons['subbed_on']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="(vm.view.showLegendIcon(vm.view.categoryIcons['key_pass'])) || (vm.view.showLegendIcon(vm.view.categoryIcons['assist']) && footballer.footballer_stat_in_round.int_assists > 0)">
+                <img ng-repeat="int_assist in vm.view.Arraylize(footballer.footballer_stat_in_round.int_assists) track by $index" ng-src="{{vm.view.categoryIcons['assist']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['goal']) && footballer.footballer_stat_in_round.out_goals > 0">
+                <img ng-repeat="goal in vm.view.Arraylize(footballer.footballer_stat_in_round.out_goals) track by $index" ng-src="{{vm.view.categoryIcons['goal']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['goal_conceded']) && footballer.footballer_stat_in_round.int_team_goal_conceded > 0 && footballer.footballer.position != 'forward'">
+                <img ng-repeat="goal_conceded in vm.view.Arraylize(footballer.footballer_stat_in_round.int_team_goal_conceded) track by $index" ng-src="{{vm.view.categoryIcons['goal_conceded']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showTwoGSForLosers(footballer)">
+                <img ng-src="{{vm.view.pointIcons['goal_conceded']['icon']}}" height="15"/><img ng-src="{{vm.view.pointIcons['goal_conceded']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['own_goal']) && footballer.footballer_stat_in_round.int_own_goals > 0">
+                <img ng-repeat="own_goal in vm.view.Arraylize(footballer.footballer_stat_in_round.int_own_goals) track by $index" ng-src="{{vm.view.categoryIcons['own_goal']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['clean_sheet']) && footballer.footballer_stat_in_round.out_clean_sheet > 0 && (footballer.footballer.position === 'goalkeeper' || footballer.footballer.position === 'defender')">
+                <img ng-repeat="out_clean_sheet in vm.view.Arraylize(footballer.footballer_stat_in_round.out_clean_sheet) track by $index" ng-src="{{vm.view.categoryIcons['clean_sheet']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['tackle_interception']) && (footballer.footballer_stat_in_round.int_won_tackle || footballer.footballer_stat_in_round.int_interception > 0)">
+                <img ng-repeat="won_tackle in vm.view.Arraylize(footballer.footballer_stat_in_round.int_won_tackle) track by $index" ng-src="{{vm.view.categoryIcons['tackle_won']['icon']}}" height="15"/>
+                <img ng-repeat="interception in vm.view.Arraylize(footballer.footballer_stat_in_round.int_interception) track by $index" ng-src="{{vm.view.categoryIcons['interception']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="!vm.view.showLegendIcon(vm.view.categoryIcons['tackle_interception']) && vm.view.showLegendIcon(vm.view.categoryIcons['tackle_won']) && footballer.footballer_stat_in_round.int_won_tackle">
+                <img ng-repeat="won_tackle in vm.view.Arraylize(footballer.footballer_stat_in_round.int_won_tackle) track by $index" ng-src="{{vm.view.categoryIcons['tackle_won']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="!vm.view.showLegendIcon(vm.view.categoryIcons['tackle_interception']) &&  vm.view.showLegendIcon(vm.view.categoryIcons['interception']) && footballer.footballer_stat_in_round.int_interception > 0">
+                <img ng-repeat="interception in vm.view.Arraylize(footballer.footballer_stat_in_round.int_interception) track by $index" ng-src="{{vm.view.categoryIcons['interception']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['key_pass']) && footballer.footballer_stat_in_round.out_kpass > 0">
+                <img ng-repeat="out_kpass in vm.view.Arraylize(footballer.footballer_stat_in_round.out_kpass) track by $index" ng-src="{{vm.view.categoryIcons['key_pass']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['pass_comp']) && footballer.footballer_stat_in_round.int_accurate_pass > 0">
+                <!--<img ng-if="footballer.footballer_stat_in_round.int_succ_passes > 0" ng-src="{{vm.view.categoryIcons['pass_comp']['icon']}}" height="15"/>-->
+                <span style="border: solid 1px #2de1fc; padding-left: 3px; padding-right: 3px;"> {{footballer.footballer_stat_in_round.int_accurate_pass}}/{{footballer.footballer_stat_in_round.int_total_pass_add}} </span>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['save']) && footballer.footballer_stat_in_round.int_save > 0">
+                <img ng-repeat="int_save in vm.view.Arraylize(footballer.footballer_stat_in_round.int_save) track by $index" ng-src="{{vm.view.categoryIcons['save']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['turnover']) && footballer.footballer_stat_in_round.int_turnover">
+                <img ng-repeat="int_turnover in vm.view.Arraylize(footballer.footballer_stat_in_round.int_turnover) track by $index" ng-src="{{vm.view.categoryIcons['turnover']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['yellow_card']) && footballer.footballer_stat_in_round.int_yellow_cards > 0">
+                <img ng-repeat="int_yellow_card in vm.view.Arraylize(footballer.footballer_stat_in_round.int_yellow_cards) track by $index" ng-src="{{vm.view.categoryIcons['yellow_card']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['red_card']) && footballer.footballer_stat_in_round.int_red_cards > 0">
+                <img ng-src="{{vm.view.categoryIcons['red_card']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['subbed_off']) && footballer.footballer_stat_in_round.is_sub_off">
+                <img ng-src="{{vm.view.categoryIcons['subbed_off']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['goals_conceded_points']) && (footballer.footballer_stat_in_round.cat_goals_conceded_points=== -0.5 || (footballer.footballer.position != 'forward' && footballer.match_data.is_done && !footballer.footballer_stat_in_round))">
+                <img ng-src="{{vm.view.categoryIcons['goals_conceded_points']['minusHalfIcon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['goals_conceded_points']) && footballer.footballer.position != 'forward' && footballer.footballer_stat_in_round.cat_goals_conceded_points===-1">
+                <img ng-src="{{vm.view.categoryIcons['goals_conceded_points']['minusOneIcon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['goals_conceded_points']) && footballer.footballer.position != 'forward' && footballer.footballer_stat_in_round.cat_goals_conceded_points===-2">
+                <img ng-src="{{vm.view.categoryIcons['goals_conceded_points']['minusTwoIcon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['goals_conceded_points']) && footballer.footballer.position != 'forward' && footballer.footballer_stat_in_round.cat_goals_conceded_points===-3">
+                <img ng-src="{{vm.view.categoryIcons['goals_conceded_points']['minusThreeIcon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['goals_conceded_points']) && footballer.footballer.position != 'forward' && footballer.footballer_stat_in_round.cat_goals_conceded_points===0">
+                <img ng-src="{{vm.view.categoryIcons['goals_conceded_points']['zeroIcon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['goals_conceded_points']) && footballer.footballer.position != 'forward' && footballer.footballer_stat_in_round.cat_goals_conceded_points===1">
+                <img ng-src="{{vm.view.categoryIcons['goals_conceded_points']['oneIcon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['goals_conceded_points']) && footballer.footballer.position != 'forward' && footballer.footballer_stat_in_round.cat_goals_conceded_points===3">
+                <img ng-src="{{vm.view.categoryIcons['goals_conceded_points']['threeIcon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['shots_on_target']) && footballer.footballer_stat_in_round.int_ontarget_scoring_att > 0">
+                <img ng-repeat="int_ontarget_scoring_att in vm.view.Arraylize(footballer.footballer_stat_in_round.int_ontarget_scoring_att) track by $index" ng-src="{{vm.view.categoryIcons['shots_on_target']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showLegendIcon(vm.view.categoryIcons['take_ons']) && footballer.footballer_stat_in_round.int_take_ons > 0">
+                <img ng-repeat="int_take_on in vm.view.Arraylize(footballer.footballer_stat_in_round.int_take_ons) track by $index" ng-src="{{vm.view.categoryIcons['take_ons']['icon']}}" height="15"/>
+            </span>
+        </div>
+    </td>
+
+    <td ng-if="vm.view.leagueScoringTypeIsPoints()" class="match-time">
+        <div class="svg-icons arrow-icons pull-left" ng-if="vm.menu.matchIsInProgressOrFinished(footballer)">
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_g_30_min'] != 0 ||
+                         vm.model.leaguePointsByPositions[footballer.footballer.position]['c_g_50_min'] != 0 ||
+                         vm.model.leaguePointsByPositions[footballer.footballer.position]['c_g_90_min'] != 0" class="stat-item">
+                <img ng-src="{{vm.view.pointIcons['min_played']['icon']}}" height="20"/>
+                <span>{{footballer.footballer_stat_in_round.out_minutes > 90 ? 90 : footballer.footballer_stat_in_round.out_minutes}}'</span>
+            </span>
+            <span class="stat-item">
+                <img ng-if="footballer.footballer_stat_in_round.is_sub_on" ng-src="{{vm.view.pointIcons['subbed_on']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_assist'] != 0" class="stat-item">
+                <img ng-repeat="int_assist in vm.view.Arraylize(footballer.footballer_stat_in_round.int_assists) track by $index" ng-src="{{vm.view.pointIcons['assist']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_goal'] != 0" class="stat-item">
+                <img ng-repeat="goal in vm.view.Arraylize(footballer.footballer_stat_in_round.out_goals) track by $index" ng-src="{{vm.view.pointIcons['goal']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_goal_conceled'] != 0 && footballer.footballer.position != 'forward'">
+                <img ng-repeat="goal_conceded in vm.view.Arraylize(footballer.footballer_stat_in_round.int_team_goal_conceded) track by $index" ng-src="{{vm.view.pointIcons['goal_conceded']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item" ng-if="vm.view.showTwoGSForLosers(footballer)">
+                <img ng-src="{{vm.view.pointIcons['goal_conceded']['icon']}}" height="15"/><img ng-src="{{vm.view.pointIcons['goal_conceded']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_own_goal'] != 0" class="stat-item">
+                <img ng-repeat="own_goal in vm.view.Arraylize(footballer.footballer_stat_in_round.int_own_goals) track by $index" ng-src="{{vm.view.pointIcons['own_goal']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_clean_sheet'] != 0" class="stat-item">
+                <img ng-repeat="out_clean_sheet in vm.view.Arraylize(footballer.footballer_stat_in_round.out_clean_sheet) track by $index" ng-if="footballer.footballer_stat_in_round.out_clean_sheet > 0 && (footballer.footballer.position === 'goalkeeper' || footballer.footballer.position === 'defender')" ng-src="{{vm.view.pointIcons['clean_sheet']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_interception'] != 0" class="stat-item">
+                <img ng-repeat="interception in vm.view.Arraylize(footballer.footballer_stat_in_round.int_interception) track by $index" ng-src="{{vm.view.pointIcons['interception']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_key_pass'] != 0 || vm.model.leaguePointsByPositions[footballer.footballer.position]['c_net_pass'] != 0" class="stat-item">
+                <img ng-repeat="out_kpass in vm.view.Arraylize(footballer.footballer_stat_in_round.out_kpass) track by $index" ng-if="footballer.footballer_stat_in_round.out_kpass > 0" ng-src="{{vm.view.pointIcons['key_pass']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="(vm.model.leaguePointsByPositions[footballer.footballer.position]['c_pass_completed'] != 0 || vm.model.leaguePointsByPositions[footballer.footballer.position]['c_net_pass'] != 0) && footballer.footballer_stat_in_round.int_accurate_pass > 0" class="stat-item">
+                <span style="border: solid 1px #2de1fc; padding-left: 3px; padding-right: 3px;"> {{footballer.footballer_stat_in_round.int_accurate_pass}}/{{footballer.footballer_stat_in_round.int_total_pass_add}} </span>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_save'] != 0" class="stat-item">
+                <img ng-repeat="int_save in vm.view.Arraylize(footballer.footballer_stat_in_round.int_save) track by $index" ng-if="footballer.footballer_stat_in_round.int_save > 0" ng-src="{{vm.view.pointIcons['save']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_tackle_won'] != 0" class="stat-item">
+                <img ng-repeat="won_tackle in vm.view.Arraylize(footballer.footballer_stat_in_round.int_won_tackle) track by $index" ng-src="{{vm.view.pointIcons['tackle_won']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_turn_over'] != 0" class="stat-item">
+                <img ng-repeat="int_turnover in vm.view.Arraylize(footballer.footballer_stat_in_round.int_turnover) track by $index" ng-if="footballer.footballer_stat_in_round.int_turnover" ng-src="{{vm.view.pointIcons['turnover']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_shot_on_target'] != 0" class="stat-item">
+                <img ng-repeat="int_ontarget_scoring_att in vm.view.Arraylize(footballer.footballer_stat_in_round.int_ontarget_scoring_att) track by $index" ng-if="footballer.footballer_stat_in_round.int_ontarget_scoring_att" ng-src="{{vm.view.pointIcons['shots_on_target']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_take_ons'] != 0" class="stat-item">
+                <img ng-repeat="int_take_ons in vm.view.Arraylize(footballer.footballer_stat_in_round.int_take_ons) track by $index" ng-if="footballer.footballer_stat_in_round.int_take_ons" ng-src="{{vm.view.pointIcons['take_ons']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_yellow_cards'] != 0" class="stat-item">
+                <img ng-repeat="int_yellow_card in vm.view.Arraylize(footballer.footballer_stat_in_round.int_yellow_cards) track by $index" ng-if="footballer.footballer_stat_in_round.int_yellow_cards > 0" ng-src="{{vm.view.pointIcons['yellow_card']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_red_cards'] != 0" class="stat-item">
+                <img ng-if="footballer.footballer_stat_in_round.int_red_cards > 0" ng-src="{{vm.view.pointIcons['red_card']['icon']}}" height="15"/>
+            </span>
+            <span class="stat-item">
+                <img ng-if="footballer.footballer_stat_in_round.is_sub_off" ng-src="{{vm.view.pointIcons['subbed_off']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_big_chance_missed'] != 0" class="stat-item">
+                <img ng-repeat="int_big_chance_missed in vm.view.Arraylize(footballer.footballer_stat_in_round.int_big_chance_missed) track by $index" ng-if="footballer.footballer_stat_in_round.int_big_chance_missed > 0" ng-src="{{vm.view.pointIcons['big_chance_missed']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_corner_kick_won'] != 0" class="stat-item">
+                <img ng-repeat="int_won_corner in vm.view.Arraylize(footballer.footballer_stat_in_round.int_won_corners) track by $index" ng-if="footballer.footballer_stat_in_round.int_won_corners > 0" ng-src="{{vm.view.pointIcons['corner_won']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_defensive_error'] != 0" class="stat-item">
+                <img ng-repeat="int_defensive_error in vm.view.Arraylize(footballer.footballer_stat_in_round.int_defensive_error) track by $index" ng-if="footballer.footballer_stat_in_round.int_defensive_error > 0" ng-src="{{vm.view.pointIcons['defensive_error']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_penalty_messed'] != 0" class="stat-item">
+                <img ng-repeat="int_penalty_conceded in vm.view.Arraylize(footballer.footballer_stat_in_round.int_penalty_conceded) track by $index" ng-if="footballer.footballer_stat_in_round.int_penalty_conceded > 0" ng-src="{{vm.view.pointIcons['penalty_miss']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_penalty_saved'] != 0" class="stat-item">
+                <img ng-repeat="int_penalty_save in vm.view.Arraylize(footballer.footballer_stat_in_round.int_penalty_save) track by $index" ng-if="footballer.footballer_stat_in_round.int_penalty_save > 0" ng-src="{{vm.view.pointIcons['penalty_saved']['icon']}}" height="15"/>
+            </span>
+            <span ng-if="vm.model.leaguePointsByPositions[footballer.footballer.position]['c_penalty_won'] != 0" class="stat-item">
+                <img ng-repeat="int_penalty_won in vm.view.Arraylize(footballer.footballer_stat_in_round.int_penalty_won) track by $index" ng-if="footballer.footballer_stat_in_round.int_penalty_won > 0" ng-src="{{vm.view.pointIcons['penalty_won']['icon']}}" height="15"/>
+            </span>
+        </div>
+    </td>
+
+</tr>

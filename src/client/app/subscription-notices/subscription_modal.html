@@ -1,0 +1,46 @@
+<div ng-controller="SubscriptionModalController as vm">
+    <div class="row" style="color: white;">
+        <div class="col-xs-12">
+
+            <div class="row text-center text-capitalize confirmation-title">
+                TRY US FREE
+            </div>
+
+            <span ng-click="closeThisDialog()"
+                  ng-include="'images/dialog_window/x_close.svg'"
+                  class="close-dialog-icon"></span>
+
+            <div class="text-area">
+                <div class="text-center">
+                    We think RPL is the best fantasy Premier League site around, but don't take our word for it.
+                    Try the site, <span class='text-mark'>free for two match weeks with no limitations.</span>
+                    After that it's a measly &pound;1.50/month.
+                </div>
+
+                <div class="text-center body">
+                    If you're stingier than a Tony Pulis defense, you can
+                    <span class='text-mark'>cancel any time and play the
+                    free version</span> without losing access to the leagues you join.
+                </div>
+
+                <div class="text-center">
+                    What else can you get for &pound;1.50? A lousy cup of coffee? A bite of a pie at the Etihad?
+                    One second of Wayne Rooney's wages?
+                </div>
+
+                <div class="text-center">
+                    Pay now and save
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 text-center btn-section">
+          <span ng-click="vm.tryUsFree()">
+              <a href="#" class="btn btn-gray">TRY US FREE</a>
+          </span>
+          <span ng-click="vm.payNow('£12 / season')">
+            <a href="#" class="btn btn-green">PAY NOW, SAVE 33%</a>
+          </span>
+    </div>
+    </div>
+</div>

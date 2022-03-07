@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300.75 274.54">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #c0392b;
+      }
+
+      .cls-2 {
+        font-size: 220px;
+        font-family: Flama-Medium, Flama;
+      }
+    </style>
+  </defs>
+  <title>Defensive erro</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g>
+        <path class="cls-1" d="M247.56,274.54H53.2a53.11,53.11,0,0,1-46-79.67L104.38,26.56a53.11,53.11,0,0,1,92,0l97.18,168.32a53.11,53.11,0,0,1-46,79.67ZM33.18,209.88a23.11,23.11,0,0,0,20,34.67H247.56a23.11,23.11,0,0,0,20-34.67L170.39,41.56a23.11,23.11,0,0,0-40,0Z"/>
+        <text class="cls-2" transform="translate(118.26 226.62)">!</text>
+      </g>
+    </g>
+  </g>
+</svg>

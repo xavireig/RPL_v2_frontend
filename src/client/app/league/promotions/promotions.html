@@ -1,0 +1,59 @@
+<div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-center h2">Promotion/Relegation</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="basics-settings clearfix">
+
+                <tbody>
+                <tr>
+                    <td class="text-right">OFF</td>
+                    <td class="text-center">
+                        <form class="setting-switches">
+                            <switch id="enabled" name="enabled" ng-model="pc.model.promotion.switchPos" class="light-green"></switch>
+                        </form>
+                    </td>
+                    <td class="text-left">ON</td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="basics-settings clearfix">
+                <tbody>
+                <tr>
+                    <td class="text-right"># of Divisions</td>
+                    <td class="text-left">
+                        <div class="dropdown pull-left" dropdown>
+                            <button ng-disabled="!pc.model.promotion.switchPos" class="dropdown-toggle" dropdown-toggle type="button" aria-haspopup="true" aria-expanded="true" style="width: 80px;margin-right:0;" id="num_div">
+                                <div style="display: inline-block;">{{pc.model.number_of_leagues}}</div>
+                                <span class="glyphicon glyphicon-menu-down"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="num_div" style="min-width: 80px;">
+                                <li ng-repeat="one in pc.model.number_of_leagues_list">
+                                    <a href="#" ng-click="pc.menu.checkNumber(one)">{{one}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-repeat="league in pc.view.toArray(pc.model.number_of_leagues) track by $index">
+                    <td class="text-right">{{$index+1}} Division</td>
+                    <td class="text-left form-inline">
+                        <input ng-model="pc.model.array_of_league_ids[$index].title" ng-disabled="pc.model.array_of_league_ids[$index].disabled || !pc.model.promotion.switchPos" type="text" class="form-control" placeholder="League id #:" style="width: 220px;">
+                        <span>{{pc.model.array_of_league_ids[$index].status}}</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <button ng-disabled="!pc.model.promotion.switchPos || pc.view.blockLinkLeagues()" class="btn btn-gray" ng-click="pc.menu.createOrUpdatePromotion()">Link leagues</button>
+        </div>
+    </div>
+
+</div>

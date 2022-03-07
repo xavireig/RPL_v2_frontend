@@ -1,0 +1,21 @@
+<div class="row">
+    <h2 class="col-xs-12 text-center red-background dialog-header m0" style="color: #fff;">Veto Transfer</h2>
+</div>
+<div class="row">
+    <div class="col-xs-12 text-center" style="padding-top: 12px; padding-bottom: 18px; color: #ffffff; font-size: 16px;">
+        <div class="row">
+            Are you sure you wish to veto this transfer?
+        </div>
+        <div class="row">
+            (This action cannot be undone)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 text-right">
+        <button ng-click="closeThisDialog()" style="color: #fff;" class="btn radius btn-big-dark-blue small-padding">Cancel</button>
+    </div>
+    <div class="col-xs-6 text-left">
+        <button ng-click="vm.menu.vetoBid()" style="color: #ffffff;" class="btn radius btn-big-red-dark small-padding">Veto</button>
+    </div>
+</div>

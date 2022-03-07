@@ -1,0 +1,1334 @@
+@media (max-width: 991px) {
+    /*=============================== Main =============================*/
+
+    .league .p15 {
+        padding: 0;
+    }
+
+    .chairman-dropdown:not(.my-club-pulldown) {
+        display: none;
+    }
+
+    .navbar-header {
+        padding-bottom: 4px;
+        padding-top: 2px;
+    }
+
+    .navbar-header .navbar-toggle {
+        border-color: #333;
+        float: left;
+        margin-right: 10px;
+        position: absolute;
+        left: -5px;
+        padding: 0;
+        border: 0;
+        z-index: 200;
+    }
+    .navbar-header .navbar-toggle:focus,
+    .navbar-header .navbar-toggle:hover {
+        outline: 0;
+    }
+    .navbar-header .navbar-toggle .icon-bar {
+        background-color: #2de1fc;
+        width: 52px;
+        height: 4px;
+        margin-bottom: 10px;
+    }
+
+    .navbar-header .navbar-toggle .fa {
+        width: 52px;
+        height: 52px;
+        background: url("../images/responsive/close-icon-thin.png") no-repeat center center;
+        background-size: 42px 42px;
+    }
+
+    .navbar-header .navbar-toggle .fa:before {
+        content: '';
+    }
+
+    .brand-block {
+        margin-left: 60px;
+    }
+    .navbar-brand {
+        padding-left: 0;
+        padding-right: 0;
+        /* display: none; */
+    }
+
+    .topbar-btn-block {
+        margin-left: -60px;
+    }
+    .dropdown-toggle .clip {
+        width: 35px;
+    }
+    .my-club-pulldown .club-name .club-name-title span {
+        font-size: 16px;
+    }
+    .my-club-pulldown .club-name .club-name-title {
+        margin-left: 10px;
+        font-size: 16px;
+    }
+    .topbar-btn {
+        padding-left: 0;
+        padding-top: 19px;
+        margin-right: -30px;
+    }
+
+    .small-sidebar {
+        width: 315px;
+        margin-left: -30px !important;
+        position: absolute;
+        left: -700px;
+        z-index: 200;
+        transition: all linear 0.3s;
+    }
+    .small-sidebar.expanded {
+        left: 15px;
+    }
+
+    .small-sidebar > aside {
+        padding: 0;
+    }
+
+    .sidebar-overlay {
+        background: rgba(0, 0, 0, 0.6);
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+        overflow: hidden;
+        -webkit-overflow-scrolling: touch;
+        outline: 0;
+        cursor: pointer;
+    }
+
+    .small-sidebar .md-default-theme {
+        display: none;
+    }
+
+    .small-sidebar .my-club > div {
+        display: none;
+    }
+
+    .side-menu li {
+        border: 3px solid #34495e;
+        border-left: 0;
+        border-bottom: 0;
+        margin: 0;
+        padding: 21px 25px;
+        font-size: 27px;
+        height: auto;
+    }
+
+    .side-menu li:hover {
+        border: 3px solid #34495e;
+        border-left: 0;
+        border-bottom: 0;
+    }
+
+    .side-menu li.active {
+        background-color: inherit;
+        color: inherit;
+    }
+
+    .side-menu li.active:before,
+    .side-menu li:hover:before,
+    .side-menu li:hover:after {
+        content: none;
+    }
+
+    .help-aside-block {
+        margin: 0;
+        border-top: 0;
+        padding: 0;
+    }
+    .help-aside-block a.help-header-btn,
+    .help-aside-block a span.glyphicon {
+        display: none;
+    }
+    .help-aside-block a {
+        display: block;
+        padding: 21px 25px;
+        color: #fff;
+        text-align: left;
+        text-transform: uppercase;
+        height: auto;
+        position: relative;
+        margin: 0;
+        font-family: 'Proxima Nova Bold';
+        border: 3px solid #34495e;
+        border-left: 0;
+    }
+    .help-aside-block a:hover {
+        text-decoration: none;
+    }
+    .help-aside-block a small {
+        font-size: 27px;
+    }
+
+    .match-result-table {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .light-bordered-tbl.match-result-table > tbody > tr > td {
+        width: 20%;
+        border-bottom: 0;
+    }
+
+    .table-responsive {
+        border: 0;
+    }
+
+    .team-stats-table-block {
+        margin-bottom: 20px;
+        border: 2px solid #34495e;
+    }
+
+    .team-stats-table-block h2 {
+        margin-top: -2px;
+        margin-left: -17px;
+        margin-right: -17px;
+        padding-top: 15px;
+        padding-bottom: 10px;
+        background-color: #000000;
+        text-align: center;
+        border-bottom: 2px solid #34495e;
+    }
+    .club-profile-block {
+        border: 0;
+    }
+
+    .season-last-tabs {
+        margin: 10px 0px;
+    }
+    .season-last-tabs li {
+        font-size: 12px;
+        margin: 4px 4px;
+        padding: 5px 13px;
+    }
+
+    .club-ownership-info-container {
+        padding-bottom: 15px;
+        padding-top: 5px;
+        margin-bottom: 40px;
+    }
+    .club-ownership-info {
+        line-height: 2 !important;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .club-logo-block {
+        padding: 0;
+    }
+    .club-info-block {
+        padding: 0;
+    }
+    .my-account-title {
+        font-size: 45px;
+        margin-left: -2px;
+    }
+    .edit-club-name-block .btn {
+        padding: 8px 14px;
+    }
+    .club-info-block .currently-team-table input {
+        width: 175px !important;
+        width: calc(100% - 0px) !important;
+    }
+    .club-info-block .relative-title {
+        float: none;
+        display: block;
+        padding: 0;
+    }
+    .club-info-block .relative-title input {
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+    .acc-control-btn-block .btn {
+        margin-bottom: 30px;
+    }
+    .acc-control-btn-block .btn:last-child {
+        margin-bottom: 30px;
+    }
+    .draft-chat-block td .clip {
+        width: 130px;
+    }
+    .draft-chat-block table {
+        table-layout: fixed;
+    }
+    .draft-players-block .input-group {
+        width: 40% !important;
+    }
+    .draft-players-block .input-group .btn {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .draft-players-block .draft-element {
+        width: 28%;
+    }
+    .draft-players-block .sortable-table {
+        overflow-x: auto;
+    }
+    .draft-players-block .draft-element .btn div:first-child {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 80%;
+    }
+    .draft-players-block .draft-club-dropdown .dropdown-menu {
+        left: calc(100% - 210px);
+    }
+    .name-your-club input.form-control {
+        font-size: 30px;
+    }
+
+    .create-club-button.next, .create-club-button.prev {
+        width: 33px;
+        height: 33px;
+        top: 30px;
+        border-width: 5px;
+    }
+    .create-club-button.prev {
+        left: 15px
+    }
+    .create-club-button.next {
+        right: 10px;
+    }
+    .owl-stage-outer a.item.img-responsive {
+        width: 75px !important;
+    }
+
+    /*============================== My Club ===================================*/
+    .club-profile-container .club-profile-block {
+        table-layout: fixed;
+        border: 2px solid #34495E;
+    }
+    .club-profile-container h2 {
+        padding-left: 5px;
+    }
+    .club-profile-block .club-logo div:first-child > div {
+        width: 60px;
+    }
+    .club-profile-block .club-logo .fantasy-club {
+        font-size: 16px;
+    }
+    .club-profile-result-container {
+        margin-left: -30px;
+        margin-right: -30px;
+        margin-top: -38px;
+    }
+    .club-profile-container {
+        padding: 0;
+    }
+    .club-profile-container .profile-info tr > td:first-of-type {
+        width: 120px;
+    }
+    .club-profile-container .profile-info span.label,
+    .club-profile-container .profile-info p {
+        font-size: 1.25rem;
+    }
+    .fixture-block {
+        padding: 0;
+    }
+    .fixture-block .club-profile-block {
+        border: 2px solid #34495E;
+    }
+    .fixture-block .fantasy-club {
+        text-align: left;
+        display: inline-block;
+        margin-left: 14px;
+    }
+    .fixture-block .fixt-res-table {
+        border-color: #556064;
+    }
+    .fixture-block .violet-text {
+        padding: 2px;
+    }
+    .fixture-block .fixt-res-block {
+        padding: 12px 5px;
+    }
+    .club-profile-news-block {
+        margin-top: 30px;
+        border: 2px solid #34495e;
+    }
+    .club-profile-news-block h2 {
+        margin-top: -40px;
+        margin-left: -30px;
+        margin-right: -30px;
+    }
+
+    .squad-table-container {
+        margin-left: -30px;
+        margin-right: -30px;
+    }
+    .squad-table-block {
+        padding: 0;
+    }
+    .squad-table-block .squad-table {
+        padding: 15px 0 10px;
+        height: auto;
+        border: 2px solid #34495E;
+    }
+    .squad-table .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .squad-block {
+        padding: 0 5px;
+    }
+    .squad-col {
+        padding: 0;
+    }
+    .squad-table-block .player-name {
+        font-size: 13px;
+    }
+    .squad-table-block .epl-team {
+        font-size: 12px;
+    }
+    .squad-table-block .squads-pos {
+        font-size: 14px;
+        padding-top: 1px;
+    }
+    /*.squad-table tr {
+        position: relative;
+    }
+    table.squad-table td[class*="col-"] {
+        display: inline-block;
+    }
+    .squad-table td:nth-child(2){
+        position: absolute;
+        left: 0;
+    }
+    .squad-table td:nth-child(4){
+        position: absolute;
+        right: 0;
+    }*/
+
+    /*=============================== Line Up =====================================*/
+    .profile-page {
+        padding: 0;
+        /*min-width: 528px;*/
+        /*margin-left: -5px;*/
+    }
+
+    .view-control-container {
+        margin-bottom: -15px;
+    }
+    .view-control {
+        list-style: none;
+        padding-left: 0;
+        display: inline-block;
+    }
+    .view-control li {
+        float: left;
+        font-size: 15px;
+        text-transform: uppercase;
+        padding: 5px 9px;
+        line-height: 20px;
+        border: 3px solid #2de1fc;
+        cursor: pointer;
+    }
+    .view-control li.active {
+        background-color: #2de1fc;
+        color: #121A23;
+    }
+    .view-content {
+        overflow-x: hidden;
+        display: none;
+    }
+
+    .player-pos-info {
+        width: calc(100% - 63px);
+        background: none;
+        border: 0;
+    }
+    .player-pos-info .small-teazer {
+        color: #fff;
+    }
+    .after-name {
+        background-position: right top;
+    }
+    .after-name .clip {
+        width: auto;
+        font-size: 16px;
+    }
+    .del {
+        background-size: 10px 10px;
+    }
+
+    .ngdialog.ngdialog-theme-default .ngdialog-close {
+        right: 24px;
+        top: 10px;
+    }
+
+    .profile-page .lineup-control {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .profile-page .match-week {
+        display: none;
+    }
+
+    .command-type {
+        display: none;
+    }
+    .field {
+        margin-top: 30px;
+    }
+
+    #listViewContent > h2 {
+        margin-bottom: 15px;
+    }
+
+    .btn-select .dropdown-menu {
+        margin: 0;
+        padding: 0;
+        margin-top: -1px;
+        background-color: #000000;
+        max-height: 400px;
+        overflow: auto;
+        border-radius: 0;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        border: 1px solid #34485E;
+    }
+    .btn-select .btn {
+        font-size: 15px;
+        border-radius: 0;
+        margin: 0 5px;
+        padding: 7px 17px 7px 13px;
+    }
+    .btn-select .caret {
+        border: 0;
+        margin-left: 10px;
+    }
+    .btn-select .caret:before {
+        position: absolute;
+        top: 10px;
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        content: "\f107";
+        font-size: 14px;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    .btn-select .btn:hover,
+    .btn-select .btn:focus,
+    .btn-select.open > .dropdown-toggle.btn-default:focus {
+        background-color: #000000;
+        color: #fff;
+        border-color: #34485E;
+    }
+    .btn-select .dropdown-menu > li > a {
+        background-color: #000000;
+        font-size: 12px;
+        font-weight: 500;
+        color: #fff;
+        position: relative;
+        border-bottom: 1px solid #34485E;;
+        padding: 11px 15px;
+    }
+    .btn-select .dropdown-menu > li.active > a:hover,
+    .btn-select .dropdown-menu > li.active > a:focus {
+        background-color: #000000;
+    }
+
+    /*============================== League ===================================*/
+    .league-content {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+    .point-table-container {
+        padding: 0;
+    }
+    .table-trsp {
+        table-layout: fixed;
+    }
+    .table-trsp thead > tr th:first-of-type {
+        width: 30px;
+        visibility: hidden;
+    }
+    .table-trsp th:nth-child(2) {
+        width: 150px;
+        visibility: hidden;
+    }
+    .table-trsp th:nth-child(3) {
+        width: 20px;
+    }
+    .table-trsp th:nth-child(4) {
+        width: 20px;
+    }
+    .table-trsp th:nth-child(5) {
+        width: 20px;
+    }
+    .table-trsp th:nth-child(6) {
+        width: 20px;
+    }
+    .table-trsp th:nth-child(7) {
+        width: 30px;
+    }
+    .table-trsp th:nth-child(8) {
+        width: 30px;
+    }
+    .table-trsp th:last-child {
+        display: none;
+    }
+    .table-trsp td:last-child {
+        display: none;
+    }
+    .fantasy-club {
+        max-width: 100%;
+    }
+
+    .transfer-activity-container {
+        margin-left: -30px;
+        margin-right: -30px;
+    }
+    .transfer-activity {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+    }
+    .transfer-activity th:first-child {
+        /*display: none;*/
+    }
+    .league .features {
+        display: none;
+    }
+    .league .league-links {
+        display: none;
+    }
+
+    div.dataTables_scrollBody table {
+        table-layout: fixed;
+    }
+
+    .transfer-title-block {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+    .transfer-activity-title {
+        margin-bottom: -5px;
+    }
+    .transfer-activity .light-head-tbl thead > tr th:first-of-type {
+        width: 10px;
+        background-color: #000000;
+    }
+    .transfer-activity .light-head-tbl th:nth-child(2) {
+        width: 110px;
+    }
+    .transfer-activity .light-head-tbl th:nth-child(3) {
+        width: 60px;
+    }
+    .transfer-activity .light-head-tbl th:nth-child(4) {
+        width: 50px;
+    }
+    .transfer-activity .light-head-tbl th:nth-child(5) {
+        width: 50px;
+    }
+    .transfer-activity .light-head-tbl th:nth-child(6) {
+        width: 80px;
+    }
+    .transfer-activity .light-head-tbl tbody > tr > td {
+        font-size: 12px;
+    }
+    .transfer-activity .light-head-tbl .player-name {
+        font-size: 12px;
+    }
+    .transfer-activity .light-head-tbl tbody > tr > td:last-child {
+        font-size: 11px;
+    }
+    .transfer-activity .light-head-tbl .epl-team {
+        font-size: 11px;
+    }
+    .transfer-activity .light-head-tbl .fantasy-club {
+        font-size: 12px;
+    }
+    .transfer-activity .light-head-tbl td img {
+        width: 10px;
+        height: 9px;
+    }
+
+    /*============================== Match Day ===================================*/
+    .match-day .light-head-tbl {
+        table-layout: fixed;
+    }
+
+    .match-day .light-head-tbl th {
+        width: 38px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .match-day .light-head-tbl tr th {
+        background: none;
+        border: 0;
+    }
+
+    .light-head-tbl th:first-of-type {
+        width: 55px;
+    }
+
+    .light-head-tbl tbody > tr > td:first-of-type {
+        font-size: 11px;
+    }
+
+    .light-head-tbl tbody > tr > td:first-of-type span {
+        margin-right: 0;
+    }
+
+    .rounded-num {
+        font-weight: normal;
+        font-size: 11px;
+        line-height: 27px;
+        width: 25px;
+        height: 25px;
+    }
+
+    .match-mini-tables-container {
+        padding-left: 10px;
+        padding-right: 0;
+    }
+    .match-result-tables-container {
+        margin-right: -5px;
+    }
+    .match-summary-tbl-container {
+        margin: 0;
+    }
+    .match-day .match-summary-tbl-content {
+        padding-left: 0;
+        margin-left: -5px;
+        padding-right: 0;
+        width: calc(100% + 10px);
+    }
+    .match-day .match-day-mini-tables {
+        table-layout: fixed;
+    }
+    .match-day .match-day-mini-tables th:nth-child(1) {
+        width: 180px;
+    }
+    .match-day .match-day-mini-tables th:nth-child(2) {
+        width: 60px;
+    }
+    .match-day .match-day-mini-tables th:nth-child(3) {
+        width: 120px;
+    }
+    .match-day .match-day-mini-tables > thead > tr > th {
+        font-size: 15px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+    .match-day .match-day-mini-tables .m-l30 {
+        margin-left: 25px;
+    }
+    .match-day .match-day-mini-tables .clip {
+        width: 130px;
+    }
+    .match-day .match-day-arrow {
+        width: 15px;
+        height: 15px;
+        border-width: 3px;
+    }
+    .match-day .fantasy-club {
+        font-size: 12px;
+    }
+    .match-day span.label {
+        font-weight: normal;
+        white-space: normal;
+        color: #8c929c;
+        font-size: 12px;
+    }
+    .match-day .round-count {
+        font-size: 2.6rem;
+        margin-top: -5px;
+    }
+    .match-round-status {
+        margin-left: -42px;
+        margin-right: -30px;
+    }
+    .match-round-status .owl-item .h2 {
+        font-size: 24px;
+    }
+    .match-round-status > div {
+        padding: 0;
+    }
+    .match-round-result-container {
+        margin-left: -30px;
+        margin-right: -25px;
+    }
+    .match-day-arrow-content {
+        padding: 0;
+        margin-top: -2px;
+    }
+    .match-round-content {
+
+    }
+
+    .match_day-team_info {
+        
+    }
+
+    .match-round-result {
+        padding: 0;
+    }
+    .match-club-logo {
+        padding-left: 0;
+        padding-right: 5px;
+    }
+    .match-club-name {
+        margin-top: -13px;
+    }
+    .match-club-name.club-first {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .match-club-name.club-second {
+        padding-left: 10px;
+        padding-right: 5px;
+    }
+    .match-day .round-content {
+        min-width: 110px;
+    }
+    .reorder-row-xs-sm {
+        /* -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg); */
+
+        /* direction: rtl; */
+        margin-bottom: 30px;
+    }
+    .reorder-row-xs-sm > .row {
+        /* -webkit-transform: rotate(-180deg);
+        -moz-transform: rotate(-180deg);
+        -ms-transform: rotate(-180deg);
+        -o-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+
+        direction: ltr; */
+    }
+    .match-day .reserve-key-content {
+        padding-left: 15px;
+        padding-right: 5px;
+    }
+    .match-day .reserve-key-header {
+        border-top: 1px solid #34495E;
+        background-color: #000000;
+        border-bottom: 1px solid #34495E;
+        border-left: 1px solid #34495E;
+        font-size: 15px;
+        padding-left: 20px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        margin-bottom: 5px;
+    }
+    .match-day .view-control-container {
+        margin-bottom: -5px;
+    }
+    .match-day .key {
+        margin-right: 1px;
+        min-height: 75px;
+        margin-bottom: 5px;
+    }
+    .match-day .key .svg-icons {
+        margin-right: 0;
+        max-width: 100%;
+    }
+    .match-day .key .ellipsis {
+        max-width: 100%;
+        word-wrap: break-word;
+        margin-bottom: 2px;
+        overflow: visible;
+        white-space: normal;
+        text-overflow: inherit;
+    }
+    .match-mini-tables-container {
+        display: none;
+    }
+
+    /*============================== Players ===================================*/
+    .player-page-title {
+        margin-left: -20px;
+        margin-top: 15px;
+        font-size: 40px;
+    }
+    .btn-filter-players {
+        border-color: #f39c12;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        margin-top: -30px;
+    }
+    .players-page .search-field-block span.glyphicon {
+        font-size: 16px;
+    }
+    .player-search-container {
+        margin-left: -30px;
+        margin-right: -30px;
+    }
+    .player-search-block {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .player-control-container {
+        margin-left: -30px;
+        margin-right: -30px;
+    }
+    .player-control-block {
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-top: -15px;
+        margin-bottom: 10px;
+    }
+    .player-control-tbl-container {
+        margin-left: -30px;
+        margin-right: -30px;
+        margin-bottom: 10px;
+    }
+    .player-control-tbl-block {
+        padding: 0;
+    }
+    .players-page .search-field-block {
+        width: calc(100% - 135px);
+    }
+    .players-page .search-field-block .form-control {
+        font-size: 16px;
+    }
+    .player-control-block .dropdown {
+        width: 31%;
+    }
+    .player-control-block .dropdown button {
+        border: 2px solid #A6D3EB;
+        border-radius: 0;
+    }
+    .player-control-block .dropdown label {
+        display: none;
+    }
+    .player-control-block .dropdown:last-of-type .dropdown-menu {
+        right: 0;
+        left: -47%;
+    }
+    .player-control-tbl-block .fixed-head-table thead > tr > th {
+        background: none;
+        text-align: left;
+        padding-bottom: 3px;
+    }
+    .player-control-tbl-block .fixed-head-table .border-right {
+        border: 0;
+    }
+
+    /*============================== Transfers ===================================*/
+    .transfer-dialog-bid .violet-text {
+        margin-left: 0 !important;
+    }
+    .transfer-dialog-bid strong.violet-text {
+        font-size: 20px;
+        display: inline-block;
+        margin-bottom: 10px;
+        margin-top: 15px;
+    }
+    .transfer-dialog-bid .checked-players-now .check-player-inf {
+        width: 202px;
+    }
+    .transfer-dialog-bid .input-symbol input {
+        width: 202px;
+    }
+    .transfer-dialog-bid .md-default-theme {
+        /*width: 202px;*/
+    }
+    .transfer-dialog-bid .md-select-value.md-select-placeholder {
+        width: 202px;
+    }
+    .ngdialog.ngdialog-theme-default.transfer-dialog .ngdialog-content {
+        max-width: 350px;
+        border-color: #34495e;
+        border-radius: 0;
+    }
+    .transfer-dialog-bid .input-symbol span.postcash {
+        display: none;
+    }
+    .ngdialog.ngdialog-theme-default.transfer-dialog .ngdialog-close {
+        display: none;
+    }
+    .transfer-dialog-bid .btn {
+        padding: 10px 28px;
+    }
+    .waiver-drop-player-container {
+        margin-top: -15px;
+    }
+
+    .transfer-page .confirm-order {
+        width: auto;
+    }
+    .transfer-page .m-b25 {
+        margin-right: -20px;
+    }
+    .create-bid-btn-container {
+        text-align: center;
+    }
+    .transfer-dialog-bid .input-symbol input.transfer-bid {
+        width: 100%;
+    }
+
+    .confirm-order strong {
+        display: inline-block;
+        max-width: 57%;
+    }
+    .confirm-modal-btn-block .btn {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /*============================== News ===================================*/
+    .news-title-container {
+        margin-left: -30px;
+        margin-right: -30px;
+    }
+    .news-title-text {
+        font-size: 40px;
+        padding-left: 10px;
+        margin-bottom: 5px;
+    }
+    .news-section {
+        margin-left: -30px;
+        margin-right: -30px;
+    }
+    .news-block {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .news-block h2 {
+        font-size: 26px;
+    }
+    .news-page .news-board p {
+        margin-top: 0;
+    }
+    .news-page .hedlines .decsr {
+        width: 100%;
+    }
+    .news-page .feature-item {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .news-page  .feature-title {
+        font-size: 26px;
+        margin-bottom: 0;
+    }
+    .injuries-container {
+        margin-left: -30px;
+        margin-right: -30px;
+    }
+    .injuries-container h2 {
+        font-size: 26px;
+        margin-bottom: 0;
+    }
+    .news-page .epl-team {
+        color: #9AA7C3;
+    }
+
+    /*.player {*/
+        /*width: 65px;*/
+    /*}*/
+    /*.player img, .player > div {*/
+        /*width: 65px !important;*/
+    /*}*/
+    /*.footballer-name {*/
+        /*margin-left: -20px;*/
+    /*}*/
+    /*.player-num {*/
+        /*top: 30px;*/
+        /*left: 30%;*/
+    /*}*/
+    /*.fwd {*/
+        /*height: 85px;*/
+    /*}*/
+    /*.mid {*/
+        /*height: 195px;*/
+    /*}*/
+    /*.def {*/
+        /*height: 95px;*/
+    /*}*/
+}
+
+@media (max-width: 991px)
+    and (orientation: landscape) {
+
+    /*=============================== Players =============================*/
+    .players-page div.dataTables_scrollBody table {
+        table-layout: auto;
+    }
+    .players-page .dataTables_scrollHeadInner {
+        width: 100% !important;
+    }
+    .players-page .dataTables_scrollHeadInner .dataTable.light-head-tbl {
+        width: 100% !important;
+    }
+
+}
+
+@media (max-width: 767px) {
+    /*=============================== Main =============================*/
+    .player-card .nav-tabs.nav-justified > li {
+        width: 50%;
+        float: left;
+    }
+
+    .topbar-btn {
+        margin-right: -46px;
+    }
+
+    /*============================== Match Day ===================================*/
+    .match-day-mini-tables .svg-icons {
+        white-space: normal;
+    }
+    .match-day-mini-tables .stat-item {
+        margin-right: 3px;
+    }
+}
+@media (max-width: 462px) {
+
+    .navbar-brand {
+        display: none;
+    }
+
+    /*=============================== Main =====================================*/
+    .acc-control-btn-block .btn {
+        margin-bottom: 10px;
+    }
+}
+@media (max-width: 383px) {
+
+    .navbar-brand {
+        display: none;
+    }
+    /*=============================== Line Up =====================================*/
+    .match-round-result-container {
+        margin-right: -21px;
+    }
+
+    .match-result-tables-container {
+        margin-right: -9px;
+    }
+    .navbar-brand {
+        display:none;
+    }
+}
+@media (max-width: 339px) {
+
+    .navbar-brand {
+        display: none;
+    }
+
+    /*=============================== Main =============================*/
+    .player-card {
+        padding: 10px;
+    }
+    .tab-list {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .confirm-revoke-dialog.player-card {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .navbar-brand {
+        display:none;
+    }
+}
+
+@media (max-width: 339px) {
+
+    .navbar-brand {
+        display: none;
+    }
+
+    /*=========================== My Club ===========================*/
+    .league .p15,
+    .team-stats-table-block {
+        min-width: 285px;
+        margin-left: -10px;
+    }
+    .club-profile-news-block {
+        min-width: 285px;
+        margin-left: -10px;
+    }
+    .navbar-brand {
+        display:none;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .navbar-brand {
+        display: none;
+    }
+
+    /*=============================== Line Up =====================================*/
+    .match-result-table {
+        display: block;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 991px) {
+    /*============================== Match Day ===================================*/
+    .match-summary-tbl-content .table-responsive {
+        overflow-x: hidden;
+    }
+    .match-day {
+        padding-left: 19px;
+    }
+
+    /*============================== Players ===================================*/
+    .player-control-block .dropdown-toggle .clip {
+        width: 67px;
+    }
+    .player-control-block .dropdown button span {
+        margin-left: 5px;
+        font-size: 12px;
+        top: 4px;
+        right: -5px;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 567px) {
+    /*=============================== Line Up =====================================*/
+    .profile-page {
+        /*min-width: 440px;*/
+    }
+
+    .field {
+        /*background-size: 391px 450px; */
+        /* width: 126%; */
+        /* margin-left: -13%; */
+         width: 110%;
+         margin-left: -5%;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 479px) {
+    /*=============================== Line Up =====================================*/
+    .profile-page {
+        /*min-width: 335px;*/
+    }
+
+    .field {
+        width: 134%;
+        margin-left: -17%;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 374px) {
+    /*============================== Main ===================================*/
+    .brand-block {
+        margin-left: 54px;
+    }
+
+    .topbar-btn-block {
+        margin-left: -54px;
+    }
+
+    .topbar-btn {
+        margin-right: -48px;
+    }
+
+    .my-account-title {
+        font-size: 41px;
+    }
+    .draft-chat-block td .clip {
+        width: 83px;
+    }
+
+    /*============================ My Club ======================================*/
+    .fixture-block .table td:nth-child(3) {
+        width: 42px;
+    }
+    .fixture-block .fantasy-club {
+        margin-left: 5px;
+    }
+
+    /*=============================== Line Up =====================================*/
+    .profile-page {
+        /*min-width: 280px;*/
+    }
+
+    .field {
+        width: 160%;
+        margin-left: -30%;
+    }
+
+    .after-name {
+        padding-right: 15px;
+    }
+
+    .match-day .round-content {
+        min-width: 90px;
+    }
+    .match-round-status .owl-item .h2 {
+        font-size: 20px;
+    }
+    .match-day .round-count {
+        font-size: 1rem;
+    }
+    .match-round-result-container {
+        margin-left: -35px;
+        margin-right: -25px;
+    }
+    .match-result-tables-container {
+        margin-right: -5px;
+    }
+
+    .player-control-block .dropdown-toggle .clip {
+        width: 33px;
+    }
+    .ngdialog.ngdialog-theme-default.transfer-dialog .ngdialog-content {
+        max-width: 300px;
+    }
+    .transfer-dialog-bid .checked-players-now .check-player-inf {
+        width: 174px;
+    }
+    .transfer-dialog-bid .input-symbol input {
+        width: 172px;
+    }
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    /*============================== Main ===================================*/
+    .container {
+        width: 100%;
+    }
+
+    .navbar-toggle {
+        display: inherit;
+    }
+}
+
+@media (min-width: 992px) {
+    /*============================ League ======================================*/
+    .fixture-container {
+        float: right;
+    }
+
+    /*============================ My Club ======================================*/
+    .club-ownership-info-container {
+        margin-bottom: 30px;
+    }
+
+    .squad-table-block .squad-table {
+        height: auto;
+        padding: 10px 0;
+    }
+    .squad-col {
+        padding: 0 10px;
+    }
+}
+

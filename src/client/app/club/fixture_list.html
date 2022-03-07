@@ -1,0 +1,41 @@
+<div>
+    <h2 class="text-center">fixtures/results</h2>
+    <div class="club-profile-block fixt-res-block" id="match_list">
+        <div class="fixt-res-table round-{{match.round.is_done ? 'done' : 'open'}}" ng-repeat="match in flc.model.fixtures" id="match{{match.round.number}}" ng-click="flc.menu.getMoveMatchDay(match.id, match.round.week)">
+            <style type="text/css">
+                #clubmain_{{match.home_club.id}} .st0{fill:{{match.home_club.color1}} !important;}
+                #clubmain_{{match.home_club.id}} .st1{fill:{{match.home_club.color2}} !important;}
+                #clubmain_{{match.home_club.id}} .st2{fill:{{match.home_club.color3}} !important;}
+                #clubmain_{{match.away_club.id}} .st0{fill:{{match.away_club.color1}} !important;}
+                #clubmain_{{match.away_club.id}} .st1{fill:{{match.away_club.color2}} !important;}
+                #clubmain_{{match.away_club.id}} .st2{fill:{{match.away_club.color3}} !important;}
+            </style>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <div class="violet-text">RPL Round<div>{{match.rpl_round_number}}</div></div>
+                    </td>
+                </tr>
+                <tr class="fixt-inf">
+                    <td class="text-right clip"><span class="fantasy-club">{{match.home_club.name | limitTo: 20}}{{match.home_club.name.length > 20 ? '...' : ''}}</span></td>
+                    <td width="40">
+                        <div id="clubmain_{{match.home_club.id}}" ng-include="match.home_club.crest_pattern.svg_url"></div>
+                    </td>
+                    <td>
+                        <span class="bigger-font" ng-if="match.round.full_status != 'pending'">{{match.home_score}} - {{match.away_score}}</span>
+                        <span class="bigger-font" ng-if="match.round.full_status == 'pending'"> - </span>
+                    </td>
+                    <td width="40"><div id="clubmain_{{match.away_club.id}}" ng-include="match.away_club.crest_pattern.svg_url"></div></td>
+                    <td class="text-left clip"><span class="fantasy-club">{{match.away_club.name | limitTo: 20}}{{match.away_club.name.length > 20 ? '...' : ''}}</span></td>
+                </tr>
+                <tr ng-switch="match.round.full_status">
+                    <td colspan="5" class="text-center" ng-switch-when="completed"><span class="violet-text">Full Time</span></td>
+                    <td colspan="5" class="text-center" ng-switch-when="running"><span class="violet-text">In progress</span></td>
+                    <td colspan="5" class="text-center" ng-switch-default><span class="violet-text"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

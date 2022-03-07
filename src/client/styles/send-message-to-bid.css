@@ -1,0 +1,34 @@
+.message {
+  font-family: 'flamamedium';
+  font-weight: 600;
+  color: #ffffff;
+  padding-left: 40px;
+  padding-right: 20px;
+}
+
+.message-text {
+  font-family: 'Proxima Nova Bold';
+  color: #aaaaaa;
+  font-size: 14px;
+  padding-left: 0px;
+}
+
+.message-header {
+  font-size: 20px;
+  padding-top: 10px;
+}
+
+.message-input {
+  width: 100%;
+}
+
+.message-row {
+  padding-left: 61px;
+  padding-right: 61px;
+}
+
+.message-show {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+}

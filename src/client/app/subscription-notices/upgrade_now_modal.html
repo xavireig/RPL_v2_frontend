@@ -1,0 +1,41 @@
+<div ng-controller="SubscriptionModalController as vm">
+    <div class="row" style="color: white;">
+        <div class="col-xs-12">
+
+            <div class="row text-center text-capitalize confirmation-title">
+                UPGRADE NOW
+            </div>
+
+            <span ng-click="closeThisDialog()"
+                  ng-include="'images/dialog_window/x_close.svg'"
+                  class="close-dialog-icon"></span>
+
+            <div class="text-area">
+                <div class="text-center">
+                    You're currently using a free account. Upgrade to a subscription for just &pound;1.50/month
+                    and enjoy the benefits while supporting our site:
+                </div>
+
+                <div class="list-info">
+                    <ul class="list-unstyled">
+                        <li>- Get &pound;1.50M in transfer funds back</li>
+                        <li>- Use any of 7 formation options</li>
+                        <li>- Live scoring on match days</li>
+                        <li>- Auto-sub</li>
+                        <li>- Ad-free</li>
+                    </ul>
+                </div>
+
+                <div class="text-center">
+                   <span class="text-mark">Become a subscriber and support the site for just &pound;1.50/month.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 text-center btn-section">
+          <span ng-click="vm.payNow('£1.5 / month')">
+            <a href="#" class="btn btn-green">JUST &pound;1.50/MONTH</a>
+          </span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+.entire-league-msg.ngdialog-theme-default .ngdialog-content, .msg-content, .msg-area {
+    background-color: #111a23;
+}
+
+.entire-league-msg.ngdialog-theme-default .ngdialog-content {
+    border-radius: 20px;
+    border: 1px solid white;
+}
+
+.entire-league-msg.ngdialog-theme-default .ngdialog-content {
+    width: 44%;
+}
+
+.txt-center {
+    text-align: center;
+}
+
+.msg-header {
+    font-size: 370%;
+}
+
+.msg-content .form-horizontal {
+    padding: 5%;
+}
+
+.msg-area, .msg-input {
+    width :80%;
+    color: white;
+}
+
+.msg-area {
+    border-radius: 15px;
+    width: 88%;
+    padding: 2%;
+}
+
+.entire-league-msg h2, .msg-info {
+    color: white;
+}
+
+.msg-info {
+    padding-left: 13%;
+}
+
+.send-btn {
+    margin-left: 38%;
+}
+
+.send-btn .btn {
+    border-color: #2de1fc;
+    padding: 7px 30px;
+    margin-top: 15px;
+}
+
+.msg-content .form-horizontal .form-group .col-sm-10 {
+    padding-left: 6%;
+    padding-bottom: 2%;
+}
+
+.msg-content .form-horizontal {
+    padding-bottom: 0px;
+    width: 97%;
+}

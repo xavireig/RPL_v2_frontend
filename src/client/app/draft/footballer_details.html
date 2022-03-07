@@ -1,0 +1,34 @@
+<div >    
+    <div  class="col-md-1 col-xs-3 epl-flag">
+        <img width="65" height="85" alt="not found" ng-src={{vm.model.footballerDetails.epl_image_path}} />
+    </div>
+    <div  class="col-md-3 col-xs-9 text-center footballer-info">
+        <div class="row footballer-info-row ">
+            <h3 class="footballer-name ">{{ vm.model.footballerDetails.full_name }}</h3>
+        </div>
+        <div class="row footballer-info-row">
+            <div class="col-xs-12">
+                <span>{{ vm.model.footballerDetails.position }} - {{ vm.model.footballerDetails.real_team.name }}</span>
+            </div>
+        </div>
+        <div class="row footballer-info-row">
+            <div class="col-xs-6"><span class="footballer-info-key">AGE:</span> {{vm.model.footballerDetails.age }} </div>
+            <div class="col-xs-6"> <span class="footballer-info-key">HEIGHT:</span> {{ (vm.model.footballerDetails.height*0.032808).toFixed(1) }}"</div>
+        </div>
+
+        <div class="row footballer-info-row">
+            <div class="col-xs-6 wrap-nationality"><span class="footballer-info-key">NAT:</span> {{ vm.model.footballerDetails.country }}</div>
+            <div class="col-xs-6"><span class="footballer-info-key">WEIGHT:</span> {{ vm.model.footballerDetails.weight }} kg</div>
+        </div>
+    </div>
+    <div  class="col-md-2 col-xs-12 info-padding">
+        <span>
+            <button class="draft-queue-btn"  ng-click="addToQueue(vm.model.footballerDetails)"> QUEUE </button>
+            <button class="draft-btn" ng-click="draftPlayer(vm.model.footballerDetails)"> DRAFT </button>
+        </span>
+         <span ng-click="vm.model.footballerDetails = null"
+            ng-include="'images/dialog_window/x_close.svg'"
+            class="close-selected-footballer-icon pull-right">
+        </span>
+    </div>
+</div>

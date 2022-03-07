@@ -1,0 +1,39 @@
+.small-btn {
+    font-size: 14px
+}
+
+.ngdialog.ngdialog-theme-default.custom-width-800 .ngdialog-content {
+    width: 800px;
+    color: #ffffff;
+}
+
+.ngdialog.player-card.custom-border .ngdialog-content {
+    border: none
+}
+
+#league-type.customizing-fixtures {
+    padding-bottom: 0px;
+}
+
+#league-type.customizing-fixtures-menu-item {
+    text-align: left;
+    color: #ffffff;
+}
+
+#league-type.settings-page {
+    padding: 0 15px 0;
+}
+
+.confirmation-dialog .ngdialog-content  #new-confirmation-title.confirmation-title {
+    -moz-border-radius: 25px 25px 0 0;
+    -webkit-border-radius: 25px 25px 0 0;
+    background-color: #2de1fc;
+    border-radius: 25px 25px 0 0;
+    font-family: 'flamamedium';
+    font-size: 20px;
+    letter-spacing: .04em;
+    font-weight: bold;
+    margin: 0;
+    padding: 8px 20px;
+    color: #ffffff;
+}

@@ -1,0 +1,28 @@
+<div class="row" style="color: white;">
+    <div class="col-xs-12">
+        <span ng-click="closeThisDialog()"
+              ng-include="'images/dialog_window/x_close.svg'"
+              class="close-dialog-icon"></span>
+        <div class="row text-center title">
+            {{ngDialogData.title}}
+        </div>
+
+        <div class="row text-center body" style="padding: 10px;">
+            <span ng-bind-html="ngDialogData.text"></span>
+        </div>
+
+        <div class="row text-center">
+            <span ng-click="vm.menu.cancel()">
+                <a href="#" class="btn btn-gray">{{ngDialogData.cancel.buttonTitle}}</a>
+            </span>
+            <span ng-click="vm.menu.confirm()">
+                <a href="#" class="btn btn-red">{{ngDialogData.confirm.buttonTitle}}</a>
+            </span>
+
+            <!-- <span ng-click="vm.menu.counterOffer()" ng-show = {{ngDialogData.counterOffer}} >
+                <a href="#" class="btn btn-gray">{{ngDialogData.counterOffer.buttonTitle}}</a>
+            </span> -->
+
+        </div>
+    </div>
+</div>

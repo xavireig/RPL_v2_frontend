@@ -1,0 +1,57 @@
+.oneFixture .row .col-xs-8 .epl-home-away-team {
+    color: white;
+    padding-left: 20px;
+    font-weight: 600;
+}
+
+.oneFixture {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.scroll-epl-fixtures {
+  height: 645px;
+  overflow: scroll;
+  overflow-x: hidden;
+  border: 1px solid #34495E;
+}
+
+.table-border {
+  padding-bottom: 45px;
+}
+
+.epl-fixtures-table {
+    padding-left: 15px;
+    margin-bottom: 15px;
+}
+
+.epl-fixtures-table thead > tr > th {
+    border-bottom: 1px solid #34495E;
+}
+
+.epl-fixtures-table thead > tr th:first-of-type,
+.epl-fixtures-table thead > tr th:last-of-type {
+    padding: 0;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.epl-fixtures-table tbody > tr > td {
+    color: #A6D3EB;
+    font-size: 15px;
+    border: 0;
+}
+
+.epl-fixtures-table tbody > tr {
+    margin-bottom: 20px;
+}
+
+.epl-fixtures-table tbody > tr > td > div {
+    margin-bottom: 5px;
+}
+
+.epl-home-away-team {
+  padding-left: 13px;
+  font-weight: bold;
+  color: #FFFFFF;
+}

@@ -1,0 +1,613 @@
+@font-face {
+    font-family: 'flamalight';
+    src: url('/fonts/flama-light-webfont.eot');
+    src: url('/fonts/flama-light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/flama-light-webfont.woff2') format('woff2'),
+    url('/fonts/flama-light-webfont.woff') format('woff'),
+    url('/fonts/flama-light-webfont.ttf') format('truetype'),
+    url('/fonts/flama-light-webfont.svg#flamalight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'flamamedium';
+    src: url('/fonts/flama-medium-webfont.eot');
+    src: url('/fonts/flama-medium-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/flama-medium-webfont.woff2') format('woff2'),
+    url('/fonts/flama-medium-webfont.woff') format('woff'),
+    url('/fonts/flama-medium-webfont.ttf') format('truetype'),
+    url('/fonts/flama-medium-webfont.svg#flamamedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'flamabold';
+    src: url('/fonts/flama-bold/flama-bold.eot');
+    src: url('/fonts/flama-bold/flama-bold.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/flama-bold/flama-bold.woff2') format('woff2'),
+    url('/fonts/flama-bold/flama-bold.woff') format('woff'),
+    url('/fonts/flama-bold/flama-bold.ttf') format('truetype'),
+    url('/fonts/flama-bold/flama-bold.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'flamabasic';
+    src: url('/fonts/flama-basic/flama-basic.eot');
+    src: url('/fonts/flama-basic/flama-basic.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/flama-basic/flama-basic.woff2') format('woff2'),
+    url('/fonts/flama-basic/flama-basic.woff') format('woff'),
+    url('/fonts/flama-basic/flama-basic.ttf') format('truetype'),
+    url('/fonts/flama-basic/flama-basic.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'flamalight';
+    src: url('/fonts/flama-light-webfont.eot');
+    src: url('/fonts/flama-light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/flama-light-webfont.woff2') format('woff2'),
+    url('/fonts/flama-light-webfont.woff') format('woff'),
+    url('/fonts/flama-light-webfont.ttf') format('truetype'),
+    url('/fonts/flama-light-webfont.svg#flamalight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'flamamedium';
+    src: url('/fonts/flama-medium-webfont.eot');
+    src: url('/fonts/flama-medium-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/flama-medium-webfont.woff2') format('woff2'),
+    url('/fonts/flama-medium-webfont.woff') format('woff'),
+    url('/fonts/flama-medium-webfont.ttf') format('truetype'),
+    url('/fonts/flama-medium-webfont.svg#flamamedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/*Proxima Nova Regular*/
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('/fonts/proximanova-regular.eot');
+    src: url('/fonts/proximanova-regular.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/proximanova-regular.woff2') format('woff2'),
+    url('/fonts/proximanova-regular.woff') format('woff'),
+    url('/fonts/proximanova-regular.ttf') format('truetype'),
+    url('/fonts/proximanova-regular.svg') format('svg');
+    
+}
+/*Proxima Nova Bold*/
+@font-face {
+    font-family: 'Proxima Nova Bold';
+    src: url('/fonts/proximanova-bold.eot');
+    src: url('/fonts/proximanova-bold.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/proximanova-bold.woff2') format('woff2'),
+    url('/fonts/proximanova-bold.woff') format('woff'),
+    url('/fonts/proximanova-bold.ttf') format('truetype'),
+    url('/fonts/proximanova-bold.svg') format('svg');
+    
+}
+
+/*Proxima Nova Light*/
+@font-face {
+    font-family: 'Proxima Nova Light';
+    src: url('/fonts/proximanova-light-webfont.eot');
+    src: url('/fonts/proximanova-light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/proximanova-light-webfont.woff2') format('woff2'),
+    url('/fonts/proximanova-light-webfont.woff') format('woff'),
+    url('/fonts/proximanova-light-webfont.ttf') format('truetype'),
+    url('/fonts/proximanova-light-webfont.svg') format('svg');
+
+}
+
+
+/*Proxima Nova Semibold*/
+@font-face {
+    font-family: 'Proxima Nova Semibold';
+    src: url('/fonts/proximanova-semibold.eot');
+    src: url('/fonts/proximanova-semibold.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/proximanova-semibold.woff2') format('woff2'),
+    url('/fonts/proximanova-semibold.woff') format('woff'),
+    url('/fonts/proximanova-semibold.ttf') format('truetype'),
+    url('/fonts/proximanova-semibold.svg#proxima_novabold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+.landing-wrapper .more {
+    color: #FCFEEF;
+    text-transform: uppercase;
+    font-size: 30px;
+}
+div.landing-wrapper {
+    background-color: #000000;
+    color: #000000;
+}
+
+.landing-wrapper .no-lr-margins {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.landing-wrapper .header {
+    line-height: 50px;
+    border-bottom: 2px solid #1C5379;
+    display: table;
+    width: 100%;
+    padding-bottom: 0px;
+}
+
+.landing-wrapper .cockpit {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.landing-wrapper .cockpit img {
+    height: 18pt;
+}
+
+.landing-wrapper .logo {
+    max-width: 150px;
+    min-width: 75px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.landing-wrapper .m20{
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+.landing-wrapper .p20{
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+.landing-wrapper .m40{
+    margin-top: 40px !important;
+    margin-bottom: 20px !important;
+}
+
+.landing-wrapper .m60{
+    margin-top: 60px !important;
+    margin-bottom: 60px !important;
+}
+
+.landing-wrapper .m80{
+    margin-top: 80px !important;
+    margin-bottom: 80px !important;
+}
+
+.landing-wrapper .m-t40{
+    margin-top: 40px !important;
+}
+
+.landing-wrapper .btn {
+    margin: 0;
+    font-family: 'Proxima Nova Bold';
+    font-size: 14pt;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 12px 22px;
+    text-align: center;
+    color: #fff;
+    transition: all ease-out 0.3s;
+    border-width: 0px;
+}
+
+.landing-wrapper .btn:hover, .btn:focus {
+    /* background-color: rgba(52,72,94,0.2); */
+    color: #fff;
+}
+
+.landing-wrapper .btn-green {
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: #2ECC71;
+}
+
+.landing-wrapper .btn-blue {
+    border-color: #2de1fc;
+    background-color: #2de1fc;
+    border-radius: 25px;
+    font-size: 12pt;
+    min-width: 90%;
+    padding: 10px 10px;
+    letter-spacing: 0.1em;
+}
+
+.landing-wrapper .btn-gray {
+    border-color: #AAAAAA;
+    background-color: #AAAAAA;
+    border-radius: 25px;
+    font-size: 12pt;
+    min-width: 90%;
+    padding: 10px 10px;
+    letter-spacing: 0.1em;
+}
+
+.landing-wrapper .btn-green:hover {
+    background-color: rgba(161,255,115,0.2);
+    border-color: #A2FF73;
+}
+
+.landing-wrapper .title-image {
+    height: 60pt;
+}
+
+.landing-wrapper .title-text {
+    font-family: 'flamabold';
+    letter-spacing: 0.1em;
+    font-size: 55pt;
+    color: #FCFEEF;
+}
+
+.green-letter{
+    color: #2ECC71;
+    font-family: 'flamabold';
+    letter-spacing: 0.1em;
+    font-size: 55pt;
+}
+
+.landing-wrapper .subtitle {
+    font-family: 'flamabasic';
+    text-transform: uppercase;
+    font-size: 26pt;
+    letter-spacing: 0.1em;
+    color: #2de1fc;
+}
+
+.landing-wrapper .input-group-additional {
+    border: solid 3px #1C5379 !important;
+    border-radius: 10px;
+}
+
+.landing-wrapper .input-additional {
+    background-color: #000000 !important;
+    border: none !important;
+    font-family: 'Proxima Nova Bold';
+    font-size: 20pt;
+    letter-spacing: 0.14em;
+    padding: 24px 5px;
+    color: #FCFEEF;
+}
+
+.landing-wrapper .input-addon-additional {
+    background-color: #000000 !important;
+    border: none !important;
+    font-family: 'Proxima Nova Bold';
+    font-size: 20pt;
+    letter-spacing: 0.14em;
+    color: #9AA7C3;
+}
+
+.landing-wrapper .cards {
+    font-family: 'proximan_nova_regular';
+    color: #FCFEEF;
+    letter-spacing: 0.1em;
+}
+
+.landing-wrapper .cards .card-title {
+    font-size: 20pt;
+    text-transform: uppercase;
+}
+
+.landing-wrapper .cards p {
+    font-size: 12pt;
+}
+
+.landing-wrapper .green-title {
+    font-family: 'flamalight';
+    font-size: 60pt;
+    color: #2ECC71;
+}
+
+.landing-wrapper .sub-green-title {
+    font-family: 'flamalight';
+    font-size: 21pt;
+    color: #2ECC71;
+    padding-bottom: 90px;
+}
+
+.landing-wrapper .step-number {
+    font-family: 'flamamedium';
+    font-size: 50pt;
+    color: #A2FF73;
+}
+
+.landing-wrapper .step-content {
+    font-family: 'proximan_nova_regular';
+    letter-spacing: 0.04em;
+    color: #FCFEEF;
+}
+
+.landing-wrapper .step-title {
+    font-size: 30px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.landing-wrapper .step-text {
+    font-size: 20px;
+}
+
+.landing-wrapper .list {
+    font-family: 'proximan_nova_regular';
+    display: table;
+}
+
+.landing-wrapper .list-image-container {
+    padding-right: 30px;
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+    text-align: right;
+    width: 25%;
+}
+
+.landing-wrapper .list-image-container img {
+    width: 100px;
+}
+
+.landing-wrapper .list-title {
+    font-size: 30pt;
+    letter-spacing: 0.04em;
+    color: #2ECC71;
+}
+
+.landing-wrapper .list-content {
+    font-size: 20pt;
+    letter-spacing: 0.04em;
+    color: #FCFEEF;
+}
+
+.landing-wrapper .proposition {
+    border-radius: 30px;
+    border: solid 5px red;
+}
+
+.landing-wrapper .center-proposition {
+
+}
+
+.landing-wrapper .left-proposition {
+    padding: 235px 30px 40px 46px;
+}
+
+.landing-wrapper .right-proposition {
+    padding: 95px 58px 40px 29px;
+}
+
+.landing-wrapper .proposition-header {
+    font-family: 'flamamedium';
+    font-size: 40pt;
+    color: #FCFEEF;
+}
+
+.landing-wrapper .left-proposition .lower-rounded > ul, .right-proposition .lower-rounded > ul {
+    height: 210px;
+}
+
+.landing-wrapper .center-proposition .lower-rounded > ul {
+    height: 300px;
+}
+
+.landing-wrapper .proposition-subheader {
+    font-family: 'Proxima Nova Bold';
+    font-size: 20pt;
+    color: #FCFEEF;
+    letter-spacing: 0.04em;
+}
+
+.landing-wrapper .underneath-header {
+    font-family: 'Proxima Nova Bold';
+    font-size: 16pt;
+    letter-spacing: 0.04em;
+}
+
+.landing-wrapper .proposition-list {
+    list-style: none;
+    padding-left: 10%;
+}
+
+.landing-wrapper .proposition-list-element {
+  font-family: 'proximan_nova_regular';
+  font-size: 13pt;
+  letter-spacing: 0.04em;
+  color: #000000;
+}
+
+.landing-wrapper .proposition-list-element img {
+  width: 13pt;
+}
+
+.landing-wrapper .dark-green-background {
+  background-color: #004f2d;
+}
+
+.landing-wrapper .green-background {
+  background-color: #2ECC71;
+}
+
+.landing-wrapper .light-green-background {
+  background-color: #018e42;
+}
+
+.landing-wrapper .white-background {
+  background-color: #FCFEEF;
+}
+
+.landing-wrapper .upper-rounded {
+  border-radius: 20px 20px 0 0;
+}
+
+.landing-wrapper .lower-rounded {
+  border-radius: 0 0 20px 20px;
+}
+
+@media (max-width: 1200px) {
+  .landing-wrapper .title-text {
+    font-size: 45pt;
+  }
+
+  .green-letter {
+      font-size: 45pt;
+  }
+
+  .landing-wrapper .input-additional {
+    border: solid 3px #1C5379 !important;
+  }
+
+  .landing-wrapper .proposition-header {
+    font-size: 30pt;
+  }
+
+  .landing-wrapper .proposition-subheader {
+    font-size: 15pt;
+  }
+
+  .landing-wrapper .underneath-header {
+    font-size: 13pt;
+  }
+  .landing-wrapper .proposition-list-element {
+    font-size: 11pt;
+  }
+
+  .landing-wrapper .proposition-list-element img {
+    width: 11pt;
+  }
+
+  .landing-wrapper .btn-blue {
+    font-size: 9pt;
+  }
+
+  .landing-wrapper .btn-gray {
+    font-size: 9pt;
+  }
+}
+
+@media (max-width: 992px) {
+  .landing-wrapper .m80{
+    margin-top: 60px !important;
+    margin-bottom: 60px !important;
+  }
+
+  .landing-wrapper .title-text {
+    font-size: 34pt;
+  }
+
+  .green-letter {
+      font-size: 34pt;
+  }
+  .landing-wrapper .subtitle {
+    font-size: 16pt;
+  }
+  .landing-wrapper .btn {
+    font-size: 12pt;
+    padding: 12px 22px;
+  }
+
+  .landing-wrapper .green-title {
+    font-size: 50pt;
+  }
+
+  .landing-wrapper .step-number {
+    font-size: 40pt;
+  }
+
+  .landing-wrapper .step-title {
+    font-size: 25pt;
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
+
+  .landing-wrapper .step-text {
+    font-size: 18pt;
+  }
+
+  .landing-wrapper .list-image-container img {
+    width: 80px;
+  }
+
+  .landing-wrapper .list-title {
+    font-size: 25pt;
+  }
+
+  .landing-wrapper .list-content {
+    font-size: 15pt;
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-wrapper .m80 {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .landing-wrapper .title-text {
+    font-size: 34pt;
+  }
+
+  .green-letter {
+      font-size: 34pt;
+  }
+
+  .landing-wrapper .btn {
+    font-size: 10pt;
+    padding: 5px 10px;
+  }
+
+  .landing-wrapper .input-additional {
+    font-size: 13pt;
+    padding: 20px 5px;
+  }
+
+  .landing-wrapper .green-title {
+    font-size: 40pt;
+  }
+
+  .landing-wrapper .step-number {
+    font-size: 30pt;
+  }
+
+  .landing-wrapper .step-title {
+    font-size: 20pt;
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
+
+  .landing-wrapper .step-text {
+    font-size: 15pt;
+  }
+
+  .landing-wrapper .list-image-container {
+    padding-right: 10px;
+  }
+
+  .landing-wrapper .list-image-container img {
+    width: 50px;
+  }
+
+  .landing-wrapper .list-title {
+    font-size: 20pt;
+  }
+
+  .landing-wrapper .list-content {
+    font-size: 13pt;
+  }
+}
+
+.landing-wrapper .custom-jumbotron {
+  background-color: #1c5379;
+  padding-top: 20px;
+  border-radius: 25px;
+  margin-top: 60px;
+}

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89 96">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #000000;
+        stroke: #2ecc71;
+        stroke-width: 4px;
+      }
+
+      .cls-1, .cls-3 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        fill: #a2ff73;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #fcfeef;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <title>Crest</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g>
+        <path class="cls-1" d="M2,2H87a0,0,0,0,1,0,0V51.5A42.5,42.5,0,0,1,44.5,94h0A42.47,42.47,0,0,1,2,51.53V2A0,0,0,0,1,2,2Z"/>
+        <g>
+          <g>
+            <rect class="cls-2" x="25" y="35" width="10" height="27" rx="1.65" ry="1.65"/>
+            <rect class="cls-2" x="41" y="18" width="10" height="44" rx="1.65" ry="1.65"/>
+            <rect class="cls-2" x="57" y="26" width="10" height="37" rx="1.65" ry="1.65"/>
+          </g>
+          <g>
+            <line class="cls-3" x1="18" y1="22" x2="18" y2="68"/>
+            <line class="cls-3" x1="72" y1="68" x2="18" y2="68"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,80 @@
+<div class="transfer-dialog-bid">
+
+    <div class="row">
+        <h2 class="col-xs-12 text-center" style="color: #fff;">Create your BID</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0">
+            <strong class="violet-text" style="margin-left: 25px;">Selected waivers player:</strong><br/>
+            <div class="checked-players-now">
+                <div class="check-player-inf pull-left">
+                    <div class="squads-pos violet-text ng-binding">{{vm.model.lineUp.footballerPositionsSymbols[vm.model.waiver.position]}}</div>
+                    <div style="color: #fff;" class="squads-name ng-binding">
+                        {{vm.model.waiver.full_name | FootballerFullName}}
+                        <br>
+                        <small class="violet-text ng-binding">{{vm.model.waiver.real_team.short_club_name}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0">
+            <!--<strong class="violet-text" style="margin-left: 25px;">Cash Amount:</strong><br/>-->
+            <!--<div class="modal-dropdown" style="padding: 2px 2px 26px;">-->
+                <!--<div class="pull-left pound-sym">&pound; </div><input ng-model="vm.model.moneyOffered" class="create-bid-input pull-left" type="text" ng-change="vm.menu.checkMSymbol()" style="width: 90%;"/>-->
+            <!--</div>-->
+
+            <strong class="violet-text" style="margin-left: 25px;">Cash Amount:</strong><br/>
+            <div class="modal-dropdown" style="padding: 2px 2px 26px;">
+                <div class="input-symbol">
+                    <span class="cash">&pound;</span>
+                    <span class="postcash">M</span>
+                    <input class="create-bid-input pull-left" type="number" min="0.1" max="99999999" step="0.1" ng-model="vm.model.moneyOffered" ng-keydown="vm.menu.checkEnterNumber($event)" ng-keyup="vm.menu.checkEnterNumber($event)">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 waiver-drop-player-container">
+            <strong class="violet-text" style="margin-left: 25px;">Select a player to drop</strong><br>
+            <div class="checked-players-now" ng-if="vm.model.footballerToFreeAgent.footballer" ng-click="vm.model.footballerToFreeAgent = {}">
+                <div class="check-player-inf pull-left" ng-if="vm.model.footballerToFreeAgent.footballer">
+                    <div class="squads-pos violet-text ng-binding">{{vm.model.lineUp.footballerPositionsSymbols[vm.model.footballerToFreeAgent.footballer.position]}}</div>
+                    <div class="squads-name ng-binding" style="color: #fff;">
+                        {{vm.model.footballerToFreeAgent.footballer.full_name | FootballerFullName}}
+                        <br>
+                        <small class="violet-text ng-binding">{{vm.model.footballerToFreeAgent.footballer.real_team.short_club_name}}</small>
+                    </div>
+                </div>
+            </div>
+            <md-input-container class="modal-dropdown" ng-if="!vm.model.footballerToFreeAgent.footballer">
+                <md-select ng-model="vm.model.footballerToFreeAgent" placeholder="Add Player(s)">
+                    <md-select-label>
+                        <strong>
+                            Add Players
+                        </strong>
+                    </md-select-label>
+                    <md-option style="color: #fff;" ng-value="oneFootballer" ng-repeat="oneFootballer in vm.model.lineUp.data.virt_footballers" ng-class="vm.menu.returnSelectedPlayerStyle(oneFootballer)">
+                        <div class="check-player pull-left"></div>
+                        <div class="check-player-inf pull-left">
+                            <div class="squads-pos violet-text ng-binding">{{vm.model.lineUp.footballerPositionsSymbols[oneFootballer.footballer.position]}}</div>
+                            <div class="squads-name ng-binding">
+                                {{oneFootballer.footballer.full_name | FootballerFullName}}
+                                <br>
+                                <small class="violet-text ng-binding">{{oneFootballer.footballer.real_team.short_club_name}}</small>
+                            </div>
+                        </div>
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-6 text-right m-b15">
+            <button class="btn btn-red" style="color: #fff;" ng-click="vm.menu.closeDialog()">cancel</button>
+        </div>
+        <div class="col-xs-6 text-left  m-b15">
+            <button class="btn btn-green" ng-click="vm.menu.makeBetOnTheWaiver()">next</button>
+        </div>
+    </div>
+</div>

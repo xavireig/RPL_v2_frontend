@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <!-- <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-N78XRTH');
+    </script>  -->
+    <style>
+        /* This helps the ng-show/ng-hide animations start at the right place. */
+        /* Since Angular has this but needs to load, this gives us the class early. */
+
+        .ng-hide {
+            display: none!important;
+        }
+    </style>
+    <title ng-bind="title">RPL vBETA</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta name="action-cable-url" content="ws://localhost:3000/cable" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,600,800' rel='stylesheet' type='text/css' />
+    <base href="/">
+
+    <!-- build:css styles/lib.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/angular-bootstrap-colorpicker/css/colorpicker.css" />
+    <link rel="stylesheet" href="/bower_components/angular-datatables/dist/css/angular-datatables.css" />
+    <link rel="stylesheet" href="/bower_components/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.min.css" />
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="/bower_components/angular-ui-switch/angular-ui-switch.css" />
+    <link rel="stylesheet" href="/bower_components/angular-ui-tree/dist/angular-ui-tree.css" />
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/bower_components/Ionicons/css/ionicons.css" />
+    <link rel="stylesheet" href="/bower_components/ng-dialog/css/ngDialog.css" />
+    <link rel="stylesheet" href="/bower_components/ng-dialog/css/ngDialog-theme-default.css" />
+    <link rel="stylesheet" href="/bower_components/ng-table/dist/ng-table.min.css" />
+    <link rel="stylesheet" href="/bower_components/owl.carousel/dist/assets/owl.carousel.css" />
+    <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
+    <link rel="stylesheet" href="/bower_components/angular-dragula/dist/dragula.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/app_OLD.css -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/.tmp/styles.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+</head>
+
+<body>
+     <!-- <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N78XRTH" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>  -->
+    <div ng-include="'app/layout/shell.html'"></div>
+    <div class="loader-overlay" ngplus-overlay ngplus-overlay-delay-in="50" ngplus-overlay-delay-out="700" ngplus-overlay-animation="dissolve-animation">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!--<div id="splash-page" ng-show="showSplash">-->
+    <!--<div class="page-splash">-->
+    <!--<div class="page-splash-message">-->
+    <!--hereyouare-->
+    <!--</div>-->
+    <!--<div class="progress progress-striped active page-progress-bar">-->
+    <!--<div class="bar"></div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!-- build:js js/lib.js -->
+    <script src="/bower_components/braintree-web/client.js"></script>
+    <script src="/bower_components/braintree-web/hosted-fields.js"></script>
+    <script src="/bower_components/braintree-web/paypal.js"></script>
+    <script src="/bower_components/braintree-web/data-collector.js"></script>
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="/bower_components/angular-base64/angular-base64.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js"></script>
+    <script src="/bower_components/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="/bower_components/angular-datatables/dist/angular-datatables.js"></script>
+    <script src="/bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
+    <script src="/bower_components/angular-datatables/dist/plugins/colreorder/angular-datatables.colreorder.js"></script>
+    <script src="/bower_components/angular-datatables/dist/plugins/columnfilter/angular-datatables.columnfilter.js"></script>
+    <script src="/bower_components/angular-datatables/dist/plugins/light-columnfilter/angular-datatables.light-columnfilter.js"></script>
+    <script src="/bower_components/angular-datatables/dist/plugins/colvis/angular-datatables.colvis.js"></script>
+    <script src="/bower_components/angular-datatables/dist/plugins/fixedcolumns/angular-datatables.fixedcolumns.js"></script>
+    <script src="/bower_components/angular-datatables/dist/plugins/fixedheader/angular-datatables.fixedheader.js"></script>
+    <script src="/bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js"></script>
+    <script src="/bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools.js"></script>
+    <script src="/bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.js"></script>
+    <script src="/bower_components/angular-datatables/dist/plugins/select/angular-datatables.select.js"></script>
+    <script src="/bower_components/angular-faye/build/angular-faye.js"></script>
+    <script src="/bower_components/angular-material/angular-material.js"></script>
+    <script src="/bower_components/angular-messages/angular-messages.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/angular-scroll/angular-scroll.js"></script>
+    <script src="/bower_components/angular-scroll-glue/src/scrollglue.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/humanize-duration/humanize-duration.js"></script>
+    <script src="/bower_components/angular-timer/dist/angular-timer.js"></script>
+    <script src="/bower_components/angular-ui-mask/dist/mask.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/angular-ui-switch/angular-ui-switch.js"></script>
+    <script src="/bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
+    <script src="/bower_components/extras.angular.plus/ngplus-overlay.js"></script>
+    <script src="/bower_components/faye-client/dist/faye-browser.js"></script>
+    <script src="/bower_components/jQuery.dotdotdot/src/js/jquery.dotdotdot.js"></script>
+    <script src="/bower_components/ng-dialog/js/ngDialog.js"></script>
+    <script src="/bower_components/ng-facebook/ngFacebook.js"></script>
+    <script src="/bower_components/ng-table/dist/ng-table.min.js"></script>
+    <script src="/bower_components/ngstorage/ngStorage.js"></script>
+    <script src="/bower_components/owl.carousel/dist/owl.carousel.js"></script>
+    <script src="/bower_components/StickyTableHeaders/js/jquery.stickytableheaders.js"></script>
+    <script src="/bower_components/toastr/toastr.js"></script>
+    <script src="/bower_components/angular-dragula/dist/angular-dragula.js"></script>
+    <script src="/bower_components/ngDfp/angular-dfp.js"></script>
+    <script src="/bower_components/angular-websocket/dist/angular-websocket.js"></script>
+    <script src="/bower_components/angular-actioncable/dist/angular-actioncable.js"></script>
+    <script src="/bower_components/angular-clipboard/angular-clipboard.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js js/app.js -->
+    <!-- inject:js -->
+    <script src="/src/client/app/app.module.js"></script>
+    <script src="/src/client/app/auth/auth.module.js"></script>
+    <script src="/src/client/app/bids/bid.module.js"></script>
+    <script src="/src/client/app/blocks/exception/exception.module.js"></script>
+    <script src="/src/client/app/blocks/logger/logger.module.js"></script>
+    <script src="/src/client/app/blocks/router/router.module.js"></script>
+    <script src="/src/client/app/club/club.module.js"></script>
+    <script src="/src/client/app/core/core.module.js"></script>
+    <script src="/src/client/app/core/jquery.module.js"></script>
+    <script src="/src/client/app/dashboard/dashboard.module.js"></script>
+    <script src="/src/client/app/draft/draft.module.js"></script>
+    <script src="/src/client/app/faye_client_wrapper/faye_client_wrapper.module.js"></script>
+    <script src="/src/client/app/layout/layout.module.js"></script>
+    <script src="/src/client/app/league/league.module.js"></script>
+    <script src="/src/client/app/lineup/lineup.module.js"></script>
+    <script src="/src/client/app/match_day/match_day.module.js"></script>
+    <script src="/src/client/app/news/news.module.js"></script>
+    <script src="/src/client/app/public/public.module.js"></script>
+    <script src="/src/client/app/transfers_page/transfers_page.module.js"></script>
+    <script src="/src/client/app/transfers/transfers.module.js"></script>
+    <script src="/src/client/app/widgets/widgets.module.js"></script>
+    <script src="/src/client/app/auth/auth.route.js"></script>
+    <script src="/src/client/app/auth/authservice.js"></script>
+    <script src="/src/client/app/auth/email_confirm.controller.js"></script>
+    <script src="/src/client/app/auth/fbservice.js"></script>
+    <script src="/src/client/app/auth/forgot_password.controller.js"></script>
+    <script src="/src/client/app/auth/landing_page.controller.js"></script>
+    <script src="/src/client/app/auth/new_password.controller.js"></script>
+    <script src="/src/client/app/auth/root.controller.js"></script>
+    <script src="/src/client/app/auth/signin.controller.js"></script>
+    <script src="/src/client/app/auth/signup.controller.js"></script>
+    <script src="/src/client/app/blocks/exception/exception-handler.provider.js"></script>
+    <script src="/src/client/app/blocks/exception/exception.js"></script>
+    <script src="/src/client/app/blocks/logger/logger.js"></script>
+    <script src="/src/client/app/blocks/router/router-helper.provider.js"></script>
+    <script src="/src/client/app/club/club_profile.ctrl.js"></script>
+    <script src="/src/client/app/club/club_squad.controller.js"></script>
+    <script src="/src/client/app/club/club_squad.directive.js"></script>
+    <script src="/src/client/app/club/club_stats.controller.js"></script>
+    <script src="/src/client/app/club/club_stats.directive.js"></script>
+    <script src="/src/client/app/club/club.route.js"></script>
+    <script src="/src/client/app/club/fixture_list.controller.js"></script>
+    <script src="/src/client/app/club/fixture_list.directive.js"></script>
+    <script src="/src/client/app/club/new_club_form_link.controller.js"></script>
+    <script src="/src/client/app/club/new_club_form.controller.js"></script>
+    <script src="/src/client/app/club/update_club_form.controller.js"></script>
+    <script src="/src/client/app/core/config.js"></script>
+    <script src="/src/client/app/core/constants.js"></script>
+    <script src="/src/client/app/core/core.route.js"></script>
+    <script src="/src/client/app/core/date-time-picker-clear.directive.js"></script>
+    <script src="/src/client/app/core/date-time-picker.directive.js"></script>
+    <script src="/src/client/app/core/dialog_window.service.js"></script>
+    <script src="/src/client/app/core/end_of_number.filter.js"></script>
+    <script src="/src/client/app/core/gservice.js"></script>
+    <script src="/src/client/app/core/owl.directive.js"></script>
+    <script src="/src/client/app/core/requestservice.js"></script>
+    <script src="/src/client/app/core/show_time_passed.filter.js"></script>
+    <script src="/src/client/app/core/sticky_table_header.directive.js"></script>
+    <script src="/src/client/app/dashboard/dashboard.controller.js"></script>
+    <script src="/src/client/app/dashboard/dashboard.route.js"></script>
+    <script src="/src/client/app/dashboard/delete_account.controller.js"></script>
+    <script src="/src/client/app/directives/club_crest.directive.js"></script>
+    <script src="/src/client/app/directives/commercial/commercial_block.directive.js"></script>
+    <script src="/src/client/app/directives/commercial/commercial_footer.directive.js"></script>
+    <script src="/src/client/app/directives/commercial/commercial_header.directive.js"></script>
+    <script src="/src/client/app/directives/commercial/commercial_rail.directive.js"></script>
+    <script src="/src/client/app/directives/commercial/commercial_upgrade_button.directive.js"></script>
+    <script src="/src/client/app/directives/commercial/commercial_upgrade_now.directive.js"></script>
+    <script src="/src/client/app/directives/commercial/commercial.controller.js"></script>
+    <script src="/src/client/app/directives/confirmation/global_confirmation_dialog.controller.js"></script>
+    <script src="/src/client/app/directives/league_info.directive.js"></script>
+    <script src="/src/client/app/directives/news_block.directive.js"></script>
+    <script src="/src/client/app/directives/scoring_info.directive.js"></script>
+    <script src="/src/client/app/directives/transfer_info.directive.js"></script>
+    <script src="/src/client/app/draft/datetime_left.filter.js"></script>
+    <script src="/src/client/app/draft/draft.controller.js"></script>
+    <script src="/src/client/app/draft/draft.route.js"></script>
+    <script src="/src/client/app/draft/fayeservice.js"></script>
+    <script src="/src/client/app/draft/footballer_age.filter.js"></script>
+    <script src="/src/client/app/draft/footballer_position.filter.js"></script>
+    <script src="/src/client/app/faye_client_wrapper/faye_client_wrapper.service.js"></script>
+    <script src="/src/client/app/layout/account_topbar.controller.js"></script>
+    <script src="/src/client/app/layout/account_topbar.directive.js"></script>
+    <script src="/src/client/app/layout/approve_transfer.controller.js"></script>
+    <script src="/src/client/app/layout/confirm_veto.controller.js"></script>
+    <script src="/src/client/app/layout/entire_league_msg.controller.js"></script>
+    <script src="/src/client/app/layout/feedback/feedback.controller.js"></script>
+    <script src="/src/client/app/layout/menu_side_bar.directive.js"></script>
+    <script src="/src/client/app/layout/shell.controller.js"></script>
+    <script src="/src/client/app/layout/transfers_directive/transfers_dropdown.controller.js"></script>
+    <script src="/src/client/app/layout/transfers_directive/transfers.directive.js"></script>
+    <script src="/src/client/app/league/basics/basic_settings.controller.js"></script>
+    <script src="/src/client/app/league/basics/basic.directive.js"></script>
+    <script src="/src/client/app/league/club_news.controller.js"></script>
+    <script src="/src/client/app/league/club_news.directive.js"></script>
+    <script src="/src/client/app/league/confirmation_dialog.controller.js"></script>
+    <script src="/src/client/app/league/draft/draft_settings.controller.js"></script>
+    <script src="/src/client/app/league/draft/draft_settings.directive.js"></script>
+    <script src="/src/client/app/league/features.directive.js"></script>
+    <script src="/src/client/app/league/fixtures/fixtures_settings.controller.js"></script>
+    <script src="/src/client/app/league/fixtures/fixtures_settings.directive.js"></script>
+    <script src="/src/client/app/league/league_accepted_invite.controller.js"></script>
+    <script src="/src/client/app/league/league_dashboard.controller.js"></script>
+    <script src="/src/client/app/league/league_join_dialog.controller.js"></script>
+    <script src="/src/client/app/league/league_settings.controller.js"></script>
+    <script src="/src/client/app/league/league.route.js"></script>
+    <script src="/src/client/app/league/ls_small_title.directive.js"></script>
+    <script src="/src/client/app/league/main_league.controller.js"></script>
+    <script src="/src/client/app/league/new_league_checklist.controller.js"></script>
+    <script src="/src/client/app/league/new_league_form.controller.js"></script>
+    <script src="/src/client/app/league/new_league_invite_link.controller.js"></script>
+    <script src="/src/client/app/league/new_league_invite_owners.controller.js"></script>
+    <script src="/src/client/app/league/predraft_state/delete_team.controller.js"></script>
+    <script src="/src/client/app/league/predraft_state/predraft.controller.js"></script>
+    <script src="/src/client/app/league/promotions/promotions.controller.js"></script>
+    <script src="/src/client/app/league/promotions/promotions.directive.js"></script>
+    <script src="/src/client/app/league/promotions/promotions.model.js"></script>
+    <script src="/src/client/app/league/public_league.controller.js"></script>
+    <script src="/src/client/app/league/public_listing_controller.js"></script>
+    <script src="/src/client/app/league/scoring/scoring_settings.controller.js"></script>
+    <script src="/src/client/app/league/scoring/scoring_settings.directive.js"></script>
+    <script src="/src/client/app/league/squad/squad_settings.controller.js"></script>
+    <script src="/src/client/app/league/squad/squad_settings.directive.js"></script>
+    <script src="/src/client/app/league/transfers/transfers_settings.controller.js"></script>
+    <script src="/src/client/app/league/transfers/transfers_settings.directive.js"></script>
+    <script src="/src/client/app/lineup/footballer_full_name.filter.js"></script>
+    <script src="/src/client/app/lineup/footballers_list.directive.js"></script>
+    <script src="/src/client/app/lineup/lineup.controller.js"></script>
+    <script src="/src/client/app/lineup/lineup.route.js"></script>
+    <script src="/src/client/app/lineup/week_range.filter.js"></script>
+    <script src="/src/client/app/match_day/match_day_footballer_list.directive.js"></script>
+    <script src="/src/client/app/match_day/match_day_legend.directive.js"></script>
+    <script src="/src/client/app/match_day/match_day.controller.js"></script>
+    <script src="/src/client/app/match_day/match_day.route.js"></script>
+    <script src="/src/client/app/match_day/virt_fixture_stats.directive.js"></script>
+    <script src="/src/client/app/models/bid.model.js"></script>
+    <script src="/src/client/app/models/chat.model.js"></script>
+    <script src="/src/client/app/models/club.model.js"></script>
+    <script src="/src/client/app/models/common.model.js"></script>
+    <script src="/src/client/app/models/crest_shape.model.js"></script>
+    <script src="/src/client/app/models/draft_result.model.js"></script>
+    <script src="/src/client/app/models/draft_status.model.js"></script>
+    <script src="/src/client/app/models/fixture.model.js"></script>
+    <script src="/src/client/app/models/footballer.model.js"></script>
+    <script src="/src/client/app/models/injury_and_suspension.model.js"></script>
+    <script src="/src/client/app/models/league_invite.model.js"></script>
+    <script src="/src/client/app/models/league_settings.model.js"></script>
+    <script src="/src/client/app/models/league.model.js"></script>
+    <script src="/src/client/app/models/line_up.model.js"></script>
+    <script src="/src/client/app/models/match_day.model.js"></script>
+    <script src="/src/client/app/models/message.model.js"></script>
+    <script src="/src/client/app/models/news.model.js"></script>
+    <script src="/src/client/app/models/players.model.js"></script>
+    <script src="/src/client/app/models/queue.model.js"></script>
+    <script src="/src/client/app/models/real_team.model.js"></script>
+    <script src="/src/client/app/models/stat_icons.model.js"></script>
+    <script src="/src/client/app/models/subscription/subscription_form.directive.js"></script>
+    <script src="/src/client/app/models/subscription/subscription.controller.js"></script>
+    <script src="/src/client/app/models/subscription/subscription.service.js"></script>
+    <script src="/src/client/app/models/transfer.model.js"></script>
+    <script src="/src/client/app/models/user.model.js"></script>
+    <script src="/src/client/app/news/news.controller.js"></script>
+    <script src="/src/client/app/news/news.route.js"></script>
+    <script src="/src/client/app/players/player_card.controller.js"></script>
+    <script src="/src/client/app/players/players.controller.js"></script>
+    <script src="/src/client/app/players/players.route.js"></script>
+    <script src="/src/client/app/public/privacy_policy.controller.js"></script>
+    <script src="/src/client/app/public/public.route.js"></script>
+    <script src="/src/client/app/public/script.js"></script>
+    <script src="/src/client/app/public/terms_of_conditions.controller.js"></script>
+    <script src="/src/client/app/subscription-notices/subscription_modal.controller.js"></script>
+    <script src="/src/client/app/transfers_page/club_gets_directive/club_gets.controller.js"></script>
+    <script src="/src/client/app/transfers_page/club_gets_directive/club_gets.directive.js"></script>
+    <script src="/src/client/app/transfers_page/transfers_page.controller.js"></script>
+    <script src="/src/client/app/transfers_page/transfers_page.route.js"></script>
+    <script src="/src/client/app/transfers/confirm_transfer.controller.js"></script>
+    <script src="/src/client/app/transfers/transfers.controller.js"></script>
+    <script src="/src/client/app/transfers/transfers.route.js"></script>
+    <script src="/src/client/app/widgets/dotdotdot.directive.js"></script>
+    <script src="/src/client/app/widgets/fixed_header_table.directive.js"></script>
+    <script src="/src/client/app/widgets/get_data_on_scroll.directive.js"></script>
+    <script src="/src/client/app/widgets/get_parent_width.directive.js"></script>
+    <script src="/src/client/app/widgets/resizable.directive.js"></script>
+    <script src="/src/client/app/widgets/sortable_scroll_table.directive.js"></script>
+    <!-- endinject -->
+    <!-- inject:templates:js -->
+    <!-- endinject -->
+    <!-- inject:config:js -->
+    <script src="/.tmp/config.js"></script>
+    <!-- endinject -->
+    <!-- endbuild -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>

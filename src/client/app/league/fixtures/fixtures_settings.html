@@ -1,0 +1,202 @@
+<div class="col-xs-12 settings-page">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-center settings-title m20">Postponed epl matches</div>
+            <p class="text-center small-note">Choose how your league handles postponed or midweek EPL matches. See Game Guide for detailed explanation.</p>
+        </div>
+    </div>
+    <div class="row">
+        <table class="scoring-type clearfix">
+            <tbody>
+            <tr>
+                <td class="text-right">
+                    <div class="pull-left m-t-8 settings-label">
+                        <div class="context-help m-r15" dropdown>
+                            <span dropdown-toggle class="context-help-icon" ng-include="'images/ic_help_outline_black.svg'"></span>
+                            <ul  class="dropdown-menu left-arrow context-block">
+                                <li class="context-block-header text-center light-blue-background m0">
+                                    <div class="row">
+                                        <div class="col-xs-offset-1 col-xs-10">Double Gameweeks</div>
+                                        <div class="col-xs-1 text-right"><img class="close-icon" src="/images/x_close.svg" alt="x"></div>
+                                    </div>
+                                </li>
+                                <li class="content">
+                                    <span style="display: inline-block; margin-left: 10px;"> Premier League matches that are postponed count toward the Gameweek in which it is rescheduled, resulting in &quot;double game weeks&quot; for some players.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        Double Gameweeks
+                    </div>
+                </td>
+                <td>
+                    <form class="scoring-switch">
+                        <switch style="transform: rotate(180deg)" ng-model="fs.model.league['double_gameweeks']" disabled="fs.model.league['draft_status'] !== 'pending'" class="green"></switch>
+                    </form>
+                </td>
+                <td class="text-left">
+                    <div class="pull-left m-t-8 settings-label">
+                        Balanced Gameweeks
+                        <div class="context-help" dropdown>
+                            <span dropdown-toggle class="context-help-icon" ng-include="'images/ic_help_outline_black.svg'"></span>
+
+                            <p class="dropdown-menu left-arrow context-block">
+                                Premier League matches that are postponed count toward the Gameweek in which it is rescheduled, resulting in &quot;double&quot;
+                            </p>
+                            <ul  class="dropdown-menu left-arrow context-block">
+                                <li class="context-block-header text-center light-blue-background m0">
+                                    <div class="row">
+                                        <div class="col-xs-offset-1 col-xs-10">Balanced Gameweeks</div>
+                                        <div class="col-xs-1 text-right"><img class="close-icon" src="/images/x_close.svg" alt="x"></div>
+                                    </div>
+                                </li>
+                                <li class="content">
+                                    <span style="display: inline-block; margin-left: 10px;margin-bottom: 15px;"> Postponed Premier League matches count toward their originally scheduled Gameweek, no matter when it is played.</span>
+                                    <span style="display: inline-block; margin-left: 10px; margin-bottom: 15px;"> All fantasy Gameweek are composed of exactly one round of EPL fixtures, when every team plays one match.</span>
+                                    <span style="display: inline-block; margin-left: 10px; "> Fantasy Gameweeks involving postponed Premier League matches have pending results until the Premier League matches assigned to that fantasy Gameweek are played.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-center h2 m20">Customize fixtures</div>
+        </div>
+    </div>
+    <div class="row clearfix m-b10">
+        <div class="col-md-offset-2 col-md-8 col-xs-12">
+            <div class="customizing-fixtures">
+                <table class="customizing-fixtures-menu">
+                    <tr>
+                        <td class="customizing-fixtures-menu-item active" width="130">
+                            Cup
+                        </td>
+                        <td class="customizing-fixtures-menu-item" width="160">
+                            League
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div class="col-xs-12">
+                    <div style="display: block">
+                        <div class="row m-b10">
+                            <div class="col-xs-12">
+                                <div class="f26 gray-text m-b15">RPL Cup Fixtures</div>
+                                <p class="small-note">Select the EPL Match Weeks when your Cup will be played:</p>
+                            </div>
+                        </div>
+                        <div class="row m-b15">
+                            <div class="col-sm-4">
+                                <span class="violet-text">RPL Cup Qualifying Round</span>
+                                <div class="time-per-pick customizing-fixtures-drpdn" dropdown>
+                                    <div>
+                                        <div class="selected-item">EPL Game Week 21</div>
+                                        <span class="glyphicon glyphicon-menu-down" style="float: right;" dropdown-toggle></span>
+                                    </div>
+                                    <ul class="dropdown-menu">
+                                        <li><a>Seconds</a></li>
+                                        <li><a>Minutes</a></li>
+                                        <li><a>Hours</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <span class="violet-text">RPL Cup Quarterfinal(Leg 1)</span>
+                                <div class="time-per-pick customizing-fixtures-drpdn" dropdown>
+                                    <div>
+                                        <div class="selected-item">EPL Game Week 21</div>
+                                        <span class="glyphicon glyphicon-menu-down" style="float: right;" dropdown-toggle></span>
+                                    </div>
+                                    <ul class="dropdown-menu">
+                                        <li><a>Seconds</a></li>
+                                        <li><a>Minutes</a></li>
+                                        <li><a>Hours</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <span class="violet-text">RPL Cup Quarterfinal(Leg 2)</span>
+                                <div class="time-per-pick customizing-fixtures-drpdn" dropdown>
+                                    <div>
+                                        <div class="selected-item">EPL Game Week 21</div>
+                                        <span class="glyphicon glyphicon-menu-down" dropdown-toggle style="float: right;"></span>
+                                    </div>
+                                    <ul class="dropdown-menu">
+                                        <li><a>Seconds</a></li>
+                                        <li><a>Minutes</a></li>
+                                        <li><a>Hours</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-b15">
+                            <div class="col-sm-4">
+                                <span class="violet-text">RPL Cup Semifinal (Leg 1)</span>
+                                <div class="time-per-pick customizing-fixtures-drpdn" dropdown>
+                                    <div>
+                                        <div class="selected-item">EPL Game Week 21</div>
+                                        <span class="glyphicon glyphicon-menu-down" style="float: right;" dropdown-toggle></span>
+                                    </div>
+                                    <ul class="dropdown-menu">
+                                        <li><a>Seconds</a></li>
+                                        <li><a>Minutes</a></li>
+                                        <li><a>Hours</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <span class="violet-text">RPL Cup Semifinal (Leg 2)</span>
+                                <div class="time-per-pick customizing-fixtures-drpdn" dropdown>
+                                    <div>
+                                        <div class="selected-item">EPL Game Week 21</div>
+                                        <span class="glyphicon glyphicon-menu-down" style="float: right;" dropdown-toggle></span>
+                                    </div>
+                                    <ul class="dropdown-menu">
+                                        <li><a>Seconds</a></li>
+                                        <li><a>Minutes</a></li>
+                                        <li><a>Hours</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <span class="violet-text">RPL Cup Final</span>
+                                <div class="time-per-pick customizing-fixtures-drpdn" dropdown>
+                                    <div>
+                                        <div class="selected-item">EPL Game Week 24</div>
+                                        <span class="glyphicon glyphicon-menu-down" style="float: right;" dropdown-toggle></span>
+                                    </div>
+                                    <ul class="dropdown-menu">
+                                        <li><a>Seconds</a></li>
+                                        <li><a>Minutes</a></li>
+                                        <li><a>Hours</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <button ng-click="fs.menu.restoreDefaults()" class="btn btn-blue">Restore defaults</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row clearfix" style="margin-bottom: 100px">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-6 text-right">
+                    <button ng-click="vm.menu.goLeague()" style="color: #fff;" class="btn btn-gray">Cancel</button>
+                </div>
+                <div class="col-xs-6 text-left">
+                    <button ng-click="fs.menu.saveFixturesChanges()" class="btn btn-green">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

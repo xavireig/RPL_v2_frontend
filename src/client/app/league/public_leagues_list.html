@@ -1,0 +1,45 @@
+<account-top-bar></account-top-bar>
+<div class="container" ng-controller = "PublicLeagueController as vm">
+    <div class="row">
+        <div id="public-leagues-table" class="col-xs-12 settings-page">
+            <div class="row">
+                <h1 class="col-xs-12 text-center">Public Leagues</h1>
+                <span class="create-public-league-link col-xs-12 text-center">
+                    The following leagues are available to join. Click on the join button for all the league's details - scoring, rules, etc.
+                    Or if you'd prefer, <a class="link" href="#" ng-click="vm.menu.createPublicLeague()">create your own public league</a>
+                </span>
+            </div>
+            
+            <div class="row injuries-container">
+                <div class="col-xs-12" style="padding: 0">
+                    <table ng-table="vm.tableParams" fixed-table-headers="scrollable-area" class="table border-table public-leagues-table">
+                        <tbody class="rpl-scrollable" >
+
+                        <tr ng-repeat="league in $data">
+                            <td class="text-left" data-title="'League Name'" sortable="'title'">
+                                <span class="clip" style="width: auto">{{league.title}}</span><br/> 
+                            </td>     
+                            <td class="text-left" data-title="'Teams'" sortable="'num_teams'">
+                                <span>{{league.num_teams}} of {{league.req_teams}}</span>
+                            </td>
+                            <td class="text-left" data-title="'Scoring'" sortable="'league_scoring_type'">
+                                <span>{{league.league_scoring_type}}</span>
+                            </td>
+                            <td class="text-left" data-title="'Description'">
+                                <span>{{ (league.description) || 'No description found'}}</span>
+                            </td>
+                            <td class="text-left" data-title="'Draft date/time'" sortable="'draft_time'">
+                                <span>{{(league.draft_time | date:'medium') || 'Draft time not set yet'}}</br>(local time)</span>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-default btn-blue" ng-click="vm.menu.joinPublicLeague(league)">Join</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

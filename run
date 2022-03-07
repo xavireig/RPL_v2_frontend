@@ -1,0 +1,44 @@
+echo "===================================================="
+echo "========== USAGE ==================================="
+echo " "
+echo "$ sh run [build type] [environment]"
+echo " "
+echo "[build type] - source || compiled"
+echo "[environment] - local || dev || prod"
+echo "===================================================="
+
+if [ "$1" == "source" ] && [ "$2" == "local" ]
+then
+    echo "=== Run 'source' build connected to 'local' server ==="
+    NODE_ENV=local gulp serve-dev
+fi
+
+if [ "$1" == "source" ] && [ "$2" == "dev" ]
+then
+    echo "=== Run 'source' build connected to 'development' server ==="
+    NODE_ENV=development gulp serve-dev
+fi
+
+if [ "$1" == "source" ] && [ "$2" == "prod" ]
+then
+    echo "=== Run 'source' build connected to 'production' server ==="
+    NODE_ENV=production gulp serve-dev
+fi
+
+if [ "$1" == "compiled" ] && [ "$2" == "local" ]
+then
+    echo "=== Run 'compiled' build connected to 'local' server ==="
+    NODE_ENV=local gulp serve-build
+fi
+
+if [ "$1" == "compiled" ] && [ "$2" == "dev" ]
+then
+    echo "=== Run 'compiled' build connected to 'development' server ==="
+    NODE_ENV=development gulp serve-build
+fi
+
+if [ "$1" == "compiled" ] && [ "$2" == "prod" ]
+then
+    echo "=== Run 'compiled' build connected to 'production' server ==="
+    NODE_ENV=production gulp serve-build
+fi

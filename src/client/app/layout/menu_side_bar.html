@@ -1,0 +1,37 @@
+<div>
+    <div class="my-club text-center">
+        <style type="text/css">
+            #clubmain_side_bar_{{model.commonModel.selectedClub.id}} .st0{fill:{{model.commonModel.selectedClub.color1}} !important;}
+            #clubmain_side_bar_{{model.commonModel.selectedClub.id}} .st1{fill:{{model.commonModel.selectedClub.color2}} !important;}
+            #clubmain_side_bar_{{model.commonModel.selectedClub.id}} .st2{fill:{{model.commonModel.selectedClub.color3}} !important;}
+        </style>
+
+        <div id="clubmain_side_bar_{{model.commonModel.selectedClub.id}}" ng-include="model.commonModel.selectedClub.crest_pattern.svg_url" style="width: 120px;"></div>
+    </div>
+
+    <md-input-container>
+        <label ng-if="model.commonModel.leagueClubs !== 0">League clubs</label>
+        <md-select ng-if="model.commonModel.clubsList.length !== 0" ng-model="model.commonModel.selectedLeagueClubId" ng-change="menu.goClubProfile()" placeholder="Select league club">
+            <md-option ng-repeat="club in model.commonModel.leagueClubs" ng-value="club.id">
+                {{club.name}}
+                <!--<span ng-if="club.league_id">(draft)</span>-->
+            </md-option>
+        </md-select>
+    </md-input-container>
+
+    <ul class="side-menu">
+        <div ng-repeat="state in menu.statesOrder">
+            <li ng-click="menu.changeState(menu.states[state].stateName)" ng-class="menu.getActiveStateClass(menu.states[state].stateName)">{{menu.states[state].title}}</li>
+        </div>
+        <div>
+            <li><a href="https://www.rotopremierleague.com/roto-fantasy-football-scout/" target="_blank">BLOG</a></li>
+        </div>
+    </ul>
+    <div class="help-aside-block text-center">
+        <a class="help-header-btn"><a ng-click="menu.goToHelpPage('#scoring')" style="cursor: pointer;" target="_blank" ><span class="glyphicon glyphicon-question-sign"></span>  <small>HELP</small></a></a>
+    </div>
+    <div class="help-aside-block text-center">
+        <small>version {{version}}</small>
+    </div>
+    <commercial-rail></commercial-rail>
+</div>

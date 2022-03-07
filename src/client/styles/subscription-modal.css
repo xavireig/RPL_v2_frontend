@@ -1,0 +1,69 @@
+.sub-notice-modal{
+    font-family: 'proximan_nova_regular';
+    font-size: 16px;
+}
+.sub-notice-modal .ngdialog-content{
+    background-color: #000000;
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    margin: 20% 5%;
+}
+
+.sub-notice-modal .close-dialog-icon{
+    left: auto;
+    right: 20px;
+}
+.sub-notice-modal .ngdialog-content .confirmation-title{
+    -moz-border-radius: 23px 23px 0 0;
+    -webkit-border-radius: 23px 23px 0 0;
+    background-color: #2de1fc;
+    border-radius: 23px 23px 0 0;
+    font-family: 'flamamedium';
+    font-size: 20px;
+    letter-spacing: .04em;
+    font-weight: bold;
+    margin: 0;
+    padding: 8px 20px;
+    color: #ffffff;
+}
+
+.sub-notice-modal .ngdialog-content .confirmation-title.trial-ending{
+    background-color: #C0392B;
+}
+
+.sub-notice-modal .text-area{
+  font-size: 18px;
+  padding: 0 5%;
+}
+
+.sub-notice-modal .text-area div{
+    margin-top: 20px;
+}
+
+.sub-notice-modal .text-mark, .trial-modal .text-mark { 
+  color: #a2ff73;
+}
+
+.trial-modal .ngdialog-content, .upgrade-now-modal .ngdialog-content{ 
+    background-color: #000000;
+}
+
+.sub-notice-modal .btn-section{
+  margin-top: 10px;
+}
+
+.sub-notice-modal .list-info{
+    padding-left: 5%;
+}
+
+/* for desktop design */
+@media (min-width: 600px){
+    .sub-notice-modal .ngdialog-content{
+      margin: 20% 25%;
+    }
+
+    .sub-notice-modal .list-info{
+        padding-left: 20%;
+    }
+}
+

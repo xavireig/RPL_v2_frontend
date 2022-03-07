@@ -1,0 +1,13 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 317.85 317.85">
+    <defs>
+        <style>.cls-1{fill:#aaa;}</style>
+    </defs>
+    <title>gray_X</title>
+    <path class="cls-1"
+          d="M6748.57,8353.17c-62-62-62-162.87,0-224.86s162.87-62,224.86,0,62,162.87,0,224.86S6810.56,8415.16,6748.57,8353.17Zm210.72-210.72c-54.2-54.2-142.38-54.2-196.58,0s-54.2,142.38,0,196.58,142.38,54.2,196.58,0S7013.48,8196.64,6959.29,8142.45Z"
+          transform="translate(-6702.07 -8081.81)"/>
+    <rect class="cls-1" x="6766.17" y="8230.57" width="190" height="20"
+          transform="translate(-10519.45 -816.63) rotate(-45)"/>
+    <rect class="cls-1" x="6851.17" y="8145.57" width="20" height="190"
+          transform="translate(-10519.45 -816.63) rotate(-45)"/>
+</svg>

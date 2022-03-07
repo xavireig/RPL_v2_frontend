@@ -1,0 +1,8 @@
+<div>
+    <style type="text/css">
+        #club_{{club.id}} .st0{fill:{{club.color1}} !important;}
+        #club_{{club.id}} .st1{fill:{{club.color2}} !important;}
+        #club_{{club.id}} .st2{fill:{{club.color3}} !important;}
+    </style>
+    <div id="club_{{club.id}}" ng-include="club.crest_pattern.svg_url" ng-style="{'width': width}" style="margin: auto;"></div>
+</div>

@@ -1,0 +1,398 @@
+<account-top-bar></account-top-bar>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 settings-page">
+            <div class="row">
+                <h1 class="col-xs-12">League settings</h1>
+            </div>
+            <div class="row">
+                <table class="col-xs-12 table settings-menu">
+                    <tr style="border-bottom: 2px solid #243046;">
+                        <td ng-class="vm.menu.returnCurrentSettingsTitleStyle('basics')">
+                            <span ng-class="vm.menu.returnCurrentSettingsTitleStyle('basics')"
+                                  ng-click="vm.menu.showSelectedSettings('basics')">
+                                basics
+                            </span>
+                        </td>
+                        <td ng-class="vm.menu.returnCurrentSettingsTitleStyle('draft')">
+                            <span ng-class="vm.menu.returnCurrentSettingsTitleStyle('draft')"
+                                  ng-click="vm.menu.showSelectedSettings('draft')">
+                                draft
+                            </span>
+                        </td>
+                        <td ng-class="vm.menu.returnCurrentSettingsTitleStyle('scoring')">
+                            <span ng-class="vm.menu.returnCurrentSettingsTitleStyle('scoring')"
+                                  ng-click="vm.menu.showSelectedSettings('scoring')">
+                                scoring
+                            </span>
+                        </td>
+                        <td ng-class="vm.menu.returnCurrentSettingsTitleStyle('transfers')">
+                            <span ng-class="vm.menu.returnCurrentSettingsTitleStyle('transfers')"
+                                  ng-click="vm.menu.showSelectedSettings('transfers')">
+                                transfers
+                            </span>
+                        </td>
+                        <td ng-class="vm.menu.returnCurrentSettingsTitleStyle('squad')">
+                            <span ng-class="vm.menu.returnCurrentSettingsTitleStyle('squad')"
+                                  ng-click="vm.menu.showSelectedSettings('squad')">
+                                squad
+                            </span>
+                        </td>
+                        <!--<td ng-class="vm.menu.returnCurrentSettingsTitleStyle('fixtures')">
+                            <span ng-class="vm.menu.returnCurrentSettingsTitleStyle('fixtures')"
+                                  ng-click="vm.menu.showSelectedSettings('fixtures')">
+                                fixtures
+                            </span>
+                        </td>
+                        <td ng-class="vm.menu.returnCurrentSettingsTitleStyle('rpl_cup')">
+                            <span ng-class="vm.menu.returnCurrentSettingsTitleStyle('rpl_cup')"
+                                  ng-click="vm.menu.showSelectedSettings('rpl_cup')">
+                                rpl cup
+                            </span>
+                        </td>-->
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div ng-if="vm.model.leagueSettingsModel.recalcInProcess && vm.menu.currentSettings === 'scoring'">
+            <div class="row">
+                <div class="col-xs-offset-3 col-xs-8 content">
+                    <p>It's being moved the score type at the moment. It could take more time. Please, wait...</p>
+                </div>
+            </div>
+            <div class="progress" style="width: 50%; margin: 5px auto;">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0"
+                     aria-valuemax="100" style="width:100%"></div>
+            </div>
+        </div>
+
+        <!-- DRAFT tab start -->
+        <draft-settings ng-if="vm.menu.currentSettings === 'draft'"></draft-settings>
+        <!-- DRAFT tab end-->
+
+        <transfers-settings ng-if="vm.menu.currentSettings === 'transfers'"></transfers-settings>
+
+        <!-- SQUAD tab start  - CUT THIS-->
+        <squad-settings ng-if="vm.menu.currentSettings === 'squad'"></squad-settings>
+        <!-- SQUAD tab end -->
+
+        <!-- FIXTURES tab start  -->
+        <fixtures-settings ng-if="vm.menu.currentSettings === 'fixtures'"></fixtures-settings>
+        <!-- FIXTURES tab END  -->
+
+        <!-- RPL Cup tab start  -->
+        <div ng-if="vm.menu.currentSettings === 'rpl_cup'" class="col-xs-12 settings-page">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="text-center h2">RPL Cup Settings</div>
+                </div>
+            </div>
+            <div class="row clearfix m-b10">
+                <div class="col-md-offset-1 col-md-10 col-xs-12">
+                    <div class="customizing-fixtures">
+                        <table class="customizing-fixtures-menu rpl-cup-menu">
+                            <tr>
+                                <td class="customizing-fixtures-menu-item active" width="150">
+                                    Cup Type
+                                </td>
+                                <td class="customizing-fixtures-menu-item" width="150">
+                                    Scoring
+                                </td>
+                                <td class="customizing-fixtures-menu-item" width="150">
+                                    Fixtures
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <div class="col-xs-12">
+                            <div style="display: none">
+                                <div class="row m-b15">
+                                    <div class="col-xs-1 text-center">
+                                        <div class="check-setting active">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-11">
+                                        <div class="f26">In-Season</div>
+                                        <p class="proxima-nova">If you choose this option, your league will play an FA
+                                            Cup-style knockout tournament. All teams from your league are entered and
+                                            play in a qualifying round, followed by unseeded knockout rounds until a
+                                            champion is determined.</p>
+                                    </div>
+                                </div>
+                                <div class="row m-b40">
+                                    <!--  RPL-2.0---League-Settings-RPL_Cup_postseason02.png
+
+                                    <div style="padding: 0 25px;">
+                                        <div class="col-xs-12">
+                                            <div class="f26">Post-Season</div>
+                                            <p class="proxima-nova">Matches in post-season Cups are scored using the same scoring system as your regular season.</p>
+                                        </div>
+                                    </div>
+                                    -->
+
+                                    <div class="col-xs-1 text-center">
+                                        <div class="check-setting">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-11">
+                                        <div class="f26">Post-Season</div>
+                                        <p class="proxima-nova">If you choose this option, your league will play a
+                                            playoffs-style tournament, where teams qualify for the Cup via their league
+                                            season finish. Your league chairman can select and seed the teams and
+                                            matches are played after your league season has concluded.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- make display: block - it for tabs' descriptions-->
+                            <div style="display: none">
+                                <div class="row m-b25" style="padding: 0 25px;">
+                                    <div class="col-xs-12">
+                                        <div class="f26">In-Season</div>
+                                        <p class="proxima-nova">Matches are scored using a fixed points system, designed
+                                            to prevent draws from occuring. Scoring for In-Season Cups is not currently
+                                            customizable.</p>
+                                    </div>
+                                </div>
+                                <div class="row m-b25" style="padding: 0 25px;">
+                                    <div class="col-xs-12 col-sm-7 m-b15">
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">Goal</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">6 pts</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">Assist</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">3 pts</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">Chance created</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">1 pt</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">&lt;60 Minutes played</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">1 pt</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">61-89 Minutes played</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">1 pts</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">90+ Minutes played</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">1 pts</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">Goal Conceded</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">-1pt (DEF/GK), -.5pt
+                                                (MID)
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">Clean Sheet</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">5 pts (DEF/GK only;
+                                                <br>must play 90 min)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-5 m-b15">
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">Yellow card</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">-1 pts</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">Red Card</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">-3 pts</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">Own goal</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">-1 pt</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">Penalty miss</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">-1 pt</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">Penalty conseded</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">-1 pt</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">Penalty won</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">1 pt</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">Saves (per 3)</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">1 pt</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 text-right proxima-s-bold">Net Passes (per 10)</div>
+                                            <div class="col-xs-6 text-left proxima-nova gray-text">.5 pts</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- make display: block - it for tabs' descriptions-->
+                            <div style="display: block">
+                                <!-- -<div class="row m-b15">
+                                   League-Settings-RPL_Cup_postseason03.png --
+                                   <div class="col-xs-1 text-center">
+                                       <div class="check-setting"><div></div></div>
+                                   </div>
+                                   <div class="col-xs-11">
+                                       <div class="f26">Four Team Playoff</div>
+                                       <p class="proxima-nova">Top four teams make the playoffs. The #1 team plays #4, the #2 plays #3. Semi-finals are two legs with a one-legged final.</p>
+                                   </div>
+                               </div>
+                               <div class="row m-b15">
+                                   <div class="col-xs-1 text-center">
+                                       <div class="check-setting active"><div></div></div>
+                                   </div>
+                                   <div class="col-xs-11">
+                                       <div class="f26">Six Team Playoff</div>
+                                       <p class="proxima-nova">Top six teams make the playoffs. The #3 team plays the #6 team and #4 team plays #5 in the quarterfinals, and the #1 and #2 teams automatically advance to the Semi-final. quarter-finals and semi-finals are two legs, final is one leg.</p>
+                                   </div>
+                               </div>
+                               -->
+
+                                <div class="row m-b15">
+                                    <div class="col-xs-1 text-center">
+                                        <div class="check-setting active">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-11">
+                                        <div class="f26">Eight Team Knockout Stage</div>
+                                        <p class="proxima-nova">In leagues with eight teams, all teams advance to the
+                                            Quarterfinal Round. (l.e. no Qualifying Round is played.)</p>
+                                        <p class="proxima-nova">In leagues with ten or twelve teams, eight teams advance
+                                            to the Quarterfinals by placing in the top eight of the Qualifying
+                                            Round.</p>
+                                    </div>
+                                </div>
+                                <!-- disabled-setting -->
+                                <div class="row m-b40 disabled-setting">
+                                    <div class="col-xs-1 text-center">
+                                        <div class="check-setting">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-11">
+                                        <div class="f26">Sixteen Team Knockout Stage</div>
+                                        <p class="proxima-nova">If your league has two or more divisions linked for
+                                            promotion/relegation, you can select this option to merge divisions for the
+                                            RPL Cup. All teams will play in one Qualifying Round, with the top sixteen
+                                            point tallies advancing to the Round of 16.</p>
+                                        <p class="proxima-nova">Note: all linked divisions leagues must select this
+                                            option in their RPL Cup settings.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row clearfix" style="margin-bottom: 100px">
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-6 text-right">
+                                <button ng-click="ds.menu.cancelChanges()" style="color: #fff;"
+                                        class="btn btn-gray">Cancel
+                                </button>
+                            </div>
+                            <div class="col-xs-6 text-left">
+                                <button ng-click="ds.menu.saveChanges()"
+                                        class="btn btn-green">Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-b25">
+                    <div class="col-sm-offset-1 col-sm-10 settings-wrap">
+                        <div class="text-center settings-title m20">Choose cup type</div>
+                        <div class="row m-b25">
+                            <div class="col-xs-1 text-center">
+                                <div class="check-setting"><div></div></div>
+                            </div>
+                            <div class="col-xs-11">
+                                <div class="f26">In-Season</div>
+                                <p class="proxima-nova">- FA Cup-style knockout tournament</p>
+                                <p class="proxima-nova">- All teams from your league qualify.</p>
+                                <p class="proxima-nova">- If your league is linked to another division through promotion/relegation, you can choose to have all teams across all divisions play in your RPL Cup.</p>
+                                <p class="proxima-nova">- Cups with 10 or more teams first play the Qualifying Round; no head-to-head mathes rather the top 8 (0r 16 if leagues are linked) advance to the Knockout Stage.</p>
+                                <p class="proxima-nova">- Matches are scored using a fixed points system, designed to prevent draws as well to produce slightly different "form" between League matches and Cup matches.</p>
+                            </div>
+                        </div>
+                        <div class="row m-b25">
+                            <div class="col-xs-1 text-center">
+                                <div class="check-setting active"><div></div></div>
+                            </div>
+                            <div class="col-xs-11">
+                                <div class="f26">Post-Season</div>
+                                <p class="proxima-nova">- NBA Playoffs-style tournament</p>
+                                <p class="proxima-nova">- Teams qualify for for the Cup via their league season finish, after season has concluded</p>
+                                <p class="proxima-nova">- You can set the number of teams who qualify for the Cup - 4 or 6 - but cannot play across linked leagues</p>
+                                <p class="proxima-nova">- Matches are scored using the same scoring system as your regular season</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-t10 m-b25">
+                    <div class="col-sm-offset-1 col-sm-10 settings-wrap">
+                        <div class="text-center settings-title m20">Set # of teams for in-season cup</div>
+                        <!-- -<div class="row m-b15">
+                               RPL_Cup_settings03_postseason02.png --
+                               <div class="col-xs-1 text-center">
+                                   <div class="check-setting"><div></div></div>
+                               </div>
+                               <div class="col-xs-11">
+                                   <div class="f26">Four Team Playoff</div>
+                                   <p class="proxima-nova">Top four teams make the playoffs. The #1 team plays #4, the #2 plays #3. Semi-finals are two legs with a one-legged final.</p>
+                               </div>
+                           </div>
+                           <div class="row m-b15">
+                               <div class="col-xs-1 text-center">
+                                   <div class="check-setting active"><div></div></div>
+                               </div>
+                               <div class="col-xs-11">
+                                   <div class="f26">Six Team Playoff</div>
+                                   <p class="proxima-nova">Top six teams make the playoffs. The #3 team plays the #6 team and #4 team plays #5 in the quarterfinals, and the #1 and #2 teams automatically advance to the Semi-final. quarter-finals and semi-finals are two legs, final is one leg.</p>
+                               </div>
+                           </div>
+                           -->
+                        <div class="row m-b15">
+                            <div class="col-xs-1 text-center">
+                                <div class="check-setting active"><div></div></div>
+                            </div>
+                            <div class="col-xs-11">
+                                <div class="f26">Eight Team Knockout Stage</div>
+                                <p class="proxima-nova">In leagues with eight teams, all teams advance to the Quarterfinal Round. (l.e. no Qualifying Round is played.)</p>
+                                <p class="proxima-nova">In leagues with ten or twelve teams, eight teams advance to the Quarterfinals by placing in the top eight of the Qualifying Round.</p>
+                            </div>
+                        </div>
+                        <!-- disabled-setting -->
+                        <div class="row m-b40 disabled-setting">
+                            <div class="col-xs-1 text-center">
+                                <div class="check-setting"><div></div></div>
+                            </div>
+                            <div class="col-xs-11">
+                                <div class="f26">Sixteen Team Knockout Stage</div>
+                                <p class="proxima-nova">If your league has two or more divisions linked for promotion/relegation, you can select this option to merge divisions for the RPL Cup. All teams will play in one Qualifying Round, with the top sixteen point tallies advancing to the Round of 16.</p>
+                                <p class="proxima-nova">Note: all linked divisions leagues must select this option in their RPL Cup settings.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- RPL Cup tab END  -->
+
+        <!-- BASICS tab start  - CUT THIS-->
+        <basic-settings ng-if="vm.menu.currentSettings === 'basics'"></basic-settings>
+        <!-- BASICS tab end -->
+
+        <!-- SCORING tab start -->
+        <scoring-settings ng-if="vm.menu.currentSettings === 'scoring'"></scoring-settings>
+        <!-- SCORING tab end -->
+    </div>
+</div>

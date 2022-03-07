@@ -1,0 +1,28 @@
+<div>
+    <div class="row">
+        <h2 class="col-xs-12 text-center" style="color: #fff;">Delete account</h2>
+    </div>
+
+    <div class="row">
+        <h4 style="color: #fff;" class="col-xs-12 text-center">
+            Are you sure you want to remove your account? It's unrepairable action!<br>
+            Please, enter your email to confirm your action.
+        </h4>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-offset-3 col-xs-6 text-center">
+            <input ng-model="userEmail" class="form-control" type="text">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 text-right m-b10">
+            <button class="btn btn-red" style="color: #fff;" ng-click="closeThisDialog()">Cancel</button>
+        </div>
+        <div class="col-xs-6 text-left m-b10">
+            <button class="btn btn-green" ng-click="vm.menu.deleteAccount(userEmail)">DELETE ACCOUNT</button>
+        </div>
+    </div>
+
+</div>

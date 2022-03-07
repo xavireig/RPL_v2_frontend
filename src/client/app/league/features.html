@@ -1,0 +1,20 @@
+<div class="row features">
+    <div class="row">
+        <h2 class="text-center feature-title">Features</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-4 feature-item" ng-repeat="feature in featuresList" style="{{menu.showFeature($index)}}">
+            <div class="features-block" ng-if="showDesc == 1">
+                <img ng-if="feature.logo_url" ng-src="{{feature.logo_url}}" style="max-width: 50px;float: left;margin-right: 5px;"/>
+                <p><span ng-bind-html="feature.title"></span>
+                <span ng-bind-html="feature.short_description"></span></p>
+            </div>
+            <div class="features-block" ng-if="showDesc == 0">
+                <div><h5 ng-bind-html="feature.title"></h5></div>
+                <div><img style="background-size: cover;width: 100%;height: 100%;" ng-if="feature.logo_url" ng-src="{{feature.logo_url}}"/></div>
+            </div>
+        </div>
+        <div class="left" ng-click="menu.moveElement(-1)" ng-if="model.currentFeature >= 3"><</div>
+        <div class="left right" ng-click="menu.moveElement(1)" ng-if="(featuresList.length - model.currentFeature) >= 2">></div>
+    </div>
+</div>

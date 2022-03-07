@@ -1,0 +1,50 @@
+<ng-include src="'app/layout/account_topbar.html'"></ng-include>
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron text-center">
+            <h1>Create a league</h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-3 col-md-6 text-center">
+        <div style="border: 2px solid #2CCE76; padding: 10px 20px; margin-bottom: 20px;">
+            Congrats, you're now a League Chairman!<br>
+            (Don't worry &mdash; you won't be investigated by the FBI for corruption.)
+        </div>
+    </div>
+    <div class="col-md-offset-3 col-md-6">
+        <ul class="create-league-settings">
+            <li>
+                <div class="setting-status pull-right">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    <span class="green-text">Done!</span>
+                </div>
+                1) Basic League Settings
+            </li>
+            <li>
+                <div class="setting-status pull-right">
+                    <span ng-if="vm.model.params.point == '2'" class="glyphicon glyphicon-ok"></span>
+                    <span ng-if="vm.model.params.point == '2'" class="green-text">Done!</span>
+                    <button ng-if="vm.model.league.one.league_type == 'private' && vm.model.params.point == '1' " class="btn btn-default small-blue-btn" ng-click="vm.menu.goInviteOwners()">GO</button>
+             
+                    <button ng-if="vm.model.league.one.league_type == 'public' && vm.model.params.point == '1' "class="btn btn-default small-blue-btn" ng-click="vm.menu.goToPublicListing()">GO</button>
+                    
+                </div>
+                <div ng-if = "vm.model.league.one.league_type == 'private' ">2) Invite Owners</div>
+                <div ng-if = "vm.model.league.one.league_type == 'public' ">2) List league publicly</>
+            </li>
+            <li>
+                <div class="setting-status pull-right">
+                    <span > 
+                          <button class="btn btn-default small-blue-btn" ng-click="vm.menu.gotoLeagueSettings()">GO</button>
+                    </span>
+                </div>
+                3) Customize League Rules
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-12 text-center" style="margin-top: 40px;">
+        <button type="submit" class="btn btn-default btn-big-orange" ng-click="vm.menu.goLeague()">Go to league</button>
+    </div>
+</div>

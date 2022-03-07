@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 147.57">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #c0392b;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #c0392b;
+        stroke-miterlimit: 10;
+        stroke-width: 20px;
+      }
+    </style>
+  </defs>
+  <title>Big chance Missed</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g>
+        <polygon class="cls-1" points="300 142.99 277.71 142.99 277.71 22.29 22.29 22.29 22.29 142.99 0 142.99 0 0 300 0 300 142.99"/>
+        <g>
+          <line class="cls-2" x1="192.01" y1="56.49" x2="107.99" y2="140.5"/>
+          <line class="cls-2" x1="107.99" y1="56.49" x2="192.01" y2="140.5"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

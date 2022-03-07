@@ -1,0 +1,31 @@
+<div ng-controller = "LeagueJoinDialogController as vm">
+    <div class="row" style="color: white;" >
+        <div class="col-xs-12">
+            <span ng-click="closeThisDialog()"
+                ng-include="'images/dialog_window/x_close.svg'"
+                class="close-dialog-icon"></span>
+            <div class="row text-center text-capitalize confirmation-title">
+                JOIN A PRIVATE LEAGUE
+            </div>
+
+            <div class="row text-center body" style="padding: 10px;">
+                <span> If you've been sent a league code, enter it below to join that league. </span>
+                <!--<div><textarea class="form-control" rows="1" placeholder="League Code" ng-model="vm.model.leagueCode"></textarea></div>-->
+               <!--<input type="text" ng-model="bs.model.league.one.title" ng-disabled="bs.model.league.one['draft_status'] !== 'pending'"
+                                                 class="form-control"/>-->
+                <input type="text" size="20" rows="1" placeholder="League Code" ng-model="vm.model.leagueCode">
+                </br>
+                <span> Or you may <a href="#" ng-click="vm.menu.goPublicLeagues()">join a public league.</a> </span>
+            </div>
+
+            <div class="row text-center">
+                <span ng-click="vm.menu.cancelGoPrivate()">
+                    <a href="#" class="btn small-btn btn-gray">CANCEL</a>
+                </span>
+                <span ng-click="vm.menu.getLeagueFromCode()">
+                    <a href="#" class="btn small-btn btn-green">NEXT</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div>
+    <div class="col-xs-12">
+        <h2 class="text-left">News</h2>
+        <div class="club-profile-block">
+            <ul class="links-news-block">
+                <li ng-class="cnc.view.returnCurrentNewsStyle('my_club')"
+                    ng-click="cnc.menu.toggleNews('my_club')">My club
+                </li>
+                <li ng-class="cnc.view.returnCurrentNewsStyle('all')" ng-click="cnc.menu.toggleNews('all')">
+                    All
+                </li>
+            </ul>
+            <div class="news-board" ng-repeat="oneNew in cnc.model.news.data">
+                <p><strong>{{oneNew.headline}}</strong></p>
+                <small class="light-blue-text">{{oneNew.created_at | showTimePassed}}</small>
+                <hr/>
+            </div>
+
+            <div ng-if="cnc.model.news.data.length === 0" class="news-board">
+                <p><strong class="light-blue-text" ng-if="cnc.model.newsAreLoaded">Still no news</strong></p>
+                <hr/>
+            </div>
+
+            <div class="text-center m-t10">
+                <a href="#" ng-click="cnc.menu.goNews()" class="link uppercase">
+                    All news <span class="glyphicon glyphicon-triangle-right"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

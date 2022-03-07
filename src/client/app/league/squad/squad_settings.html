@@ -1,0 +1,82 @@
+<div class="col-xs-12 settings-page">
+    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="h2 text-center settings-title m20">Formations allowed</div>
+        </div>
+    </div>
+    <div class="row divider">
+        <div class="col-xs-12">
+            <p class="text-center page-info-body">Select which formations are allowed in your league.</p>
+            <table class="basics-settings clearfix vert-top">
+                <tbody>
+                <tr ng-repeat="formation in sq.model.leagueFormations">
+                    <td class="text-right settings-title">{{sq.model.commonModel.formations[formation.formation]}}</td>
+                    <td class="text-left">
+                        <form class="setting-switches">
+                            <switch disabled="sq.model.league['draft_status'] != 'pending'" ng-model="formation.allowed" id="enabled" name="enabled" class="light-green"></switch>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row" style="padding-bottom: 10px; padding-top: 15px;">
+        <div class="col-xs-12">
+            <h2 class="txt-center"> AUTO-SUBS</h2>
+        </div>
+    </div>
+    <div class="row divider">
+        <div class="col-xs-12">
+            <table class="basics-settings clearfix vert-top">
+                <tbody>
+                <tr>
+                    <td class="text-right">Off</td>
+                    <td class="text-center">
+                        <form class="setting-switches">
+                            <!--<switch disabled="sq.model.league['draft_status'] != 'pending'" ng-model="sq.model.autoSubs" id="enabled" name="enabled" class="light-green"></switch>-->
+                            <switch ng-model="sq.model.autoSubs" id="enabled" name="enabled" class="light-green"></switch>
+                        </form>
+                    </td>
+                    <td class="text-left">On</td>
+                </tr>
+                </tbody>
+            </table>
+             <p class="text-center page-info-body bottom-padding">If enabled, managers have the ability to set a subs bench on their lineup page. </br>
+             </p>
+        </div>
+    </div>
+
+    <div class="row divider">
+        <div class="col-xs-offset-2 col-xs-8 settings-wrap" style="padding-top: 30px;padding-bottom: 30px;">
+            <div class="text-center h2" style="padding-bottom: 20px;">Squad size</div>
+            <table class="scoring-type clearfix" style="margin-bottom: 20px;">
+                <tbody>
+                <tr>
+                    <td class="text-right settings-label">Max Players on Squad</td>
+                    <td class="text-left">
+                        <input ng-readonly="sq.model.league['draft_status'] != 'pending'" type="number"  ng-model="sq.model.squadSize" style="text-align: center; width: 60px;" class="text-left">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row logo-in-modal ">
+        <div class="clearfix col-xs-12 text-center">
+            <button class="btn btn-blue" ng-disabled="sq.model.league['draft_status'] != 'pending'" ng-click="sq.menu.restoreDefaults()">Restore defaults</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 text-right">
+            <button class="btn btn-gray" ng-click="vm.menu.goLeague()">cancel</button>
+        </div>
+        <div class="col-xs-6 text-left">
+            <button class="btn btn-green" ng-disabled="sq.model.league['draft_status'] != 'pending'" ng-click="sq.menu.saveSquadSettings()">save</button>
+        </div>
+    </div>
+</div>

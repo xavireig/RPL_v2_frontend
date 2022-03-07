@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215 167">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f39c12;
+      }
+    </style>
+  </defs>
+  <title>News - new</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g>
+        <polygon class="cls-1" points="215 151 184 151 184 139 203 139 203 12 37 12 37 36 25 36 25 0 215 0 215 151"/>
+        <path class="cls-1" d="M190,167H0V30H190ZM12,155H178V42H12Z"/>
+        <path class="cls-1" d="M68,116H27V56H68ZM39,104H56V68H39Z"/>
+        <rect class="cls-1" x="77" y="56" width="84" height="12"/>
+        <rect class="cls-1" x="77" y="81" width="84" height="12"/>
+        <rect class="cls-1" x="77" y="105" width="84" height="12"/>
+        <rect class="cls-1" x="27" y="131" width="134" height="12"/>
+      </g>
+    </g>
+  </g>
+</svg>

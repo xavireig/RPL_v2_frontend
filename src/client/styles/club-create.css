@@ -1,0 +1,13 @@
+.get-started {
+  background-color: white;
+  height: 500px;
+  width: 4%;
+}
+
+.get-started + div.col-lg-offset-3 {
+  margin-left: 30%;
+}
+
+#crest-shape .st0 {
+  fill: #4A698A;
+}

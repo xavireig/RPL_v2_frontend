@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150.22 233.43">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: none;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1 {
+        stroke: #2ecc71;
+        stroke-width: 13.89px;
+      }
+
+      .cls-2 {
+        fill: #a2ff73;
+      }
+
+      .cls-3 {
+        stroke: #a2ff73;
+        stroke-width: 13px;
+        stroke-dasharray: 15.29 15.29;
+      }
+    </style>
+  </defs>
+  <title>TakeOn03</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g>
+        <g>
+          <line class="cls-1" x1="81.12" y1="75.65" x2="145.31" y2="139.84"/>
+          <line class="cls-1" x1="145.31" y1="75.65" x2="81.12" y2="139.84"/>
+        </g>
+        <circle class="cls-2" cx="39.69" cy="193.74" r="39.69"/>
+        <g>
+          <path class="cls-3" d="M38.1,141C25.85,82.62,32,57.33,86.83,12.8"/>
+          <polygon class="cls-2" points="80.23 46.17 83.83 15.2 52.86 11.62 67.53 0 98.49 3.59 94.9 34.55 80.23 46.17"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

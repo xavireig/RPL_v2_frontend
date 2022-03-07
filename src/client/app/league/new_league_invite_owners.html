@@ -1,0 +1,82 @@
+<ng-include src="'app/layout/account_topbar.html'" xmlns="http://www.w3.org/1999/html"></ng-include>
+<div class="row">
+    <div class="col-md-12">
+        <div class=" text-center">
+            <h1 class="invite-owners-h1">Invite managers</h1>
+        </div>
+    </div>
+    <div class="col-md-offset-1 col-md-10">
+        <div class="inv-own-inp text-center">
+            Invite owners via email, by sending them a clickable link, or by sharing your league code. </br>
+        </div>
+    </div>
+</div>
+<div class="row row-bordered">
+    <div class="col-md-offset-4 col-md-4">
+        <div class="white-headline top-padding text-center">
+            via email
+        </div>
+        <form class=" text-center">
+            <div class="form-group">
+                <textarea class="border form-control inv-own-inp" rows="6" placeholder="Add emails of users you'd like to invite to your league, separated by commas." ng-model="vm.model.emails"></textarea>
+            </div>
+            <div class="form-group">
+                <p><small ng-if="vm.model.emails != ''">Invites not yet sent. Click the "send" button.</small></p>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <div class="btn-middle">
+            <button type="submit" class="btn btn-default btn-blue" ng-click="vm.menu.checkEmailsForValid()">SEND <span class="glyphicon glyphicon-envelope"></span></button>
+        </div>
+    </div>
+</div>
+<div class="row row-bordered">
+    <div class="col-md-offset-1 col-md-10">
+        <div class="white-headline text-center">
+            share link
+        </div>
+        <div class="inv-own-inp text-center">
+            Anyone who clicks the link will be able to join your league.
+        </div>
+        <div class="col-md-12 text-center">
+            <span class="inv-own-inp">League link: </span><input class="form-control shared_links_link" type="text" id="invitationLink" value="{{vm.model.link}}" onclick="this.select();">
+            <button type="submit" class="btn btn-default btn-blue" ng-click="vm.menu.copyLinkToClipboard()">COPY LINK<span class="glyphicon glyphicon-link"></span></button>
+        </div>
+        <!--<div class="col-md-4 text-center">
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{vm.view.sharedLink}}" target="_blank" class="fb-share-button shared_links social" style="padding-right: 60px; padding-left: 60px;">
+                <i class="fa fa-facebook pull-left" style="font-size: 28px; line-height: 22px; display: block; margin: 2px 10px 0 0;"></i>
+                <span style="display: inline-block;">Share on Facebook</span>
+            </a>
+        </div>
+        <div class="col-md-4 text-left">
+            <a href="https://twitter.com/home?status={{vm.view.sharedLink}}" target="_blank" class="shared_links social" style="padding-right: 60px; padding-left: 60px;">
+                <i class="fa fa-twitter pull-left" style="font-size: 28px; line-height: 22px; display: block; margin: 2px 10px 0 0;"></i>
+                <span style="display: inline-block;">Tweet on Twitter</span>
+            </a>
+        </div>-->
+        <!--<div class="col-md-12 text-center">
+            <p><small>Note: Anyone who clicks the link will be able to join your league.</small></p>
+        </div>-->
+    </div>
+</div>
+
+<div class="row row-bordered">
+    <div class="col-md-offset-1 col-md-10">
+        <div class="text-center h2">
+            send code
+        </div>
+        <div class="inv-own-inp text-center">
+            Or owners can enter this code to join your league:
+        </div>
+        <div class="col-md-12 text-center">
+            <span class="inv-own-inp">League Code: </span><input class="form-control shared_links_link league-code inv-own-inp" type="text" id="invitationLink" value="{{vm.model.code}}" onclick="this.select();">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <button type="submit" class="btn btn-default btn-green" ng-click="vm.menu.goNext()">Next</button>
+    </div>
+</div>

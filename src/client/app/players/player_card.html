@@ -1,0 +1,165 @@
+<div class="player-card">
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="text-center" width="80">
+                <img ng-src="{{vm.model.realTeam.getCrest(vm.model.player.real_team.extid)}}" width="80" alt="">
+            </div>
+            <div class="player-card-club-title text-center">{{vm.model.player.real_team.name}}</div>
+        </div>
+        <div class="col-xs-9">
+            <div class="row">
+                <div class="col-xs-12">
+                    <span class="player-card-name" ng-if="vm.model.player.full_name">
+                        {{vm.model.player.fname}}
+                        <span class="lastname">{{vm.model.player.lname}}</span>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <span class="player-card-position">{{vm.model.player.position | uppercase}}</span>
+                </div>
+            </div>
+            <div class="row" style="font-family: 'proxima_nova';">
+                <div class="col-xs-6">
+                    <span class="title">AGE: </span> <span class="beige-text">{{vm.menu.playerAge()}}</span>
+                </div>
+                <div class="col-xs-6">
+                    <span class="title">HEIGHT: </span> <span class="beige-text" ng-if="vm.model.player.height">{{vm.model.player.height}}'</span>
+                </div>
+            </div>
+            <div class="row" style="font-family: 'proxima_nova';">
+                <div class="col-xs-6">
+                    <span class="title">POS: </span> <span class="beige-text">{{vm.model.player.position}}</span>
+                </div>
+                <div class="col-xs-6">
+                    <span class="title">WEIGHT: </span> <span class="beige-text" ng-if="vm.model.player.weight">{{vm.model.player.weight}}kg</span>
+                </div>
+            </div>
+            <div class="row" style="font-family: 'proxima_nova';">
+                <div class="col-xs-6">
+                    <span class="title">NAT: </span> <span class="beige-text">{{vm.model.player.country}}</span>
+                </div>
+            </div>
+            <div class="row" style="font-family: 'proxima_nova';">
+                <div class="col-xs-12">
+                    <span class="title">STATUS: </span> <span class="beige-text">
+                    {{vm.model.player.player_status === 'Owned' ? vm.model.player.owner.name : vm.model.playerStatusText[vm.model.player.player_status]}}
+                </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="tab-list">
+            <tabset justified="true">
+                <tab heading="News"  active="true">
+                   <div class="player-card-news"  style="overflow: auto;max-height: 270px;">
+                       <news-block news="vm.model.news.data" personal="true"></news-block>
+                   </div>
+                </tab>
+
+
+                <tab heading="Stats" >
+                    <ul class="season-last-tabs">
+                        <li ng-repeat="interval in vm.menu.intervals" class="{{vm.model.form == interval.id ? 'active' : ''}}" ng-click="vm.menu.clickInterval(interval.id)">{{interval.title}}</li>
+                    </ul>
+
+                    <div class="col-xs-12" ng-if="!vm.model.playerStats[vm.model.form].calculated">
+                        <div class="spinner">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12" ng-if="vm.model.playerStats[vm.model.form].calculated">
+                        <h2 class="violet-text flama-med">stats</h2>
+                        <div class="club-profile-block">
+                            <div class="season-last">
+                                <img src="../images/stats/rank.svg" class="stats-frame-rank-image" width="26"/>
+                                <div class="stats-frame">
+                                    <table class="table no-bordered" style="margin-bottom: 0; margin-top: 31px;">
+                                        <tbody>
+                                        <tr>
+                                            <!--<td width="40">-->
+                                                <!--<img src="../images/stats/rank.svg" width="26"/>-->
+                                            <!--</td>-->
+                                            <td ng-if="vm.view.showStatColumn(stats)" class="text-center" ng-repeat="stats in vm.model.playerStats[vm.model.form].data">
+                                            <span class="graph">
+                                                <img ng-if="stats.value > 0" ng-src="../images/stats/{{stats.value}}.svg" width="16"/>
+                                                <span class="graph-num">{{stats.curValue}}</span>
+                                            </span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <!--<td></td>-->
+                                            <td ng-if="vm.view.showStatColumn(stats)" ng-repeat="stats in vm.model.playerStats[vm.model.form].data">
+                                                {{stats.text}}
+                                            </td>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <h2 class="violet-text flama-med">Game log</h2>
+                        <div class="last-season-table" style="border-bottom: 1px solid #fff;">
+                            <div class="fixed-header-container" fixed-header-table>
+                                <div style="overflow: hidden;">
+                                    <table class="table light-bordered-tbl white-text game-log-table fixed-head-table fixed-table-head" style="margin: 0">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-left">opp</th>
+                                            <th fixed-header-item ng-repeat="stat in vm.model.showTableStat" class="text-left">{{stat.displayName}}</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div style="max-height: 500px; overflow: auto">
+                                    <table class="table light-bordered-tbl white-text game-log-table fixed-head-table fixed-table-body" style="margin: -32px 0 0;">
+                                        <tbody>
+                                            <tr ng-repeat="match in vm.model.game_log">
+                                                <td class="text-left">
+                                                    <div class="pull-left" ng-if="match.away_real_team.id != vm.model.player.real_team_id">
+                                                        <small class="proxima-s-bold">{{vm.menu.returnMatchData(match)}} v.{{match.away_real_team.short_club_name}}<br/>
+                                                            <span class="light-blue-text">
+                                                                {{match.away_score == match.home_score ? 'D' : match.away_score < match.home_score ? 'W' : 'L'}}, {{match.home_score}}-{{match.away_score}}
+                                                            </span></small>
+                                                    </div>
+                                                    <div class="pull-left" ng-if="match.home_real_team.id != vm.model.player.real_team_id">
+                                                        <small class="proxima-s-bold">{{vm.menu.returnMatchData(match)}} @{{match.home_real_team.short_club_name}}<br/>
+                                                            <span class="light-blue-text">{{match.away_score == match.home_score ? 'D' : match.away_score > match.home_score ? 'W' : 'L'}}, {{match.away_score}}-{{match.home_score}}</span></small>
+                                                    </div>
+                                                </td>
+
+                                                <td ng-if="vm.view.showStatColumn(stat)" ng-repeat="stat in vm.model.statIconsModel.tableStats" class="text-center" ng-switch="stat.displayName">
+                                                    <small ng-switch-when="PsC/PsA">{{match.one_footballer_stats.int_accurate_pass}}/{{match.one_footballer_stats.int_total_pass_add}}</small>
+                                                    <small ng-switch-when="Ps%">{{(100 * match.one_footballer_stats.int_accurate_pass/match.one_footballer_stats.int_total_pass_add) || 0 | number:0}}% </small>
+                                                    <small ng-switch-default>{{vm.menu.showValue(match.one_footballer_stats[stat['parameter']])}} {{stat['suffix']}}</small>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </tab>
+            </tabset>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <button ng-if="!vm.model.match_data.now_play && !vm.model.match_data.is_done"  ng-class="vm.model.btnClass" class="btn " ng-click="vm.menu.playerCardButtonCallback(vm.model.player)">{{vm.menu.offerButtonText}}</button>
+            <button ng-if="vm.view.allowShowSubOut()" class="btn btn-green" ng-click="vm.menu.subOutPlayer(vm.model.virtualEngagement)">Sub out</button>
+        </div>
+    </div>
+</div>

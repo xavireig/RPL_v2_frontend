@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 268.09 300.01">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        clip-path: url(#clip-path-2);
+      }
+
+      .cls-4 {
+        fill: #2ecc71;
+      }
+    </style>
+    <clipPath id="clip-path" transform="translate(0 0)">
+      <rect class="cls-1" width="268.09" height="300"/>
+    </clipPath>
+    <clipPath id="clip-path-2" transform="translate(0 0)">
+      <rect class="cls-1" y="0.01" width="268.09" height="299.99"/>
+    </clipPath>
+  </defs>
+  <title>Min. Played</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g class="cls-2">
+        <g class="cls-3">
+          <path class="cls-4" d="M197.88,162.76H143.63V108.51c0-8-2-12.77-9.58-12.77-5.39,0-9.57,1.62-9.57,12.77v60.63c0,.72.07,1.38.12,2.05a11,11,0,0,0-.12,1.14,10.79,10.79,0,0,0,1.14,3.51c1.5,3.86,4.41,6.07,8.44,6.07,0,0,.34-.05.8-.16a18.73,18.73,0,0,0,2.39.16h60.64c8,0,12.76-2,12.76-9.58,0-5.38-1.64-9.57-12.77-9.57" transform="translate(0 0)"/>
+          <path class="cls-4" d="M241.7,81.44l13.87-13.87a7.3,7.3,0,0,0,0-10.31L235,36.65a7.27,7.27,0,0,0-10.31,0L210,51.3a133.23,133.23,0,0,0-53.62-20.79V12.76h12.77c6.5,0,9.57-1.06,9.57-6.38S174.93,0,169.15,0H98.94c-5.48,0-9.57.9-9.57,6.38,0,5.7,4.38,6.38,9.57,6.38h16V30C48.65,38.91,0,93.48,0,162.76,0,238.57,58.23,300,134,300s134-61.43,134-137.25c0-31-9.73-59-26.39-81.31M134,280.85c-63.85,0-114.89-54.25-114.89-118.08a114.89,114.89,0,0,1,229.78,0c0,63.83-51,118.08-114.89,118.08" transform="translate(0 0)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

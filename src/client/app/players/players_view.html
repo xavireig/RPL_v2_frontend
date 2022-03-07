@@ -1,0 +1,253 @@
+<!--<ng-include src="'app/layout/account_topbar.html'"></ng-include>-->
+<account-top-bar></account-top-bar>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3 col-md-2 small-sidebar" style="margin-left: -10px;">
+            <aside>
+                <menu-side-bar></menu-side-bar>
+            </aside>
+        </div>
+        <div class="col-xs-12 col-md-10 players-page">
+            <commercial-header></commercial-header>
+            <div class="row">
+                <h1 class="col-xs-12 player-page-title">Players</h1>
+            </div>
+            <div class="row player-search-container">
+                <div class="col-xs-12 col-md-4 player-search-block">
+                    <div class="input-group search-field-block">
+                        <input type="text" class="form-control search-field" placeholder="Search" ng-model="vm.model.search.full_name">
+                        <span class="glyphicon glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                    <button class="btn btn-filter-players visible-xs visible-sm pull-right">Filter</button>
+                </div>
+            </div>
+            <div class="row player-control-container">
+                <div class="col-xs-12 player-control-block">
+                     <div class="dropdown blue-drpdn  pull-left m-r10" dropdown>
+                        <label for="team">Status</label><br/>
+                        <button class="dropdown-toggle w100" dropdown-toggle type="button" aria-haspopup="true" aria-expanded="true" id="team">
+                            <div class="clip">{{vm.model.search.player_status}}</div>
+                            <span class="glyphicon glyphicon-menu-down"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownAllPlayers">
+                            <li ng-repeat="status in vm.menu.statuses" ng-class="vm.model.search.player_status == status ? 'active' : ''">
+                                <a href="#" ng-click="vm.model.search.player_status = status">{{status}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                     <div class="dropdown blue-drpdn  pull-left m-r10" dropdown>
+                        <label for="team">Team</label><br/>
+                        <button class="dropdown-toggle w100" dropdown-toggle type="button" aria-haspopup="true" aria-expanded="true" id="team">
+                            <div class="clip">{{vm.model.search.owner.name}}</div>
+                            <span class="glyphicon glyphicon-menu-down"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownAllPlayers">
+                            <li ng-class="vm.model.search.owner.name == 'All Clubs' ? 'active' : ''">
+                                <a href="#" ng-click="vm.model.search.owner.name = 'All Clubs'">All Clubs</a>
+                            </li>
+                            <li ng-repeat="club in vm.model.leagues.one.clubs | orderBy:'name'" ng-class="vm.model.search.owner.name == club.name ? 'active' : ''">
+                                <a href="#" ng-click="vm.model.search.owner.name = club.name">{{club.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="dropdown blue-drpdn pull-left m-r10" dropdown>
+                        <label for="pos">Position</label><br/>
+                        <button class="dropdown-toggle w100" dropdown-toggle type="button" aria-haspopup="true" aria-expanded="true" id="pos">
+                            <div class="clip">{{vm.model.search.position}}</div>
+                            <span class="glyphicon glyphicon-menu-down"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-left" aria-labelledby="position">
+                            <li ng-repeat="position in vm.menu.positions" ng-class="vm.model.search.position == position ? 'active' : ''">
+                                <a href="#" ng-click="vm.model.search.position = position">{{position}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- <div class="dropdown blue-drpdn pull-left" dropdown>
+                        <label for="form">Form</label><br/>
+                        <button class="dropdown-toggle w100" dropdown-toggle type="button" aria-haspopup="true" aria-expanded="true" id="form">
+                            <div class="clip">{{vm.menu.filter.form_title}}</div>
+                            <span class="glyphicon glyphicon-menu-down"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-left" aria-labelledby="dropdownForm">
+                            <li ng-repeat="form in vm.menu.form_title">
+                                <a href="#" value="{{form.id}}" ng-click="vm.menu.clickListElement('form', form.id, 'form_title', form.title)">{{form.title}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-green hidden-xs hidden-sm" ng-click="vm.menu.clickFilter()" style="margin-top: 35px">Filter</button> -->
+                </div>
+            </div>
+            <div class="row player-control-tbl-container">
+                <div class="col-xs-12 player-control-tbl-block">
+                    <div class="fixed-header-container" fixed-header-table>
+                        <div style="max-height: 500px; overflow: auto" load="vm.menu.loadPagePlayer">
+                            <table ng-table="vm.tableParams" fixed-table-headers="scrollable-area" class="table fixed-player-head-table fixed-table-body">
+                                <tbody style="font-size: 12px !important; font-family: 'proximan_nova_regular';">
+                                  <tr ng-repeat="player in $data | filter:vm.menu.getSearchFilter():strict track by player.id" ng-if="player.player_status!='left_epl'">
+                                    <td data-title="'Add'"class="text-center">
+                                        <img ng-click="vm.menu.makeTeamToTeamTransfer(player)" ng-if="player.player_status === 'Owned'" src="../images/label.svg" width="20"/>
+                                        <img ng-click="vm.menu.makeBetOnTheWaiver(player)" ng-if="player.player_status === 'Waiver'" src="../images/label.svg" width="20"/>
+                                        <img ng-click="vm.menu.takeFreeAgent(player)" ng-if="player.player_status === 'Free Agent'" src="../images/plus.svg" width="20"/>
+                                    </td>
+                                    <td data-title="'Players'" sortable="'full_name'" class="text-left border-right" style="min-width: 100px;">
+                                        <!--TODO: need to use vm.menu.dialogPlayerInfo(player)-->
+                                        <div class="pull-left">
+                                        <span class="player-full-name m0" style="display: inline-block; oat: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 125px">
+                                           {{player.full_name | FootballerFullName:15}}
+                                        </span><br/>
+                                            <span class="epl-team" style="display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 120px">{{vm.menu.position[player.position].short}} - {{player.real_team.short_club_name}}</span>
+                                        </div>
+                                        <!-- <span><img width="20" ng-src="{{vm.model.injuryModel.statuses[player.injury_status].icon}}" alt=""></span>
+                                        <span><img width="20" ng-src="{{vm.model.footballer.getNewsStatusIcon(player.last_news_date)}}" alt=""></span> -->
+                                    </td>
+                                    <td data-title="'Owner'" sortable="'owner.name'" class="text-center border-left-table">
+                                        <span class="fantasy-club" style="display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 70px" ng-if="player.player_status == 'Owned' || player.player_status == 'Outbound'">{{player.owner.name}}</span>
+                                        <span class="fantasy-club" style="display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 70px" ng-if="player.player_status == 'Free Agent'">Free agent</span>
+                                        <span class="fantasy-club" style="display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 70px" ng-if="player.player_status == 'Waiver'">Waiver</span>
+                                    </td>
+
+                                    <td data-title="'Next Opp'" class="text-center border-right m0">
+                                        <span style="display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 65px" ng-if="player.away_match">@{{player.next_opponent.short_club_name}}</span>
+                                        <span style="display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 65px" ng-if="!player.away_match">{{player.next_opponent.short_club_name}}</span>
+                                    </td>
+                                    <td data-title="'PTS'" ng-if="vm.view.leagueScoringTypeIsPoints()" class="text-center m0 border-right" sortable="'points'">{{player.points || '0.0'}}</td>
+
+                                    <td class="text-center m0" data-title="'Min'" sortable="'footballer_stats_all_match[' + currentSeasonId + '].int_minutes'">{{player.footballer_stats_all_match[currentSeasonId].int_minutes || '-'}}</td>
+                                    <td class="text-center m0" data-title="'G'" sortable="'footballer_stats_all_match[' + currentSeasonId + '].int_goals'">{{player.footballer_stats_all_match[currentSeasonId].int_goals || '-'}}</td>
+                                    <td class="text-center m0" data-title="'KP'" sortable="'footballer_stats_all_match[' + currentSeasonId + '].out_kpass'">{{player.footballer_stats_all_match[currentSeasonId].out_kpass || '-'}}</td>
+                                    <td class="text-center m0" data-title="'NP'" sortable="'footballer_stats_all_match[' + currentSeasonId + '].out_net_pass'">{{player.footballer_stats_all_match[currentSeasonId].out_net_pass || '-'}}</td>
+                                    <td class="text-center m0" data-title="'T'" sortable="'footballer_stats_all_match[' + currentSeasonId + '].tackles'">{{player.footballer_stats_all_match[currentSeasonId].tackles || '-'}}</td>
+                                    <td class="text-center m0" data-title="'I'" sortable="'footballer_stats_all_match[' + currentSeasonId + '].interception'">{{player.footballer_stats_all_match[currentSeasonId].interception || '-'}}</td>
+                                    <td class="text-center m0" data-title="'T+I'" sortable="'footballer_stats_all_match[' + currentSeasonId + '].tackle_interception'">{{player.footballer_stats_all_match[currentSeasonId].tackle_interception || '-'}}</td>
+                                    <td class="text-center m0" data-title="'DIS'" sortable="'footballer_stats_all_match[' + currentSeasonId + '].discipline'">{{player.footballer_stats_all_match[currentSeasonId].discipline || '-'}}</td>
+                                    <td class="text-center m0" data-title="'GC'" sortable="'footballer_stats_all_match[' + currentSeasonId + '].goals_conceded'">{{player.footballer_stats_all_match[currentSeasonId].goals_conceded || '-'}}</td>
+                                    <td class="text-center m0" data-title="'CS'" sortable="'footballer_stats_all_match[' + currentSeasonId + '].clean_sheets'">{{player.footballer_stats_all_match[currentSeasonId].clean_sheets || '-'}}</td>
+                                    <!-- <td class="text-center m0" data-title="'GCP'" sortable="'footballer_stats_all_match[' + currentSeasonId + '].goals_conceded_points'">{{player.footballer_stats_all_match[currentSeasonId].goals_conceded_points || '-'}}</td> -->
+                                    <td class="text-center m0" data-title="'TO'" sortable="'footballer_stats_all_match[' + currentSeasonId + '].take_ons'">{{player.footballer_stats_all_match[currentSeasonId].take_ons || '-'}}</td>
+                                    <td class="text-center m0" data-title="'S'" sortable="'footballer_stats_all_match[' + currentSeasonId + '].saves'">{{player.footballer_stats_all_match[currentSeasonId].saves || '-'}}</td>
+                                    <td class="text-center m0" data-title="'S/G'" sortable="'footballer_stats_all_match[' + currentSeasonId + '].saves_per_goal'">
+                                        <span ng-if="player.position === 'Goalkeeper'">{{player.footballer_stats_all_match[currentSeasonId].saves_per_goal || '-'}}</span>
+                                        <span ng-if="player.position != 'Goalkeeper'">{{'-'}}</span>
+                                    </td>
+                                    <!-- <td data-title="'% Owned'"class="text-center">{{player.owned_percentage}} %</td> -->
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-8">
+                    <div class="row transfer-title-block">
+                        <div class="col-xs-12 text-center transfer-activity-title h2">transfer activity</div>
+                    </div>
+                    <div class="row transfer-activity-container">
+                        <div class="col-xs-12 transfer-activity" style="overflow: hidden;">
+                            <table class="table light-head-tbl" sortable-scroll-table>
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th ng-click="vm.menu.setTransferActivityOrder(['footballer.full_name'])" class="text-left">Player</th>
+                                    <th ng-click="vm.menu.setTransferActivityOrder(['club_from.name', 'status'])" class="text-left">From</th>
+                                    <th ng-click="vm.menu.setTransferActivityOrder(['club_to.name', 'status'])" class="text-left">to</th>
+                                    <th ng-click="vm.menu.setTransferActivityOrder(['money_offered', 'status'])" class="text-center">fee</th>
+                                    <th ng-click="vm.menu.setTransferActivityOrder(['get_date'])" class="text-left">Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="transfer in vm.model.transfers.data | orderBy:vm.menu.transferActivityOrderBy" ng-if="transfer.footballer || transfer.club_to || transfer.club_from">
+                                    <td>
+                                        <img ng-if="transfer.status == 'free'" src="../images/arrow_right_green.svg" width="20"/>
+                                        <img ng-if="transfer.status == 'money'" src="../images/arrow_right_green.svg" width="20"/>
+                                        <img ng-if="transfer.status == 'waiver' && !transfer.is_auction" src="../images/arrow_left_red.svg" width="20"/>
+                                        <img ng-if="transfer.status == 'waiver' && transfer.is_auction" src="../images/arrow_right_green.svg" width="20"/>
+                                        <img ng-if="transfer.status == 'trade'" src="../images/arrows.svg" width="20"/>
+                                    </td>
+                                    <td>
+                                        <div class="pull-left" ng-if="transfer.footballer">
+                                            <strong class="player-name" style="display: inline-block;float: left;font-family: 'Proxima Nova Bold';max-width: 100px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{transfer.footballer.full_name | FootballerFullName:20}}</strong><br/>
+                                            <span class="epl-team light-blue-text">{{vm.menu.position[transfer.footballer.position].short | uppercase}} - {{transfer.footballer.real_team.short_club_name}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="fantasy-club" ng-if="transfer.club_from" class="clip" style="width: 100px;">{{transfer.club_from.name}}</span>
+                                        <span class="fantasy-club" ng-if="!transfer.club_from && !transfer.is_auction">Free Agents</span>
+                                        <span class="fantasy-club" ng-if="!transfer.club_from && transfer.is_auction">Waivers</span>
+                                    </td>
+                                    <td>
+                                        <span class="fantasy-club" ng-if="transfer.club_to" class="clip" style="width: 100px;">{{transfer.club_to.name}}</span>
+                                        <span class="fantasy-club" ng-if="!transfer.club_to && transfer.is_auction">Free Agents</span>
+                                        <span class="fantasy-club" ng-if="!transfer.club_to && !transfer.is_auction">Waivers</span>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <span ng-if="transfer.status == 'trade'">Trade</span>
+                                        <span ng-if="transfer.money_offered > 0">£{{transfer.money_offered}}</span>
+                                    </td>
+                                    <td>
+                                        {{transfer.get_date | date:'medium'}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4 hidden-xs hidden-sm">
+                    <div class="col-xs-12">
+                        <div class="text-center h2">trends</div>
+                    </div>
+                    <div class="col-xs-12">
+                        <table class="table light-bordered-tbl no-bordered border-wrap trends">
+                            <thead>
+                            <tr>
+                                <th class="text-center">Player</th>
+                                <th class="text-center">Ownership change</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td colspan="2">
+                                    <ul class="season-last-tabs small-tabs">
+                                        <li ng-class="vm.menu.showAddsDrops == 'adds' ? 'active' : ''" ng-click="vm.menu.showAddsDrops = 'adds'">
+                                            adds
+                                        </li>
+                                        <li ng-class="vm.menu.showAddsDrops == 'drops' ? 'active' : ''" ng-click="vm.menu.showAddsDrops = 'drops'">
+                                            drops
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="trend in vm.model.trends.added | orderBy:cnt" ng-if="vm.menu.showAddsDrops == 'adds'">
+                                <td>
+                                    <div class="pull-left text-left">
+                                        <strong class="player-name" >{{trend.footballer.full_name | FootballerFullName:15}}</strong><br/>
+                                        <span class="epl-team light-blue-text">{{vm.menu.position[trend.footballer.position].short}} - {{trend.footballer.real_team.short_club_name}}</span>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    {{100 * trend.cnt / vm.model.trendTotalAdd | number:0}}%
+                                </td>
+                            </tr>
+                            <tr ng-repeat="trend in vm.model.trends.dropped | orderBy:cnt" ng-if="vm.menu.showAddsDrops == 'drops'">
+                                <td>
+                                    <div class="pull-left text-left">
+                                        <strong>{{trend.footballer.full_name | FootballerFullName:15}}</strong><br/>
+                                        <span class="thin-text light-blue-text">{{vm.menu.position[trend.footballer.position].short}} - {{trend.footballer.real_team.short_club_name}}</span>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    {{100 * trend.cnt / vm.model.trendTotalDrop | number:0}}%
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <commercial-footer></commercial-footer>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,546 @@
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<div class="container">
+    <style>
+        /*
+        0. Compiled fonts
+        1. Typography
+        2. Buttons
+        3. Forms
+        4. Dropdown
+        5. Switch
+        6. Radiobutton
+        */
+
+        @font-face {
+            font-family: 'flamalight';
+            src: url('/fonts/flama-light-webfont.eot');
+            src: url('/fonts/flama-light-webfont.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/flama-light-webfont.woff2') format('woff2'),
+            url('/fonts/flama-light-webfont.woff') format('woff'),
+            url('/fonts/flama-light-webfont.ttf') format('truetype'),
+            url('/fonts/flama-light-webfont.svg#flamalight') format('svg');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+        @font-face {
+            font-family: 'flamamedium';
+            src: url('/fonts/flama-medium-webfont.eot');
+            src: url('/fonts/flama-medium-webfont.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/flama-medium-webfont.woff2') format('woff2'),
+            url('/fonts/flama-medium-webfont.woff') format('woff'),
+            url('/fonts/flama-medium-webfont.ttf') format('truetype'),
+            url('/fonts/flama-medium-webfont.svg#flamamedium') format('svg');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+        @font-face {
+            font-family: 'Proxima Nova Bold';
+            src: url('/fonts/brandon_med-webfont.eot');
+            src: url('/fonts/brandon_med-webfont.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/brandon_med-webfont.woff2') format('woff2'),
+            url('/fonts/brandon_med-webfont.woff') format('woff'),
+            url('/fonts/brandon_med-webfont.ttf') format('truetype'),
+            url('/fonts/brandon_med-webfont.svg#Proxima Nova Bold') format('svg');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+        @font-face {
+            font-family: 'Proxima Nova Bold';
+            src: url('/fonts/brandon_light-webfont.eot');
+            src: url('/fonts/brandon_light-webfont.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/brandon_light-webfont.woff2') format('woff2'),
+            url('fonts/brandon_light-webfont.woff') format('woff'),
+            url('fonts/brandon_light-webfont.ttf') format('truetype'),
+            url('fonts/brandon_light-webfont.svg#Proxima Nova Bold') format('svg');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+        /*Brandon Bold*/
+        @font-face {
+            font-family: 'Proxima Nova Bold';
+            src: url('/fonts/brandon_bld-webfont.eot');
+            src: url('/fonts/brandon_bld-webfont.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/brandon_bld-webfont.woff2') format('woff2'),
+            url('/fonts/brandon_bld-webfont.woff') format('woff'),
+            url('/fonts/brandon_bld-webfont.ttf') format('truetype'),
+            url('/fonts/brandon_bld-webfont.svg#Proxima Nova Boldbold') format('svg');
+            font-weight: bold;
+            font-style: normal;
+
+        }
+
+        /*Brandon Regular*/
+        @font-face {
+            font-family: 'proximan_nova_regular';
+            src: url('/fonts/brandon_reg-webfont.eot');
+            src: url('/fonts/brandon_reg-webfont.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/brandon_reg-webfont.woff2') format('woff2'),
+            url('/fonts/brandon_reg-webfont.woff') format('woff'),
+            url('/fonts/brandon_reg-webfont.ttf') format('truetype'),
+            url('/fonts/brandon_reg-webfont.svg#proximan_nova_regularRg') format('svg');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+
+        /*Proxima Nova Semi Bold*/
+        @font-face {
+            font-family: 'Proxima Nova Bold';
+            src: url('/fonts/proximanova-sbold-webfont.eot');
+            src: url('/fonts/proximanova-sbold-webfont.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/proximanova-sbold-webfont.woff2') format('woff2'),
+            url('/fonts/proximanova-sbold-webfont.woff') format('woff'),
+            url('/fonts/proximanova-sbold-webfont.ttf') format('truetype'),
+            url('/fonts/proximanova-sbold-webfont.svg#Proxima Nova Boldsemibold') format('svg');
+            font-weight: bold;
+            font-style: normal;
+
+        }
+        /*Proxima Nova Light*/
+        @font-face {
+            font-family: 'Proxima Nova Bold';
+            src: url('/fonts/proximanova-light-webfont.eot');
+            src: url('/fonts/proximanova-light-webfont.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/proximanova-light-webfont.woff2') format('woff2'),
+            url('/fonts/proximanova-light-webfont.woff') format('woff'),
+            url('/fonts/proximanova-light-webfont.ttf') format('truetype'),
+            url('/fonts/proximanova-light-webfont.svg#Proxima Nova Bold') format('svg');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+
+        /*Proxima Nova Regular*/
+        @font-face {
+            font-family: 'proximan_nova_regular';
+            src: url('/fonts/proximanova-reg-webfont.eot');
+            src: url('/fonts/proximanova-reg-webfont.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/proximanova-reg-webfont.woff2') format('woff2'),
+            url('/fonts/proximanova-reg-webfont.woff') format('woff'),
+            url('/fonts/proximanova-reg-webfont.ttf') format('truetype'),
+            url('/fonts/proximanova-reg-webfont.svg#proximan_nova_regularregular') format('svg');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+        /*Proxima Nova Bold*/
+        @font-face {
+            font-family: 'proxima_nova';
+            src: url('/fonts/proximanova-bold-webfont.eot');
+            src: url('/fonts/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
+            url('/fonts/proximanova-bold-webfont.woff2') format('woff2'),
+            url('/fonts/proximanova-bold-webfont.woff') format('woff'),
+            url('/fonts/proximanova-bold-webfont.ttf') format('truetype'),
+            url('/fonts/proximanova-bold-webfont.svg#proxima_novabold') format('svg');
+            font-weight: bold;
+            font-style: normal;
+
+        }
+        html{background-color: #111A23;}
+        body{
+            background-color: #111A23;
+            color: #FBFDEE;
+            font-size: 13px;
+            font-family: 'proximan_nova_regular';
+        }
+        .container{background-color: #111A23;}
+        /* 1. Typography */
+        h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5{
+            letter-spacing: .04em;
+            color: #FBFDEE;
+        }
+        h1,.h1,h2,.h2,h3,.h3{
+            font-family: 'flamamedium';
+        }
+        h1,.h1{font-size: 53px;text-transform: uppercase;}
+        h2,.h2{font-size: 30px;text-transform: uppercase;}
+        h3,.h3{font-size: 15px;}
+        h4,.h4{
+            font-family: 'proximan_nova_regular';
+            font-size: 14px;
+        }
+        h5,.h5{
+            font-family: 'Proxima Nova Bold';
+            font-size: 14px;
+        }
+        hr{
+            background-color: #34485E;
+            border-color: #34485E;
+        }
+        p{
+            font-family: 'proximan_nova_regular';
+            font-size: 13px;
+            letter-spacing: .04em;
+        }
+        p a{
+            color: #53D0EC;
+            font-size: 13px;
+            text-decoration: none;
+        }
+        p a:hover{text-decoration: underline;color: #53D0EC;}
+        a{
+            font-family: 'Proxima Nova Bold';
+            font-size: 16px;
+            color: #53D0EC;
+            text-decoration: none;
+        }
+        a:hover{text-decoration: underline;color: #53D0EC;}
+        /* end Typography */
+
+        /* 2. Buttons */
+        .btn{
+            margin: 0;
+            font-family: 'Proxima Nova Bold';
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            border-width: 2px;
+            border-radius: 10px;
+            padding: 12px 22px;
+            text-align: center;
+            color: #fff;
+            border-color: #34485E;
+            transition: all ease-out 0.3s
+        }
+        .btn:hover,.btn:focus{
+            background-color: rgba(52,72,94,0.2);
+            color: #fff;
+        }
+        .btn-gray{border-color: #34485E;}
+        .btn-gray:hover{
+            background-color: rgba(52,72,94,0.2);
+            border-color: #AAAAAA;
+        }
+        .btn-green{border-color: #2DCC70;}
+        .btn-green:hover{
+            background-color: rgba(161,255,115,0.2);
+            border-color: #A1FF73;
+        }
+        .btn-red{border-color: #C0392B;}
+        .btn-red:hover{
+            background-color: rgba(192,57,43,0.2);
+            border-color: #C0392B;
+        }
+        .btn-blue{
+            border-color: #53D0EC;
+        }
+        .btn-blue:hover{
+            background-color: rgba(83,203,236,0.2);
+            border-color: #53D0EC;
+        }
+        .btn-rounded{
+            border-radius: 40px;
+            padding: 12px;;
+        }
+        /* end Buttons */
+
+        /* 3. Forms */
+        input,.form-control,
+        .disabled input,.disabled .form-control{
+            background: transparent;
+            border-radius: 0;
+            border: 0;
+            border-bottom: 1px solid #C5D7D2;
+            padding: 5px;
+            transition: all ease-out 0.3s;
+            color: #C5D7D2;
+            font-size: 16px;
+            border-color: #C5D7D2;
+        }
+        input:focus,.form-control:focus{
+            box-shadow: none;
+            outline: 0;
+            border-color: #A1FF73;
+            color: #fff;
+        }
+        .form-group label{
+            color: #C5D7D2;
+            font-family: 'Proxima Nova Bold';
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            margin: 0;
+        }
+        .disabled input,
+        .disabled .form-control{
+            border-color: #34485E;
+        }
+        .disabled input[placeholder],
+        .disabled .form-control[placeholder]{color: #34485E;}
+        .disabled input::-webkit-input-placeholder,
+        .disabled .form-control::-webkit-input-placeholder{color: #34485E;}
+        .disabled input::-moz-placeholder,
+        .disabled .form-control::-moz-placeholder{color: #34485E;}
+        .disabled input:-moz-placeholder,
+        .disabled .form-control:-moz-placeholder{color: #34485E;}
+        .disabled input:-ms-input-placeholder,
+        .disabled .form-control:-ms-input-placeholder{color: #34485E;}
+        .disabled label{
+            color: #34485E;
+        }
+        /* end Forms */
+
+        /*3. Dropdown*/
+        .w100{
+            width: 100%;
+        }
+        .dropdown button{
+            background-color: #111A23;
+            padding: 6px 10px;
+            border: 1px solid #9AA7C3;
+            outline: 0;
+            border-radius: 4px;
+            font-size: 16px;
+            text-align: left;
+        }
+        .dropdown.disabled button{
+            color: #34485E;
+            border-color: #34485E;
+        }
+        .dropdown button span{
+            float: right;
+            margin-left: 20px;
+            font-size: 14px;
+            top: 2px;
+        }
+        .dropdown button:focus{
+            border-color: #A1FF73;
+        }
+        .dropdown .dropdown-menu{
+            padding: 0;
+            background-color: #111A23;
+            border: 1px solid #A1FF73;
+        }
+        .dropdown .dropdown-menu li a{
+            color: #FBFDEE;
+            transition: all ease-out 0.2s;
+        }
+        .dropdown .dropdown-menu li a:hover,
+        .dropdown .dropdown-menu li a:focus{
+            color: #111A23;
+            background-color: #A1FF73;
+        }
+        /*end Dropdown*/
+
+        /*5. Switch*/
+        .light-green{
+            background-color: #aaa;
+            border-color: #aaa;
+        }
+        .light-green.checked{
+            background-color: #25AB56;
+            border-color: #25AB56;
+        }
+        .light-green.checked small{
+            background-color: #8FF1AD;
+        }
+        .long-blue small{
+            background-color: #6DBFF2;
+        }
+        .long-blue{
+            background-color: #1C5379;
+            border-color: #1C5379;
+            width: 80px;
+        }
+        .long-blue:focus{
+            outline: 0;
+        }
+        .long-blue.checked small{
+            left: 50px;
+        }
+        .long-blue.checked{
+            background-color: #1C5379;
+            border-color: #1C5379;
+        }
+        /*end Switch*/
+
+        /* 6. Radiobutton*/
+        .green-radio-btn .md-off{
+            border-color: #018E42;
+        }
+        .green-radio-btn:hover .md-off{
+            border-color: #2DCC70;
+        }
+        .green-radio-btn md-radio-button .md-on,
+        .green-checkbox.md-checked .md-icon{background-color: #2DCC70;}
+
+        .green-radio-btn .md-checked .md-on,
+        .green-radio-btn md-radio-button.md-checked .md-off,
+        .green-checkbox .md-icon{
+            border-color: #2DCC70;
+        }
+        md-radio-group[disabled], md-radio-button[disabled],md-checkbox[disabled] .md-label{
+            color: #34485E;
+        }
+        md-radio-group[disabled] .md-container .md-off, md-radio-button[disabled] .md-container .md-off,md-checkbox[disabled] .md-icon{
+            border-color: #34485E;
+        }
+        /* end Radiobutton*/
+    </style>
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Page header - h1,.h1</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Module header - h2,.h2</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>Player Name - h3,.h3</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>EPL Team - h4,.h4</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h5>Fantasy Club - h5,.h5</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <p>Edin Hazard faces three weeks out after picking up a<br>
+                knock against Stoke City on Wednesday.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <a href="#">See all matches</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <hr/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="pull-left" style="margin-right: 20px;">
+                <div class="btn btn-gray">Cancel</div>
+            </div>
+            <div class="pull-left" style="margin-right: 20px;">
+                <div class="btn btn-green">Save</div>
+            </div>
+            <div class="pull-left" style="margin-right: 20px;">
+                <div class="btn btn-red">Reject</div>
+            </div>
+            <div class="pull-left" style="margin-right: 20px;">
+                <div class="btn btn-blue btn-rounded">Restore defaults</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <hr/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="ex">Field title</label>
+                <input type="text" class="form-control" id="ex" placeholder="Inline text example">
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group disabled">
+                <label for="ex1">Disabled</label>
+                <input type="text" class="form-control" id="ex1" placeholder="Inline text example" disabled="disabled">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <hr/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="dropdown">
+                <button class="dropdown-toggle w100" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Dropdown
+                    <span class="glyphicon glyphicon-menu-down"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li><a href="#">Separated link</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="dropdown disabled">
+                <button class="dropdown-toggle w100" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" disabled="disabled">
+                    Dropdown
+                    <span class="glyphicon glyphicon-menu-down"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li><a href="#">Separated link</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <hr/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <p>Toogle off/on</p>
+            <switch id="enabled" name="enabled" ng-model="enabled" disabled="false" class="light-green"></switch>
+        </div>
+        <div class="col-xs-3">
+            <p>Disabled</p>
+            <!--Need to change attr disabled="false" -->
+            <switch id="disabled" name="disabled" ng-model="disabled" disabled="true" class="light-green"></switch>
+        </div>
+        <div class="col-xs-3">
+            <p>Toogle off/on</p>
+            <switch id="enabled" name="enabled" ng-model="enabled" disabled="false" class="long-blue"></switch>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <hr/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <md-radio-group ng-model="data" class="green-radio-btn">
+                <md-radio-button value="Apple">Apple</md-radio-button>
+                <md-radio-button value="Banana"> Banana </md-radio-button>
+                <md-radio-button value="Mango" disabled="true">Mango</md-radio-button>
+            </md-radio-group>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <md-checkbox ng-model="data" aria-label="Checkbox 1" class="green-checkbox">
+                Checkbox 1
+            </md-checkbox>
+            <md-checkbox ng-model="data1" aria-label="Checkbox 2" disabled="true">
+                Checkbox 2
+            </md-checkbox>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <hr/>
+        </div>
+    </div>
+</div>
+
